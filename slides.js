@@ -986,7 +986,7 @@ S({
   <div class="res" style="top:300px;width:820px;grid-template-columns:1fr">
     <div><h3>Para empezar</h3>
       <p><b>BAISH</b>Comunidad, cursos y encuentros en Buenos Aires</p>
-      <p><b>BlueDot</b>Cursos cortos online, de una introducción general a Technical AI Safety</p>
+      <p><b>BlueDot</b>Materiales públicos: de una introducción general a Technical AI Safety, para leer por tu cuenta</p>
       <p><b>AI Safety Atlas</b>Un libro de texto online que ordena todo el campo</p></div>
     <div><h3>Para ver y leer</h3>
       <p><b>Rob Miles</b>Videos en YouTube que explican los problemas con ejemplos muy claros</p>
@@ -1044,7 +1044,7 @@ S({
 // 24 ------------------------------------------------------------------
 const STICKERS = [
   ['BAISH', 'Comunidad y cursos, acá en Buenos Aires', 'baish.com.ar', 'https://www.baish.com.ar/', '#ffbb55', -5],
-  ['BlueDot', 'Un mapa de las líneas de investigación', 'bluedot.org', 'https://bluedot.org/courses/technical-ai-safety', '#7fe3ff', 3],
+  ['BlueDot', 'Materiales públicos para conocer el campo', 'bluedot.org', 'https://bluedot.org/courses/technical-ai-safety', '#7fe3ff', 3],
   ['aisafety.com', 'Cursos, comunidades y fondos en un lugar', 'aisafety.com', 'https://www.aisafety.com/', '#b48cff', -2],
   ['METR', 'El gráfico de capacidades', 'metr.org/time-horizons', 'https://metr.org/time-horizons/', '#ff8a7a', 4],
   ['80,000 Hours', '¿Este trabajo es para mí?', '80000hours.org', 'https://80000hours.org/career-guide/personal-fit/', '#7dffa8', -4],
