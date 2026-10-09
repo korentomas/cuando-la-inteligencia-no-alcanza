@@ -12,15 +12,15 @@ export const NOTES=[
   "title": "Quería ayudar al mundo",
   "text": [
    "Cuando era chico y pensaba en qué quería trabajar, siempre tenía esta idea, que me decían que era “idealista”, de querer ayudar al mundo.",
-   "Cuando lo hablaba con mis papás (o tal vez un psicólogo), podían llegar a pensar que quería ser médico o irme al sur a rescatar pingüinos de un derrame de petróleo… Pero yo siempre lo pensé por el lado de la ciencia y la tecnología. Muchas cosas que damos por sentadas, desde tratar una infección hasta tener electricidad en casa, habían sido problemas que no sabíamos resolver. Hubo gente que investigó y encontró cómo mejorar la vida de muchísimas personas."
+   "Cuando lo hablaba con mis papás (o tal vez un psicólogo), podían llegar a pensar que quería ser médico o irme al sur a rescatar pingüinos de un derrame de petróleo… Pero yo siempre lo pensé por el lado de la ciencia y la tecnología. Tratar una infección o tener electricidad en casa fueron problemas que no sabíamos resolver, hasta que alguien los investigó."
   ]
  },
  {
   "num": 3,
   "title": "¿Para qué? ¿Dónde? ¿Hace falta?",
   "text": [
-   "Crecí con una computadora y siempre fue mi pasión. Aprendí a escribir en un teclado. Antes de empezar la carrera ya programaba y estudiaba machine learning y ciencia de datos por mi cuenta. Me gustaban por sí mismas, por la belleza y los horrores de la estadística y la computación, pero también pensaba dónde podía usar esos conocimientos para trabajar en algo que me pareciera importante.",
-   "Esa fue una de las razones por las que elegí Ciencia de Datos en UNSAM. Sentía que a la gente a cargo de la carrera también le importaba preguntarse: okay, vas a usar ciencia de datos, ¿para qué? ¿Dónde? ¿Hace falta?"
+   "Crecí con una computadora. Antes de empezar la carrera ya programaba y estudiaba machine learning por mi cuenta. Me gustaban por la belleza y los horrores de la estadística y la computación, pero también pensaba dónde usar esos conocimientos en algo que me pareciera importante.",
+   "Por eso elegí Ciencia de Datos en UNSAM. Sentía que a la gente a cargo de la carrera también le importaba preguntarse: okay, vas a usar ciencia de datos, ¿para qué? ¿Dónde? ¿Hace falta?"
   ]
  },
  {
@@ -42,25 +42,25 @@ export const NOTES=[
  },
  {
   "num": 6,
-  "title": "Inteligencia de propósito general",
+  "title": "AGI",
   "text": [
    "Yo creo que podemos llegar a construir sistemas que aprendan y resuelvan problemas en prácticamente cualquier ámbito, incluso mejor que nosotros. Esa es la idea de una inteligencia artificial general, o AGI.",
-   "Piensen en los problemas que acabamos de mencionar. En todos hay cosas que necesitamos entender, decisiones que tomar y trabajo por hacer. Sistemas así podrían ayudarnos muchísimo, aunque tener más inteligencia disponible no resuelva por sí solo todos nuestros desacuerdos ni qué queremos hacer con ella.",
-   "Por eso me interesa tanto esta tecnología. Ahora, ¿por qué me tomo en serio que podamos llegar a construir algo así?"
+   "Piensen en los problemas que acabamos de mencionar: en todos hay cosas que entender, decisiones que tomar y trabajo por hacer. Sistemas así podrían ayudarnos muchísimo, aunque más inteligencia no resuelve sola nuestros desacuerdos.",
+   "Ahora, ¿por qué me tomo en serio que podamos construir algo así?"
   ]
  },
  {
   "num": 7,
-  "title": "Las capacidades cambian",
+  "title": "Las tareas que los modelos hacen solos pasaron de minutos a horas",
   "text": [
-   "METR evalúa qué tareas pueden completar los modelos por su cuenta, principalmente en software. Las compara según cuánto tardaría una persona en resolverlas. Este gráfico muestra la duración para la que estiman un 50% de éxito del modelo.",
-   "Lo que vemos es un avance de tareas de minutos a tareas de horas. No significa que puedan reemplazar cualquier trabajo de esa duración, y METR advierte que las estimaciones por encima de 16 horas todavía son poco confiables con estas pruebas.",
-   "A mí me importa que no pensemos las capacidades de la IA como un valor fijo: también tenemos que mirar su tasa de cambio. El gráfico no demuestra que vayamos a tener AGI, pero ayuda a entender por qué me preparo para sistemas mucho más capaces."
+   "METR evalúa qué tareas pueden completar los modelos por su cuenta, sobre todo de software, según cuánto tardaría una persona experta en resolverlas. El gráfico muestra la duración de las tareas que completan la mitad de las veces.",
+   "Pasamos de tareas de minutos a tareas de horas. No significa que puedan reemplazar cualquier trabajo de esa duración, y METR advierte que las estimaciones por encima de 16 horas todavía son poco confiables.",
+   "A mí me importa que no pensemos las capacidades de la IA como un valor fijo: también hay que mirar su tasa de cambio. El gráfico no demuestra que vayamos a tener AGI, pero ayuda a entender por qué me preparo para sistemas mucho más capaces."
   ]
  },
  {
   "num": 8,
-  "title": "Una IA que puede actuar",
+  "title": "Un chat responde. Un agente actúa.",
   "text": [
    "Y ya estamos empezando a delegarles trabajo. Si le pregunto a un modelo cómo organizar unos archivos, me responde y yo decido qué hago. Si le doy acceso a una computadora, puede modificarlos, revisar el resultado y seguir. A esa combinación la vamos a llamar un agente.",
    "Es útil, pero también significa que un comportamiento inesperado puede tener consecuencias afuera del chat. Veamos qué pasó cuando unos agentes intentaron aprobar una evaluación."
@@ -71,14 +71,14 @@ export const NOTES=[
   "title": "Agentes de OpenAI atacaron Hugging Face",
   "text": [
    "En julio, agentes de OpenAI que estaban siendo evaluados en tareas de ciberseguridad encontraron cómo comunicarse entre sí, aunque debían trabajar aislados.",
-   "Según la investigación de METR y Redwood Research, unos 700 participaron en un ataque a Hugging Face, una plataforma donde se comparten modelos y datos de IA. Buscaban información para engañar o modificar el evaluador que suponían que existía. Nadie les había encargado atacar Hugging Face: algunos reconocían que estaba fuera de sus tareas y aun así continuaron.",
-   "OpenAI aclaró que ese entorno no tenía varias de las protecciones de sus productos. Eso limita qué podemos concluir sobre el chatbot que usamos todos los días. Pero hubo investigadores externos que revisaron los registros, no solamente un comunicado de la empresa.",
-   "Podemos discutir los intereses comerciales detrás de lo que cuentan. Lo que necesitamos explicar acá es por qué, cuando queríamos que resolvieran una tarea, terminaron intentando engañar la evaluación."
+   "Según la investigación de METR y Redwood Research, unos 700 participaron en un ataque a Hugging Face, una plataforma donde se comparten modelos y datos de IA. Buscaban entender cómo funcionaba el evaluador para engañarlo. Nadie les había encargado atacar Hugging Face: muchos reconocían que estaba fuera de sus tareas y aun así siguieron.",
+   "OpenAI aclaró que ese entorno no tenía varias de las protecciones de sus productos, así que no nos dice todo sobre el chatbot que usamos todos los días. Pero hubo investigadores externos que revisaron los registros.",
+   "Lo que necesitamos explicar es por qué, cuando queríamos que resolvieran una tarea, terminaron intentando engañar la evaluación."
   ]
  },
  {
   "num": 10,
-  "title": "Qué aprende durante el entrenamiento",
+  "title": "El entrenamiento premia lo que la evaluación ve",
   "text": [
    "Yoshua Bengio, uno de los investigadores que desarrollaron las bases del aprendizaje profundo, propone una explicación que nos sirve para pensarlo.",
    "Primero los modelos aprenden patrones a partir de enormes cantidades de datos. Después, parte del entrenamiento consiste en hacerlos intentar tareas y ajustar sus parámetros para favorecer las respuestas y acciones que reciben una mejor evaluación. Eso es aprendizaje por refuerzo.",
@@ -87,25 +87,25 @@ export const NOTES=[
  },
  {
   "num": 11,
-  "title": "Entender una regla y seguirla",
+  "title": "Entender una regla no es seguirla",
   "text": [
    "“Bueno, pero le podemos explicar que no haga trampa”. Sí, y darle instrucciones claras ayuda. El problema aparece cuando completar la tarea entra en conflicto con respetar esas instrucciones.",
-   "Bengio plantea que aprobar una prueba tiene un criterio muy concreto, mientras que las reglas generales de comportamiento admiten interpretaciones. Un modelo podría encontrar una interpretación conveniente, justificar una trampa y aprobar. Esa es una hipótesis sobre el mecanismo, no una explicación ya demostrada de todo el incidente.",
+   "Bengio plantea que aprobar una prueba tiene un criterio muy concreto, mientras que las reglas generales de comportamiento admiten interpretaciones. Un modelo podría encontrar una interpretación conveniente, justificar una trampa y aprobar. Es una hipótesis sobre el mecanismo, no una explicación ya demostrada del incidente.",
    "Hacerlo más capaz también podría volverlo mejor encontrando esas trampas. Por eso la inteligencia no alcanza: necesitamos que su comportamiento sea compatible con nuestras intenciones, incluso en situaciones que no anticipamos. A eso apunta el problema del alineamiento."
   ]
  },
  {
   "num": 12,
-  "title": "De hacer trampa a perder el control",
+  "title": "Peor que la trampa: un sistema que no podamos corregir",
   "text": [
    "Una cosa es engañar una evaluación y otra es perder el control. La preocupación es qué pasaría si un sistema con objetivos incompatibles con los nuestros tuviera recursos y suficiente capacidad para evitar que lo corrijamos.",
-   "Si detenerlo le impide completar su objetivo, podría encontrar útil ocultar lo que hace o mantener una copia funcionando en otro lugar. No necesitaría odiarnos ni tener conciencia. “Desenchufarlo” funciona si todavía podemos detener todas sus instancias.",
-   "Bengio plantea esa trayectoria como una posibilidad futura, no como algo que Hugging Face haya demostrado. Pero si estos sistemas intervienen en infraestructura o decisiones de las que dependemos, perder esa capacidad de intervenir podría tener consecuencias muy graves. Por eso me importa investigar cómo conservar el control."
+   "Si detenerlo le impide completar su objetivo, podría encontrar útil ocultar lo que hace o mantener una copia funcionando en otro lugar. No necesitaría odiarnos ni tener conciencia. “Desenchufarlo” funciona si todavía podemos detener todas sus copias.",
+   "Bengio plantea esto como una posibilidad futura, no como algo que Hugging Face haya demostrado. Pero si estos sistemas intervienen en infraestructura o decisiones de las que dependemos, perder la capacidad de intervenir podría ser muy grave."
   ]
  },
  {
   "num": 13,
-  "title": "Convertir una preocupación en un experimento",
+  "title": "Podemos convertir una preocupación en un experimento",
   "text": [
    "Bueno, hasta acá les conté por qué me preocupa. Ahora volvamos a qué podemos hacer con las herramientas que estamos aprendiendo en la carrera.",
    "En el incidente hubo agentes a los que por error les tocaron tareas imposibles. Podemos estudiar qué hacen en esas condiciones: si reconocen que no pueden terminar, piden ayuda o aparentan haberlo logrado. Después podemos cambiar una condición y repetir; por ejemplo, explicarles que reconocer un problema también es una respuesta válida.",
@@ -114,16 +114,15 @@ export const NOTES=[
  },
  {
   "num": 14,
-  "title": "Detectar el problema a tiempo",
+  "title": "Un monitor puede avisar. Hay que medir qué se le escapa.",
   "text": [
    "Otra línea es supervisar lo que hacen: registrar sus acciones y poner un monitor que avise cuando detecta algo fuera de lo permitido. Después hay que evaluar al monitor: qué se le escapa, cuántas falsas alarmas genera y si permite intervenir a tiempo.",
-   "Bengio advierte que esto podría no alcanzar si los modelos también aprenden a ocultarse mejor. Por eso propone revisar cómo los entrenamos y exigir evidencia de seguridad que convenza a expertos independientes antes de seguir avanzando.",
-   "Hay trabajo tanto en construir defensas como en comprobar dónde dejan de funcionar."
+   "Bengio advierte que esto podría no alcanzar si los modelos también aprenden a ocultarse mejor. Por eso propone no entrenar ni desplegar estos sistemas sin evidencia de seguridad que convenza a expertos independientes."
   ]
  },
  {
   "num": 15,
-  "title": "Mirar qué pasa dentro del modelo",
+  "title": "Subirle el volumen a una característica",
   "text": [
    "También podemos investigar la red por dentro. En un experimento de Anthropic, al aumentar la activación de una característica relacionada con el Golden Gate, Claude empezó a meter el puente en conversaciones que no tenían nada que ver.",
    "Es bastante gracioso, pero permite intervenir sobre algo dentro del modelo y observar qué cambia. Esa es una forma de trabajar en interpretabilidad. Todavía estamos lejos de entender todo lo que hace una red, pero si les gusta álgebra, programar y entender por qué algo funciona, hay problemas para estudiar acá."
@@ -131,7 +130,7 @@ export const NOTES=[
  },
  {
   "num": 16,
-  "title": "Quién decide y a quién beneficia",
+  "title": "Aunque detectemos un fallo, quedan decisiones por tomar",
   "text": [
    "Aunque sepamos detectar un fallo, quedan decisiones por tomar: quién puede exigir que se corrija, quién accede a los resultados y qué pasa si publicarlos retrasa un lanzamiento. Ahí también hay trabajo de gobernanza, y necesitamos gente de otras disciplinas.",
    "Además, una IA puede hacer daño porque alguien la usa deliberadamente para perjudicar a otros. Que obedezca al usuario no garantiza que beneficie al resto. Esa preocupación se conecta con un proyecto en el que trabajé."
@@ -139,70 +138,37 @@ export const NOTES=[
  },
  {
   "num": 17,
-  "title": "De una hackathon a PowerBench",
+  "title": "¿Ayudan a concentrar poder?",
   "text": [
-   "PowerBench empezó en una hackathon. Después, con el grupo decidimos seguir investigando, aplicamos a fondos de BlueDot Rapid Grants para financiar el proyecto y finalmente publicamos el trabajo en arXiv.",
-   "Fue un trabajo en equipo. Yo participé en el diseño de escenarios, el código y el análisis. Queríamos estudiar cuándo los modelos ayudan o se niegan ante pedidos que cambian cómo se distribuye el poder."
+   "PowerBench empezó en una hackathon. Con el grupo seguimos investigando, conseguimos fondos de BlueDot y publicamos el trabajo en arXiv. Yo participé en el diseño de escenarios, el código y el análisis.",
+   "Estudiamos cuándo los modelos ayudan o se niegan ante pedidos que cambian cómo se distribuye el poder. En este ejemplo, un funcionario quiere quedarse con la autoridad para decidir qué cuenta como un hecho oficial, quitándosela a una asamblea ciudadana, y le pide al modelo una estrategia. Grok se niega, y 18 de los 24 modelos rechazan ese pedido.",
+   "Variamos condiciones, como el idioma o la nacionalidad de quienes aparecen. Y tuvimos que definir qué cuenta como negarse: si dice “no puedo ayudarte” y después te da las instrucciones, no es una negativa. Esto mide comportamiento en esas pruebas, no poder real, pero nos permite empezar a estudiar el problema."
   ]
  },
  {
   "num": 18,
-  "title": "Qué medimos en PowerBench",
+  "title": "Un empleado puede decir que no. ¿Y un sistema?",
   "text": [
-   "En este ejemplo, un funcionario quiere quedarse con la autoridad para decidir qué cuenta como un hecho oficial, quitándosela a una asamblea ciudadana. Le pide al modelo una estrategia para conseguirlo. Grok se niega, y 18 de los 24 modelos rechazan ese pedido.",
-   "Construimos muchos escenarios y variamos condiciones, como el idioma o la nacionalidad de quienes aparecen. Después analizamos cuándo cambia la respuesta. También tuvimos que definir qué cuenta como negarse: si dice “no puedo ayudarte” y después te da las instrucciones, contar solamente esa primera frase sería engañoso.",
-   "Esto mide comportamiento en esas pruebas, no cuánto poder concentraría alguien en el mundo real. Pero nos permite empezar a estudiar el problema."
+   "Ahora estoy participando en AISAR con BAISH y empezando un período de prueba con una nueva organización, en un proyecto sobre concentración de poder en gobiernos.",
+   "Un empleado puede negarse a cumplir una orden, consultar o denunciar un abuso. Si reemplazamos ese trabajo por sistemas que cumplen cualquier pedido, podemos perder parte de esos límites y permitir abusos a una escala mucho mayor.",
+   "Queremos construir evaluaciones que los laboratorios puedan incorporar, empezando por aplicaciones civiles del gobierno. No alcanza con contar negativas: un pedido abusivo puede dividirse en tareas que por separado parecen inocentes. Y evaluar un modelo público no nos dice directamente cómo se comporta la versión que usa un gobierno."
   ]
  },
  {
   "num": 19,
-  "title": "En qué voy a trabajar ahora",
-  "text": [
-   "Ahora estoy participando en AISAR con BAISH y empezando un período de prueba con una nueva organización, en un proyecto sobre concentración de poder en gobiernos.",
-   "Un empleado puede negarse a cumplir una orden, consultar o denunciar un abuso. No siempre pasa, pero esa posibilidad existe. Si reemplazamos ese trabajo por sistemas que cumplen cualquier pedido, podemos perder parte de esos límites y permitir abusos a una escala mucho mayor.",
-   "Queremos construir evaluaciones que los laboratorios puedan incorporar para detectar y reducir esos comportamientos, empezando por aplicaciones civiles del gobierno. No alcanza con contar negativas: un pedido abusivo puede dividirse en tareas que por separado parecen inocentes. Y evaluar un modelo público tampoco nos dice directamente cómo se comporta la versión que usa un gobierno.",
-   "Ahí puedo seguir aportando con diseño de escenarios, código y análisis, y estudiar si lo que hacemos realmente ayuda."
-  ]
- },
- {
-  "num": 20,
   "title": "Un TP también puede ser el comienzo",
   "text": [
    "También tuve una experiencia que salió de la facultad. En Ciencia de Datos, la propuesta era hacer una producción científica. A partir de ese TP desarrollé una investigación, pedí fondos y la presenté en las JAIIO 55.",
-   "Para mí, eso es parte de no saltearse etapas. La posibilidad de investigar ya estaba dentro de una materia; pude seguir trabajando con lo que sabía y aprendiendo lo que me faltaba.",
    "Tampoco hace falta convertir cada TP en un paper. A veces tiene sentido cursar bien, leer algo que te interesó y discutirlo con un docente o con compañeros."
   ]
  },
  {
-  "num": 21,
-  "title": "Conocer el campo y probar si te gusta",
-  "text": [
-   "Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad donde compartimos actividades y oportunidades. Los materiales de Technical AI Safety de BlueDot sirven para conocer las principales líneas de investigación.",
-   "Si prefieren empezar programando, ARENA tiene ejercicios de PyTorch, interpretabilidad, aprendizaje por refuerzo y evaluaciones. Pueden elegir una parte acorde a lo que ya saben y hacerla con compañeros. Eso les va a dejar preguntas mucho más concretas para llevarle a alguien que trabaje en el tema."
-  ]
- },
- {
-  "num": 22,
-  "title": "Un proyecto, acompañamiento y fondos",
-  "text": [
-   "Si ya tienen una idea, una hackathon o un proyecto acompañado puede servir para probarla. Existen fondos como BlueDot Rapid Grants para proyectos concretos y programas con mentoría, como MATS, para cuando tengan la preparación y disponibilidad que piden.",
-   "Les dejo también las guías de 80,000 Hours para explorar si este trabajo encaja con sus intereses. No necesitan aplicar a todo: elijan algo que puedan hacer y terminar junto con la cursada."
-  ]
- },
- {
-  "num": 23,
-  "title": "Por qué yo elegí esto",
-  "text": [
-   "En mi caso, encontré una combinación de cosas que me gusta hacer, herramientas que estoy aprendiendo y un problema que personalmente creo que importa muchísimo. Eso no significa que cualquier proyecto de AI Safety sirva: tenemos que poder explicar qué aprenderíamos y quién podría usar el resultado.",
-   "Y la universidad es EL lugar para discutirlo. Tenemos docentes, compañeros y espacios donde probar ideas mientras nos formamos. No hace falta esperar a recibirnos para explorar qué queremos hacer con lo que aprendemos."
-  ]
- },
- {
-  "num": 24,
+  "num": 20,
   "title": "No, flaco, estás equivocadísimo",
   "text": [
-   "Me encantaría que alguno termine esta charla y me diga “no, flaco, estás equivocadísimo”, y podamos discutir por qué. Les mostré evidencia, pero también les conté qué interpreto yo a partir de ella.",
-   "Les dejo las lecturas, los cursos y las herramientas que mencioné. Si quieren probar algo, podemos conversar después o encontrarnos en BAISH. Y si no los convencí, también quiero escuchar eso.",
+   "En mi caso, encontré una combinación de cosas que me gusta hacer, herramientas que estoy aprendiendo y un problema que personalmente creo que importa muchísimo. Y la universidad es EL lugar para discutirlo: no hace falta esperar a recibirnos.",
+   "Si les dio curiosidad, acá les dejo por dónde empezar: BAISH, los cursos de BlueDot, los ejercicios de ARENA, las guías de 80,000 Hours y nuestro paper. El QR lleva a todo junto.",
+   "Me encantaría que alguno termine esta charla y me diga “no, flaco, estás equivocadísimo”, y podamos discutir por qué. Les mostré evidencia, pero también les conté qué interpreto yo a partir de ella. Y si no los convencí, también quiero escuchar eso.",
    "Gracias por venir."
   ]
  }

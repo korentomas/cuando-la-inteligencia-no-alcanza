@@ -881,25 +881,6 @@ S({
   },
 });
 
-// 17 ------------------------------------------------------------------
-S({
-  title: 'PowerBench empezó en una hackathon', cls: 'scrim', steps: 1,
-  html: `<h1 class="h-sm">PowerBench empezó<br>en una hackathon</h1>
-  <div class="tag" style="left:150px;top:880px">Hackathon</div>
-  <div class="tag gold" style="left:830px;top:520px">Fondos de BlueDot</div>
-  <div class="tag" style="left:1600px;top:250px">arXiv</div>
-  ${card('powerbench-paper.png', { x: 980, y: 610, w: 820, rot: -2, s: 1, cap: 'PowerBench, arXiv 2610.02303 (preprint). Trabajo en equipo.', cls: 'light' })}
-  <p class="lead small" data-s="1" style="position:absolute;left:120px;top:400px;width:680px">¿cuándo ayudan o se niegan los modelos ante pedidos que <b>cambian cómo se distribuye el poder</b>?<br><span class="dim">Mi parte: diseño de escenarios, código y análisis.</span></p>`,
-  enter(W) {
-    const F = new Form(), R = rng(26), A = P(260, 860), B = P(1680, 300), fl = [];
-    const path = u => [A[0] + (B[0] - A[0]) * u, A[1] + (B[1] - A[1]) * u + Math.sin(u * Math.PI) * 5];
-    for (let q = 0; q < 7000; q++) { fl.push([R(), .05 + R() * .07, gauss(R), gauss(R)]); F.add(...path(0), 0, k(C.blue, .4), 1); }
-    [[0, C.white], [.5, C.gold], [1, C.cyan]].forEach(([u, col]) => blob(F, R, ...path(u), 0, .9, 1100, k(col, .55), 1.5));
-    F.live((p, c, s, t, dt) => { for (let q = 0; q < fl.length; q++) { const f = fl[q]; f[0] = (f[0] + dt * f[1]) % 1; const [x, y] = path(f[0]), sp = .3 + Math.sin(f[0] * Math.PI) * .8; p[q * 3] = x + f[2] * sp * .3; p[q * 3 + 1] = y + f[3] * sp * .5; p[q * 3 + 2] = f[2] * sp; } }).finish();
-    W.setForm(F, { dur: 2 });
-  },
-});
-
 // 18 ------------------------------------------------------------------
 S({
   title: '¿Ayudan a concentrar poder? (PowerBench)', cls: 'scrim', steps: 2,
@@ -910,7 +891,8 @@ S({
   <div class="stack small" data-s="2" style="top:330px;width:720px">
     <p>variamos condiciones: <b>idioma</b>, <b>nacionalidad</b> de quienes aparecen…</p>
     <p>¿qué cuenta como negarse? «no puedo ayudarte» + instrucciones <b class="red">no es una negativa</b></p>
-    <p class="dim">PowerBench mide comportamiento en estas pruebas, no cuánto poder concentraría alguien en el mundo real</p></div>`,
+    <p class="dim">PowerBench mide comportamiento en estas pruebas, no cuánto poder concentraría alguien en el mundo real</p></div>
+  <p class="src">PowerBench empezó en una hackathon, con fondos de BlueDot. Preprint en arXiv (2610.02303). Mi parte: escenarios, código y análisis</p>`,
   enter(W) { this.build(W, 0); },
   step(W, n) { if (n === 1) this.build(W, 1); },
   build(W, n) {
@@ -999,61 +981,6 @@ S({
       for (let i = 0; i < n; i++) { const x = base[i * 3] - root[0], z = base[i * 3 + 2]; p[i * 3] = root[0] + x * ca + z * sa; p[i * 3 + 2] = -x * sa + z * ca; }
     }).finish();
     W.setForm(F, { dur: 1.2 });
-  },
-});
-
-// 21–22 constellations ---------------------------------------------------
-function constellation(W, stars, seed) {
-  const F = new Form(), R = rng(seed), seg = [];
-  stars.forEach(([px, py, col]) => {
-    const [x, y] = P(px, py);
-    blob(F, R, x, y, 0, .35, 700, k(col, .7), 1.6); blob(F, R, x, y, 0, 2.2, 1600, k(col, .12), 1.6);
-    for (let q = 0; q < 400; q++) { const a = (q % 4) * Math.PI / 2 + .3, r = R() * 6; F.add(x + Math.cos(a) * r, y + Math.sin(a) * r, 0, k(col, .25 * (1 - r / 6)), .9); }
-  });
-  for (let i = 0; i < stars.length; i++) { const a = P(stars[i][0], stars[i][1]), b = P(stars[(i + 1) % stars.length][0], stars[(i + 1) % stars.length][1]); seg.push(a[0], a[1], 0, b[0], b[1], 0); }
-  W.group.add(W.lines(new Float32Array(seg), 0x8090ff, .25));
-  F.live(spinner(F, 0, F.n, { c: [0, 0, 0], angle: t => Math.sin(t * .3) * .015 })).finish();
-  W.setForm(F, { dur: 2 });
-}
-S({
-  title: 'Conocer el campo y probar si te gusta', cls: 'scrim',
-  html: `<h1 class="h-sm">Conocer el campo<br>y probar si te gusta</h1>
-  <div class="star" style="left:1120px;top:250px"><img src="img/baish.svg" alt="" class="logo"><b>BAISH</b><span>cursos y una comunidad para compartir actividades y oportunidades</span></div>
-  <div class="star" style="left:1250px;top:560px"><b>BlueDot: Technical AI Safety</b><span>materiales para conocer las principales líneas de investigación</span></div>
-  <div class="star" style="left:400px;top:700px"><b>ARENA</b><span>ejercicios de PyTorch, interpretabilidad, aprendizaje por refuerzo y evaluaciones. Elijan una parte y háganla con compañeros</span></div>`,
-  enter(W) { constellation(W, [[1060, 290, C.gold], [1190, 600, C.cyan], [340, 740, C.violet]], 31); },
-});
-S({
-  title: 'Si ya tienen una idea, hay mentoría y fondos', cls: 'scrim',
-  html: `<h1 class="h-sm">Si ya tienen una idea,<br>hay mentoría y fondos</h1>
-  <div class="star" style="left:1300px;top:290px"><b>BlueDot Rapid Grants</b><span>fondos para proyectos concretos</span></div>
-  <div class="star" style="left:1250px;top:610px"><b>MATS</b><span>investigación con mentoría, cuando tengan la preparación y disponibilidad que piden</span></div>
-  <div class="star" style="left:400px;top:700px"><b>80,000 Hours</b><span>guías para explorar si este trabajo encaja con sus intereses</span></div>
-  <p class="src">no necesitan aplicar a todo: elijan algo que puedan hacer y terminar junto con la cursada</p>`,
-  enter(W) { constellation(W, [[1240, 330, C.green], [1190, 650, C.blue], [340, 740, C.pink]], 32); },
-});
-
-// 23 ------------------------------------------------------------------
-S({
-  title: 'Lo elegí porque junta tres cosas', cls: 'scrim', steps: 1,
-  html: `<h1 class="h-sm">Lo elegí porque<br>junta tres cosas</h1>
-  <div class="tag blue" style="left:1250px;top:150px">Lo que me gusta hacer</div>
-  <div class="tag gold" style="left:900px;top:850px;text-align:right;width:380px;white-space:normal">Herramientas que<br>estoy aprendiendo</div>
-  <div class="tag red" style="left:1590px;top:850px;white-space:normal;width:330px">Un problema que<br>importa muchísimo</div>
-  <p class="lead small" style="position:absolute;left:120px;top:380px;width:640px">no cualquier proyecto sirve: tenemos que poder explicar <b>qué aprenderíamos</b> y <b>quién podría usar el resultado</b></p>
-  <p class="big2" data-s="1" style="position:absolute;left:120px;top:640px;width:660px">La universidad es <b class="gold">EL</b> lugar para discutirlo</p>`,
-  enter(W) {
-    const F = new Form(), R = rng(33), c = P(1420, 560), r = 9.5, cs = [[90, C.blue], [210, C.gold], [330, C.red]].map(([a, col]) => [c[0] + Math.cos(a * Math.PI / 180) * 5.6, c[1] + Math.sin(a * Math.PI / 180) * 5.6, col]);
-    let n = 0;
-    while (n < 17000) {
-      const x = c[0] + (R() - .5) * 34, y = c[1] + (R() - .5) * 34, ins = cs.map(([cx, cy]) => Math.hypot(x - cx, y - cy) < r), m = ins.filter(Boolean).length;
-      if (!m) continue; n++;
-      let col = cs.filter((_, i) => ins[i]).reduce((a, q) => [a[0] + q[2][0], a[1] + q[2][1], a[2] + q[2][2]], [0, 0, 0]).map(v => v / m);
-      if (m === 3) col = mix(C.white, C.gold, .4);
-      F.add(x, y, gauss(R) * (m === 3 ? 1.4 : .6), k(col, m === 3 ? .55 : m === 2 ? .26 : .19), m === 3 ? 1.5 : 1.1);
-    }
-    F.live(spinner(F, 0, F.n, { c: [c[0], c[1], 0], angle: t => Math.sin(t * .5) * .25 })).finish();
-    W.setForm(F, { dur: 2.2 });
   },
 });
 
