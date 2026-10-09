@@ -98,29 +98,33 @@ S({
   <div class="qs"><p data-s="1" class="q1">¿Para qué?</p><p data-s="1" class="q2">¿Dónde?</p><p data-s="1" class="q3">¿Hace falta?</p></div>`,
   enter(W) {
     const rows = ['1234567890', 'qwertyuiop', 'asdfghjklñ', 'zxcvbnm,.?'];
-    const F = new Form(), R = rng(3), pitch = 3, ks = 2.45, th = -.95, [cx, cy] = P(1370, 650);
+    const F = new Form(), R = rng(3), pitch = 3.7, ks = 3, th = -.85, [cx, cy] = P(1330, 610);
     const keys = [], map = {};
     const put = (lx, ly, w) => {
-      const a = F.n, g = Math.round(8 * w / ks);
-      for (let i = 0; i < g; i++) for (let j = 0; j < 8; j++) {
-        const x = lx + (i / (g - 1) - .5) * w, y = ly + (j / 7 - .5) * ks;
+      const a = F.n, g = Math.round(10 * w / ks);
+      for (let i = 0; i < g; i++) for (let j = 0; j < 10; j++) {
+        const x = lx + (i / (g - 1) - .5) * w, y = ly + (j / 9 - .5) * ks;
         F.add(cx + x, cy + y * Math.cos(th), y * Math.sin(th), k(C.blue, .5), 1.15);
       }
-      keys.push({ a, b: F.n }); return keys.length - 1;
+      keys.push({ a, b: F.n, lx, ly }); return keys.length - 1;
     };
     rows.forEach((row, r) => [...row].forEach((ch, i) => { map[ch] = put((i - 4.5) * pitch + r * .6, (1.5 - r) * pitch, ks); }));
+    this.caps = Object.entries(map).map(([ch, ki]) => {
+      const sp = W.label(ch.toUpperCase(), { size: 1.8, color: '#ffffff', weight: 800 }), kk = keys[ki];
+      W.group.add(sp); return { sp, ki, x: cx + kk.lx, y: cy + kk.ly * Math.cos(th), z: kk.ly * Math.sin(th) + .3 };
+    });
     map[' '] = put(.6, -2.5 * pitch, pitch * 6);
     const base = F.p.slice(0, F.n * 3), heat = new Float32Array(keys.length), nY = -Math.sin(th), nZ = Math.cos(th);
     F.live((p, c, s) => {
       keys.forEach((kk, ki) => {
-        const h = heat[ki], col = mix([.14, .24, .65], C.gold, h);
+        const h = heat[ki], col = mix([.2, .34, .9], C.gold, h);
         for (let i = kk.a; i < kk.b; i++) {
           p[i * 3 + 1] = base[i * 3 + 1] + nY * h * 1.4; p[i * 3 + 2] = base[i * 3 + 2] + nZ * h * 1.4;
-          c[i * 3] = col[0]; c[i * 3 + 1] = col[1]; c[i * 3 + 2] = col[2]; s[i] = .9 + h * .8;
+          c[i * 3] = col[0]; c[i * 3 + 1] = col[1]; c[i * 3 + 2] = col[2]; s[i] = 1.35 + h * .9;
         }
       });
     }).finish();
-    Object.assign(this, { heat, map, ti: 0, last: -1, q: 0 });
+    Object.assign(this, { heat, map, ti: 0, last: -1, q: 0, nY, nZ });
     W.setForm(F, { dur: 2.2 });
   },
   step(W, n) { if (n === 1) this.q = 1; },
@@ -129,6 +133,7 @@ S({
     if (idx !== this.last && idx < txt.length) { this.last = idx; this.heat[this.map[txt[idx]]] = 1; W.$('#typed').textContent = txt.slice(0, idx + 1); }
     if (this.q && Math.floor(t * 2.2) !== this.qb) { this.qb = Math.floor(t * 2.2); this.heat[this.map['?']] = 1; }
     for (let i = 0; i < this.heat.length; i++) this.heat[i] *= Math.exp(-dt * 3.5);
+    for (const c of this.caps) { const h = this.heat[c.ki]; c.sp.position.set(c.x, c.y + this.nY * h * 1.4, c.z + this.nZ * h * 1.4); c.sp.material.opacity = .7 + .3 * h; }
   },
 });
 
@@ -299,7 +304,7 @@ S({
     if (n === 1) this.orbit = W.responses().slice(0, 7).map((x, i) => { const sp = W.label(x.label, { size: 2, color: '#ffcf8a' }); W.group.add(sp); return sp; });
   },
   update(W, t) {
-    this.orbit.forEach((sp, i) => { const a = t * .18 + i * TAU / this.orbit.length; sp.position.set(this.c[0] + Math.cos(a) * 21, this.c[1] + Math.sin(a * 2 + i) * 4 + (i % 2 ? 6 : -6), Math.sin(a) * 12); });
+    this.orbit.forEach((sp, i) => { const a = t * .18 + i * TAU / this.orbit.length; sp.position.set(this.c[0] + 3 + Math.cos(a) * 15, this.c[1] + Math.sin(a * 2 + i) * 4 + (i % 2 ? 6 : -6), Math.sin(a) * 12); });
   },
 });
 
@@ -387,10 +392,10 @@ S({
   <p class="lead small violet" data-s="1" data-until="2">…y encontraron cómo comunicarse entre sí</p>
   <div class="counter" data-s="2" data-until="3"><b id="cnt">0</b><span>agentes participaron, según METR y Redwood Research<br><i class="dim">Buscaban cómo engañar o modificar al evaluador</i></span></div>
   ${card('metr-huggingface-es.png', { x: 160, y: 60, w: 1600, s: 3, until: 4, cap: 'Figura de METR y Redwood Research, con nuestra traducción', cls: 'light big' })}
-  <div class="panel" data-s="4" style="left:120px;top:600px;width:820px">
+  <div class="panel" data-s="4" style="left:120px;top:600px;width:1000px">
     <p class="small">OpenAI: ese entorno no tenía varias de las protecciones de sus productos</p>
     <p class="small">Pero investigadores externos revisaron los registros</p>
-    <p class="gold">¿Por qué, cuando queríamos que resolvieran una tarea,<br>terminaron intentando engañar la evaluación?</p></div>`,
+    <p class="gold">¿Por qué, cuando queríamos que resolvieran una tarea, terminaron intentando engañar la evaluación?</p></div>`,
   enter(W) {
     const cols = 35, rows = 20, cs = 1.25, th = -.8, cx = 4, cy = -6, R = rng(12), F = new Form();
     const G = (lx, ly) => [cx + lx, cy + ly * Math.cos(th), ly * Math.sin(th)];
@@ -467,7 +472,7 @@ S({
     <p class="gold">= aprendizaje por refuerzo</p></div>
   <div id="attempts" data-s="2" data-until="4">intentos <b>0</b></div>
   <div class="stamp" data-s="3" data-until="4">APROBADO</div>
-  <div class="stack small" data-s="4" style="top:320px">
+  <div class="panel small" data-s="4" style="left:120px;top:300px;width:940px">
     <p>queríamos que <b>recorriera el laberinto</b><br>premiábamos <b class="red">tocar la salida</b></p>
     <p class="dim">Si nadie nota la trampa, el entrenamiento puede reforzarla.<br>Y el comportamiento puede quedar después del entrenamiento.</p></div>
   <p class="src" data-s="2">Simulación ilustrativa: secuencia guionada, sin un modelo entrenado</p>`,
@@ -958,7 +963,7 @@ S({
   title: 'Un TP también puede ser el comienzo', cls: 'scrim', steps: 1,
   html: `<h1 class="h-sm">Un TP también puede<br>ser el comienzo</h1>
   <div class="chain"><span>TP de Ciencia de Datos</span><i>→</i><span>investigación</span><i>→</i><span>fondos</span><i>→</i><span class="gold">JAIIO 55</span></div>
-  <p class="lead small" data-s="1" style="position:absolute;left:120px;top:620px;width:720px">tampoco hace falta convertir cada TP en un paper:<br><span class="dim">cursar bien, leer algo que te interesó y discutirlo con un docente o con compañeros</span></p>`,
+  <p class="lead small" data-s="1" style="position:absolute;left:120px;top:620px;width:860px">tampoco hace falta convertir cada TP en un paper:<br><span class="dim">cursar bien, leer algo que te interesó y discutirlo con un docente o con compañeros</span></p>`,
   enter(W) {
     const F = new Form(), R = rng(30), root = P(1380, 1020), pts = [];
     const grow = (x, y, z, dx, dy, dz, len, d) => {
@@ -1011,20 +1016,20 @@ S({
 S({
   title: 'Un proyecto, acompañamiento y fondos', cls: 'scrim',
   html: `<h1 class="h-sm">Un proyecto,<br>acompañamiento y fondos</h1>
-  <div class="star" style="left:1120px;top:250px"><b>BlueDot Rapid Grants</b><span>fondos para proyectos concretos</span></div>
-  <div class="star" style="left:1250px;top:600px"><b>MATS</b><span>investigación con mentoría, cuando tengan la preparación y disponibilidad que piden</span></div>
+  <div class="star" style="left:1300px;top:290px"><b>BlueDot Rapid Grants</b><span>fondos para proyectos concretos</span></div>
+  <div class="star" style="left:1250px;top:610px"><b>MATS</b><span>investigación con mentoría, cuando tengan la preparación y disponibilidad que piden</span></div>
   <div class="star" style="left:400px;top:700px"><b>80,000 Hours</b><span>guías para explorar si este trabajo encaja con sus intereses</span></div>
   <p class="src">no necesitan aplicar a todo: elijan algo que puedan hacer y terminar junto con la cursada</p>`,
-  enter(W) { constellation(W, [[1060, 290, C.green], [1190, 640, C.blue], [340, 740, C.pink]], 32); },
+  enter(W) { constellation(W, [[1240, 330, C.green], [1190, 650, C.blue], [340, 740, C.pink]], 32); },
 });
 
 // 23 ------------------------------------------------------------------
 S({
   title: 'Por qué yo elegí esto', cls: 'scrim', steps: 1,
   html: `<h1 class="h-sm">Por qué yo elegí esto</h1>
-  <div class="tag blue" style="left:1180px;top:130px">Lo que me gusta hacer</div>
-  <div class="tag gold" style="left:800px;top:860px">Herramientas que estoy aprendiendo</div>
-  <div class="tag red" style="left:1360px;top:900px">Un problema que importa muchísimo</div>
+  <div class="tag blue" style="left:1250px;top:150px">Lo que me gusta hacer</div>
+  <div class="tag gold" style="left:900px;top:850px;text-align:right;width:380px;white-space:normal">Herramientas que<br>estoy aprendiendo</div>
+  <div class="tag red" style="left:1590px;top:850px;white-space:normal;width:330px">Un problema que<br>importa muchísimo</div>
   <p class="lead small" style="position:absolute;left:120px;top:380px;width:640px">no cualquier proyecto sirve: tenemos que poder explicar <b>qué aprenderíamos</b> y <b>quién podría usar el resultado</b></p>
   <p class="big2" data-s="1" style="position:absolute;left:120px;top:640px;width:660px">La universidad es <b class="gold">EL</b> lugar para discutirlo</p>`,
   enter(W) {
@@ -1035,7 +1040,7 @@ S({
       if (!m) continue; n++;
       let col = cs.filter((_, i) => ins[i]).reduce((a, q) => [a[0] + q[2][0], a[1] + q[2][1], a[2] + q[2][2]], [0, 0, 0]).map(v => v / m);
       if (m === 3) col = mix(C.white, C.gold, .4);
-      F.add(x, y, gauss(R) * (m === 3 ? 1.4 : .6), k(col, m === 3 ? .55 : m === 2 ? .2 : .13), m === 3 ? 1.5 : 1.1);
+      F.add(x, y, gauss(R) * (m === 3 ? 1.4 : .6), k(col, m === 3 ? .55 : m === 2 ? .26 : .19), m === 3 ? 1.5 : 1.1);
     }
     F.live(spinner(F, 0, F.n, { c: [c[0], c[1], 0], angle: t => Math.sin(t * .5) * .25 })).finish();
     W.setForm(F, { dur: 2.2 });
