@@ -5,7 +5,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { N, Form, rng, imageData } from './form.js';
 import { SLIDES } from './slides.js';
-import { connectLive, publicBase, qrSvg, clearServer } from './live.js';
+import { connectLive, answerUrl, resourcesUrl, qrSvg, clearServer } from './live.js';
 
 const $ = s => document.querySelector(s);
 const canvas = $('#gl'), stageEl = $('#stage'), frameEl = $('#frame');
@@ -133,7 +133,8 @@ function tickDying() {
   }
 }
 
-function label(text, { size = 1.6, color = '#eef1ff', weight = 700, font = 'Bricolage Grotesque', glow = null } = {}) {
+function label(text, { size = 1.6, color = '#eef1ff', weight = 700, font = null, glow = null } = {}) {
+  font ??= globalThis.DECK_FONT || 'Bricolage Grotesque';
   const px = 96, cv = document.createElement('canvas'), g = cv.getContext('2d');
   const f = `${weight} ${px}px "${font}"`; g.font = f;
   cv.width = Math.ceil(g.measureText(text).width) + 40; cv.height = Math.ceil(px * 1.35);
@@ -186,7 +187,7 @@ const W = {
   responses: () => aggregate(raw), get isExample() { return isExample; }, get total() { return raw.length; },
   P: (px, py) => [(px / 1920 - .5) * 88.37, (.5 - py / 1080) * 49.71],
   $: s => slideEl?.querySelector(s), $$: s => [...(slideEl?.querySelectorAll(s) || [])],
-  img: {}, epoch: 0, qrSvg, publicBase, live: false,
+  img: {}, epoch: 0, qrSvg, answerUrl, resourcesUrl, live: false,
   later(ms, fn) { const e = W.epoch; setTimeout(() => { if (e === W.epoch) fn(); }, ms); },
 };
 
@@ -297,7 +298,11 @@ $('#respForm').onsubmit = e => {
 };
 $('#useExample').onclick = () => { raw = EXAMPLE; isExample = true; try { localStorage.removeItem('unsam-respuestas'); } catch {} editor.close(); go(cur, step, { fresh: true }); };
 $('#cancel').onclick = () => editor.close();
-$('#clearServer').onclick = async () => { $('#err').textContent = (await clearServer()) ? 'Respuestas del servidor borradas.' : 'No hay servidor, o no sos el presentador.'; };
+$('#clearServer').onclick = async () => {
+  const ok = await clearServer();
+  $('#err').textContent = ok ? 'Respuestas borradas.' : 'No se pudo: solo el presentador puede borrarlas.';
+  if (ok) go(cur, step, { fresh: true });
+};
 
 // ---------- loop ----------
 let last = performance.now();
@@ -315,8 +320,26 @@ function loop(now) {
   requestAnimationFrame(loop);
 }
 
+// ---------- alternative fonts: ?font=Nombre&head=Nombre (from Google Fonts, needs internet) ----------
+const WEIGHTS = { 'Inter Tight': '400;600;800', 'Space Grotesk': '400;600;700', 'Schibsted Grotesk': '400;600;800', 'Manrope': '400;600;800', 'Sora': '400;600;800',
+  'Archivo': '400;600;800', 'IBM Plex Sans': '400;600;700', 'Fraunces': '400;600;800', 'Instrument Sans': '400;600;700', 'Familjen Grotesk': '400;600;700', 'Unbounded': '400;600;800', 'Geist': '400;600;800', 'DM Sans': '400;600;800', 'Newsreader': '400;600;800' };
+async function useFonts() {
+  const q = new URLSearchParams(location.search), body = q.get('font'), head = q.get('head') || body;
+  const fams = [...new Set([body, head].filter(Boolean))];
+  if (!fams.length) return;
+  const link = document.createElement('link'); link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?' + fams.map(f => `family=${encodeURIComponent(f).replace(/%20/g, '+')}:wght@${WEIGHTS[f] || '400;700'}`).join('&') + '&display=block';
+  document.head.append(link); await new Promise(r => { link.onload = link.onerror = r; });
+  const css = f => `"${f}",system-ui,sans-serif`;
+  if (body) document.documentElement.style.setProperty('--font', css(body));
+  if (head) document.documentElement.style.setProperty('--font-head', css(head));
+  globalThis.DECK_FONT = body || 'Bricolage Grotesque'; globalThis.DECK_HEAD = `"${head || body}"`;
+  await Promise.all(fams.flatMap(f => ['400', '600', '700', '800'].map(w => document.fonts.load(`${w} 40px "${f}"`).catch(() => {}))));
+}
+
 // ---------- boot ----------
 (async () => {
+  await useFonts();
   await Promise.all(['400', '600', '800'].map(w => document.fonts.load(`${w} 40px "Bricolage Grotesque"`)).concat(document.fonts.load('40px "JetBrains Mono"')));
   W.img.earth = await imageData('img/tierra.jpg');
   W.live = await connectLive(onLive);

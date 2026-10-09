@@ -51,7 +51,8 @@ S({
   title: 'Cuando la inteligencia no alcanza', cls: 'scrim',
   html: `<h1 class="mega">Cuando la<br>inteligencia<br><em>no alcanza</em></h1>
   <p class="by">Tomás Korenblit</p>
-  <p class="by small dim">Estudiante de Ciencia de Datos en UNSAM. Investigo seguridad de IA en BAISH</p>`,
+  <p class="by small dim">Estudiante de Ciencia de Datos en UNSAM. Investigo seguridad de IA en BAISH</p>
+  <img class="logo-unsam" src="img/unsam.svg" alt="Universidad Nacional de San Martín" style="left:120px;bottom:80px;height:110px">`,
   enter(W) { W.setForm(galaxy(W, P(1420, 560)), { dur: 3, chaos: 1.6 }); },
 });
 
@@ -95,6 +96,7 @@ S({
   title: '¿Para qué? ¿Dónde? ¿Hace falta?', cls: 'scrim', steps: 1,
   html: `<h1 class="mono typed"><span id="typed"></span><i class="caret"></i></h1>
   <p class="lead dim" data-until="1">La belleza y los horrores<br>de la estadística y la computación</p>
+  <img class="logo-unsam" src="img/unsam.svg" alt="Universidad Nacional de San Martín" style="right:120px;top:96px;height:90px">
   <div class="qs"><p data-s="1" class="q1">¿Para qué?</p><p data-s="1" class="q2">¿Dónde?</p><p data-s="1" class="q3">¿Hace falta?</p></div>`,
   enter(W) {
     const rows = ['1234567890', 'qwertyuiop', 'asdfghjklñ', 'zxcvbnm,.?'];
@@ -154,9 +156,9 @@ S({
     W.setForm(F, { dur: 2 });
     this.words = []; this.t0 = null; this.blend = null; this.n = 0;
     this.label(W);
-    if (W.live) W.publicBase().then(base => {
-      const url = base + '/responder', box = W.$('#qrBox'); if (!box) return;
-      box.innerHTML = W.qrSvg(url); W.$('#qrUrl').textContent = url.replace(/^https?:\/\//, '');
+    if (W.live) W.answerUrl().then(url => {
+      const box = W.$('#qrBox'); if (!box) return;
+      box.innerHTML = W.qrSvg(url); W.$('#qrUrl').textContent = url.replace(/^https?:\/\//, '').replace(/\?.*$/, '');
     }); else W.$('#qr').remove();
   },
   label(W) {
@@ -973,7 +975,8 @@ S({
   title: 'Un TP también puede ser el comienzo', cls: 'scrim', steps: 1,
   html: `<h1 class="h-sm">Un TP también puede<br>ser el comienzo</h1>
   <div class="chain"><span>TP de Ciencia de Datos</span><i>→</i><span>Investigación</span><i>→</i><span>Fondos</span><i>→</i><span class="gold">JAIIO 55</span></div>
-  <p class="lead small" data-s="1" style="position:absolute;left:120px;top:620px;width:860px">tampoco hace falta convertir cada TP en un paper:<br><span class="dim">a veces alcanza con cursar bien, leer algo que te interesó y discutirlo con un docente o con compañeros</span></p>`,
+  <p class="lead small" data-s="1" style="position:absolute;left:120px;top:620px;width:860px">tampoco hace falta convertir cada TP en un paper:<br><span class="dim">a veces alcanza con cursar bien, leer algo que te interesó y discutirlo con un docente o con compañeros</span></p>
+  <img class="logo-unsam" src="img/unsam.svg" alt="Universidad Nacional de San Martín" style="left:120px;bottom:80px;height:90px">`,
   enter(W) {
     const F = new Form(), R = rng(30), root = P(1380, 1020), pts = [];
     const grow = (x, y, z, dx, dy, dz, len, d) => {
@@ -1075,8 +1078,8 @@ S({
   <div class="thanks" data-s="1">¡Gracias!</div>`,
   enter(W) {
     W.setForm(galaxy(W, P(1420, 520), 34), { dur: 2.6 });
-    W.publicBase().then(base => {
-      const url = (W.live ? base + '/recursos' : new URL('recursos.html', location.href).href), box = W.$('#qrBox'); if (!box) return;
+    W.resourcesUrl().then(url => {
+      const box = W.$('#qrBox'); if (!box) return;
       box.innerHTML = W.qrSvg(url); W.$('#qrUrl').textContent = url.replace(/^https?:\/\//, '');
     });
   },

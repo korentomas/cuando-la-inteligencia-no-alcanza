@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" role="img" aria-label="Universidad Nacional de San Martín">
+  <path d="M13 37 H96 L122 55 L148 37 H231 V205 H148 L122 224 L96 205 H13 Z" fill="none" stroke="#7fa6d2" stroke-width="24" stroke-linejoin="miter"/>
+  <g fill="#ffffff" font-family="'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif" font-weight="400" font-size="56" letter-spacing="0.5">
+    <text x="268" y="88">Universidad</text>
+    <text x="268" y="152">Nacional</text>
+    <text x="268" y="216">de San Martín</text>
+  </g>
+</svg>

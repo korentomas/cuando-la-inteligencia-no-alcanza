@@ -60,7 +60,7 @@ export class Form {
 // Rasterise text with the deck font and return [x, y] samples in world units.
 export function textPts(str, { weight = 800, px = 220, width = 40, cx = 0, cy = 0, gap = 3, lineH = 1.02 } = {}) {
   const lines = str.split('\n');
-  const font = `${weight} ${px}px "Bricolage Grotesque"`;
+  const font = `${weight} ${px}px ${globalThis.DECK_HEAD || '"Bricolage Grotesque"'}`;
   const cv = document.createElement('canvas'), g = cv.getContext('2d');
   g.font = font;
   const tw = Math.max(...lines.map(l => g.measureText(l).width));
