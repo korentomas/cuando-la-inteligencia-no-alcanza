@@ -271,7 +271,7 @@ S({
 });
 
 // 06 · la frontera irregular (adaptado de Tomas Pueyo) ----------------------
-// Un círculo = las tareas de un trabajo humano; la mancha = lo que una IA puede hacer.
+// El círculo = lo que hace una persona en su trabajo; la mancha = lo que puede hacer una IA.
 // Cada partícula de la mancha conserva su ángulo y su profundidad, así crece de forma continua.
 const JAG = [
   // b: radio base (en radios del círculo) · h: ondulación [frecuencia, amplitud, fase] · f: dedos [ángulo, largo, ancho]
@@ -308,9 +308,9 @@ S({
     const R = rng(66), n = 13000, parts = [];
     for (let q = 0; q < n; q++) { const edge = q < 2600; parts.push([R() * TAU, edge ? 1 : Math.sqrt(R()), gauss(R) * .4]); }
     Object.assign(this, { parts, c: P(1390, 560), Rc: 8.6 });
-    const lab = W.label('Tareas de un trabajo humano', { size: 1.25, color: '#b8c6e8', weight: 600 });
+    const lab = W.label('Lo que hace una persona en su trabajo', { size: 1.25, color: '#b8c6e8', weight: 600 });
     lab.position.set(this.c[0], this.c[1] - this.Rc - 1.8, 1); W.group.add(lab);
-    this.ai = W.label('Tareas que una IA puede hacer', { size: 1.15, color: '#ff9a8f', weight: 600 });
+    this.ai = W.label('Lo que puede hacer una IA', { size: 1.15, color: '#ff9a8f', weight: 600 });
     this.ai.position.set(this.c[0] + this.Rc + 5.5, this.c[1] - 1.5, 2); W.group.add(this.ai);
     this.stage(W, 0, 2.2, 1);
   },

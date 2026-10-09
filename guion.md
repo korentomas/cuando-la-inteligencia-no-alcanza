@@ -36,7 +36,7 @@ En mi caso, esa búsqueda me llevó a la IA.
 
 Yo creo que podemos llegar a construir sistemas que aprendan y resuelvan problemas en prácticamente cualquier ámbito, incluso mejor que nosotros. Esa es la idea de una inteligencia artificial general, o AGI.
 
-Hay un dibujo de Tomas Pueyo que me sirve para pensarlo. El círculo son las tareas de un trabajo humano; la mancha, lo que una IA puede hacer. Al principio era un juguete divertido. Después empezó a ayudarnos con algunas tareas. Hoy estamos acá: la frontera es irregular. A veces resuelve en minutos algo que a mí me lleva horas, y a veces falla en algo obvio.
+Hay un dibujo de Tomas Pueyo que me sirve para pensarlo. El círculo es todo lo que hace una persona en su trabajo; la mancha, lo que puede hacer una IA. Al principio era un juguete divertido. Después empezó a ayudarnos con algunas tareas. Hoy estamos acá: la frontera es irregular. A veces resuelve en minutos algo que a mí me lleva horas, y a veces falla en algo obvio.
 
 Si la mancha sigue creciendo, llegamos a algo increíblemente inteligente que igual falla en alguna cosa… y después, a algo que tapa todo.
 
