@@ -172,3 +172,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;background:rad
 .thanks.in{transform:rotate(-8deg);transition:opacity .25s,transform .45s cubic-bezier(.3,1.7,.5,1)}
 h1,.big2,.qs p,.qs3 p,.counter b,.sticker b,.thanks,.star b,#timer,.stamp,.neq{font-family:var(--font-head)}
 .logo-unsam{position:absolute;display:block;width:auto;opacity:.92}
+.quotes{position:absolute;left:120px;top:640px;width:820px}
+.quotes p{position:absolute;left:0;top:0;margin:0;font-size:42px;line-height:1.25;font-style:italic;text-shadow:0 2px 16px #000}
+.quotes p.small{font-style:normal}
+.quotes .dim.small{font-size:28px;font-style:normal}
+.here{position:absolute;left:1640px;top:700px;font-size:30px;font-weight:700;color:#9cc2ff;text-shadow:0 2px 14px #000}
+.here b{color:#4a74ff;font-size:40px;margin-right:6px}

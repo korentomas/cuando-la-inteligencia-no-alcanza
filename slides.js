@@ -272,47 +272,66 @@ S({
   step(W, n) { if (n === 2) { this.o.kT = .18; W.$('#bars').classList.add('faded'); } },
 });
 
-// 06 ------------------------------------------------------------------
+// 06 · la frontera irregular (adaptado de Tomas Pueyo) ----------------------
+// Un círculo = las tareas de un trabajo humano; la mancha = lo que una IA puede hacer.
+// Cada partícula de la mancha conserva su ángulo y su profundidad, así crece de forma continua.
+const JAG = [
+  // b: radio base (en radios del círculo) · h: ondulación [frecuencia, amplitud, fase] · f: dedos [ángulo, largo, ancho]
+  { b: .17, h: [[2, .3, .4], [3, .22, 1.9], [5, .12, .7]], f: [[.6, .2, .22], [2.9, .16, .25]], dx: -.15, dy: .05 },
+  { b: .3, h: [[2, .28, 1.1], [3, .2, .3], [4, .12, 2.2]], f: [[.4, .35, .2], [1.9, .5, .16], [3.7, .3, .24], [5.2, .22, .2]], dx: -.05, dy: 0 },
+  { b: .44, h: [[2, .22, .2], [3, .18, 2.5], [5, .1, 1.3]], f: [[.25, .95, .14], [1.35, .55, .16], [2.6, .8, .12], [3.9, .35, .2], [4.9, .9, .13], [5.75, -.25, .2]], dx: 0, dy: 0 },
+  { b: .76, h: [[2, .16, 1.4], [3, .14, .5], [6, .08, 2]], f: [[.15, 1.45, .13], [.95, -.4, .16], [1.7, 1.15, .14], [2.5, -.38, .18], [3.2, 1.6, .12], [4.1, .7, .18], [4.85, -.45, .15], [5.55, 1.25, .13]], dx: .05, dy: 0 },
+  { b: 1.75, h: [[2, .12, .9], [3, .1, 2.1], [5, .06, .3]], f: [[.4, .55, .3], [1.6, .7, .25], [4.7, .65, .28], [5.6, .5, .3]], dx: .8, dy: 0 },
+];
+const jagR = (st, th) => {
+  let r = st.b;
+  for (const [h, a, ph] of st.h) r *= 1 + a * Math.sin(h * th + ph);
+  for (const [a, amp, w] of st.f) { let d = Math.abs(th - a) % TAU; d = Math.min(d, TAU - d); r += amp * Math.exp(-((d / w) ** 2)); }
+  return Math.max(.04, r);
+};
+const jagMean = st => { let m = 0; for (let q = 0; q < 180; q++) m += jagR(st, q / 180 * TAU) ** 2; return Math.sqrt(m / 180); };
 S({
-  title: 'Inteligencia de propósito general', cls: 'scrim', steps: 2,
+  title: 'AGI y la frontera irregular', cls: 'scrim', steps: 5,
   html: `<h1 class="mega">AGI</h1>
   <p class="lead"><span class="dim">Inteligencia artificial general:</span><br>sistemas que aprendan y resuelvan problemas<br>en prácticamente cualquier ámbito,<br><b>incluso mejor que nosotros</b></p>
-  <p class="stack small dim" data-s="1" style="top:760px">Más inteligencia no resuelve sola<br>nuestros desacuerdos</p>
-  <p class="big2 gold" data-s="2" style="position:absolute;top:880px;left:120px">¿Por qué me lo tomo en serio?</p>`,
+  <div class="quotes">
+    <p data-until="1">«La IA es un juguete divertido»</p>
+    <p data-s="1" data-until="2">«La IA me ayuda con algunas tareas»</p>
+    <p data-s="2" data-until="3">«La IA tiene una frontera irregular:<br>a veces es increíble, a veces es tonta»</p>
+    <p data-s="3" data-until="4"><span class="dim small">¿Y después?</span><br>«La IA es increíblemente inteligente,<br>pero por algún motivo falla en X»</p>
+    <p data-s="4" class="dim small">Más inteligencia no resuelve sola<br>nuestros desacuerdos</p>
+  </div>
+  <div class="here" data-s="2" data-until="3"><b>★</b> Estamos acá</div>
+  <p class="big2 gold" data-s="5" style="position:absolute;top:900px;left:120px">¿Por qué me lo tomo en serio?</p>
+  <p class="src">Adaptado de un diagrama de Tomas Pueyo</p>`,
   enter(W) {
-    const layers = [5, 8, 10, 8, 5], R = rng(9), F = new Form(), nodes = [];
-    layers.forEach((cnt, l) => { for (let j = 0; j < cnt; j++) { const a = j / cnt * TAU + l; nodes.push({ l, x: (l - 2) * 7.5, y: Math.sin(a) * cnt * .78, z: Math.cos(a) * cnt * .78 }); } });
-    const edges = [], out = nodes.map(() => []);
-    nodes.forEach((a, i) => nodes.forEach((b, j) => { if (b.l === a.l + 1) { out[i].push(edges.length); edges.push([i, j]); } }));
-    const firsts = edges.map((e, i) => i).filter(i => nodes[edges[i][0]].l === 0);
-    const c = [...P(1330, 560), 0];
-    const arr = new Float32Array(edges.length * 6);
-    edges.forEach(([i, j], q) => arr.set([nodes[i].x, nodes[i].y, nodes[i].z, nodes[j].x, nodes[j].y, nodes[j].z], q * 6));
-    const ln = W.lines(arr, 0x3050ff, .22); ln.position.set(...c); W.group.add(ln);
-    const nodeOff = [];
-    nodes.forEach((nd, ni) => { for (let q = 0; q < 110; q++) { const u = R() * 2 - 1, th = R() * TAU, s = Math.sqrt(1 - u * u) * .6; nodeOff.push([ni, s * Math.cos(th), u * .6, s * Math.sin(th)]); F.add(0, 0, 0, k(C.white, .5), 1.2); } });
-    const nN = F.n, sig = [];
-    for (let q = 0; q < 7000; q++) { sig.push({ e: firsts[q % firsts.length], ph: R(), sp: .5 + R() * .9 }); F.add(0, 0, 0, k(C.gold, .45), .9); }
-    const ang = t => Math.sin(t * .25) * .7 + .35;
-    F.live((p, col, s, t, dt) => {
-      const a = ang(t), ca = Math.cos(a), sa = Math.sin(a); ln.rotation.y = a;
-      const put = (i, x, y, z) => { p[i * 3] = c[0] + x * ca + z * sa; p[i * 3 + 1] = c[1] + y; p[i * 3 + 2] = -x * sa + z * ca; };
-      for (let i = 0; i < nN; i++) { const [ni, ox, oy, oz] = nodeOff[i], nd = nodes[ni]; put(i, nd.x + ox, nd.y + oy, nd.z + oz); }
-      for (let q = 0; q < sig.length; q++) {
-        const g = sig[q]; g.ph += dt * g.sp;
-        if (g.ph >= 1) { g.ph -= 1; const nx = out[edges[g.e][1]]; g.e = nx.length ? nx[(R() * nx.length) | 0] : firsts[(R() * firsts.length) | 0]; }
-        const [i, j] = edges[g.e], A = nodes[i], B = nodes[j];
-        put(nN + q, A.x + (B.x - A.x) * g.ph, A.y + (B.y - A.y) * g.ph, A.z + (B.z - A.z) * g.ph);
-      }
-    }).finish();
-    W.setForm(F, { dur: 2.2 });
-    this.c = c; this.orbit = [];
+    const R = rng(66), n = 13000, parts = [];
+    for (let q = 0; q < n; q++) { const edge = q < 2600; parts.push([R() * TAU, edge ? 1 : Math.sqrt(R()), gauss(R) * .4]); }
+    Object.assign(this, { parts, c: P(1390, 560), Rc: 8.6 });
+    const lab = W.label('Tareas de un trabajo humano', { size: 1.25, color: '#b8c6e8', weight: 600 });
+    lab.position.set(this.c[0], this.c[1] - this.Rc - 1.8, 1); W.group.add(lab);
+    this.ai = W.label('Tareas que una IA puede hacer', { size: 1.15, color: '#ff9a8f', weight: 600 });
+    this.ai.position.set(this.c[0] + this.Rc + 5.5, this.c[1] - 1.5, 2); W.group.add(this.ai);
+    this.stage(W, 0, 2.2, 1);
   },
-  step(W, n) {
-    if (n === 1) this.orbit = W.responses().slice(0, 7).map((x, i) => { const sp = W.label(x.label, { size: 2, color: '#ffcf8a' }); W.group.add(sp); return sp; });
+  stage(W, idx, dur = 1.6, chaos = .25) {
+    const F = new Form(), R = rng(67), [cx, cy] = this.c, Rc = this.Rc, st = JAG[idx];
+    // el círculo: borde nítido y un relleno muy tenue
+    for (let q = 0; q < 1700; q++) { const a = q / 1700 * TAU; F.add(cx + Math.cos(a) * Rc, cy + Math.sin(a) * Rc, 0, k(C.cyan, .32), 1.1); }
+    for (let q = 0; q < 1300; q++) { const a = R() * TAU, r = Rc * Math.sqrt(R()); F.add(cx + Math.cos(a) * r, cy + Math.sin(a) * r, -.5, k(C.cyan, .045), 1.6); }
+    // la mancha
+    const ox = cx + st.dx * Rc, oy = cy + st.dy * Rc;
+    // misma cantidad de partículas en cualquier tamaño: el brillo se compensa con el área
+    const m = jagMean(st), g = Math.min(4.5, Math.max(.8, (m / .5) ** 2)), sz = Math.min(2.6, 1.4 * Math.sqrt(Math.max(1, m / .5)));
+    for (const [th, u, z] of this.parts) {
+      const r = jagR(st, th) * Rc * u, edge = u === 1;
+      F.add(ox + Math.cos(th) * r, oy + Math.sin(th) * r, z + .3, edge ? [.55, .2, .18] : [.12 * g, .042 * g, .038 * g], edge ? 1.05 : sz);
+    }
+    W.setForm(F.finish(), { dur, chaos });
+    if (this.ai) this.ai.visible = idx <= 1;
   },
-  update(W, t) {
-    this.orbit.forEach((sp, i) => { const a = t * .18 + i * TAU / this.orbit.length; sp.position.set(this.c[0] + 3 + Math.cos(a) * 15, this.c[1] + Math.sin(a * 2 + i) * 4 + (i % 2 ? 6 : -6), Math.sin(a) * 12); });
+  step(W, n, instant) {
+    if (n <= 4) this.stage(W, n, instant ? .01 : 2, .2);
   },
 });
 
