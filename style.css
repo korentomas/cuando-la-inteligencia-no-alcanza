@@ -22,7 +22,7 @@ body.black #frame,body.black #gl{opacity:0;transition:opacity .4s}
 h1{font-weight:800;font-size:104px;line-height:.98;letter-spacing:-.03em;margin:0;text-shadow:0 4px 40px rgba(0,0,0,.6)}
 h1.mega{font-size:168px;line-height:.9;letter-spacing:-.045em}
 h1.h-sm{font-size:84px}
-h1 em,.mega em{font-style:normal;background:linear-gradient(90deg,var(--gold),var(--red));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 em,.mega em{font-style:normal;background:linear-gradient(90deg,#9cc2ff,#4a74ff);-webkit-background-clip:text;background-clip:text;color:transparent}
 h1[data-s],h1[data-until]{position:absolute;left:120px;top:90px}
 h1.red,.red{color:var(--red)} .gold{color:var(--gold)} .violet{color:var(--violet)} .dim{color:var(--dim)} .gg{color:var(--gg)}
 .lead{font-size:40px;line-height:1.25;margin:34px 0 0;max-width:900px;text-shadow:0 2px 20px #000}
