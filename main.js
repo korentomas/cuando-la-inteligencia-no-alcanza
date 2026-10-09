@@ -90,9 +90,11 @@ function setForm(F, { dur = 2, chaos = 1 } = {}) {
   spin.on = !!F.spin; spin.ang = 0; spin.tilt = F.spin?.o.tilt ?? 0;
   target = F; toP.set(F.p); toC.set(F.c); toS.set(F.s);
   morph.t0 = clock; morph.dur = dur; morph.chaos = chaos * .3;
-  for (const a of [aTo, aFrom, cTo, cFrom, sTo, sFrom, aSpin]) a.needsUpdate = true;
+  for (const a of [aTo, aFrom, cTo, cFrom, sTo, sFrom, aSpin]) { a.clearUpdateRanges(); a.needsUpdate = true; }
+  fullUpload = true;
   U.uSpinC.value.set(...spin.c);
 }
+let fullUpload = false;
 function stepParticles(t, dt) {
   U.uK.value = (t - morph.t0) / morph.dur; U.uChaos.value = morph.chaos;
   if (spin.on) {
@@ -101,12 +103,13 @@ function stepParticles(t, dt) {
     spin.ang = o.angle ? o.angle(t) : t * (o.speed ?? .1); spin.tilt = o.tilt ?? 0;
     U.uSpinA.value = spin.ang; U.uTilt.value = spin.tilt;
   }
-  if (!target.lives.length) return;
+  if (!target.lives.length) { fullUpload = false; return; }
   for (const fn of target.lives) fn(target.p, target.c, target.s, t, dt);
   const n = target.n;
   toP.set(target.p.subarray(0, n * 3)); toC.set(target.c.subarray(0, n * 3)); toS.set(target.s.subarray(0, n));
-  aTo.addUpdateRange(0, n * 3); cTo.addUpdateRange(0, n * 3); sTo.addUpdateRange(0, n);
-  aTo.needsUpdate = cTo.needsUpdate = sTo.needsUpdate = true;
+  // right after a slide change the whole buffer must go up, not just this slide's range
+  if (!fullUpload) { aTo.addUpdateRange(0, n * 3); cTo.addUpdateRange(0, n * 3); sTo.addUpdateRange(0, n); }
+  aTo.needsUpdate = cTo.needsUpdate = sTo.needsUpdate = true; fullUpload = false;
 }
 
 // ---------- per-slide extras (sprites, lines, meshes) ----------
