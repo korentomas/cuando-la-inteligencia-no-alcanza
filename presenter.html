@@ -30,7 +30,8 @@ let t0 = null;
 ch.onmessage = e => {
   const m = e.data; if (m.type !== 'state') return;
   t0 ??= Date.now();
-  const n = NOTES[m.cur] || { text: [] };
+  const nums = m.notes?.[m.cur] || [m.cur + 1];
+  const n = { text: nums.flatMap(k => NOTES[k - 1]?.text || []) };
   $('#num').textContent = String(m.cur + 1).padStart(2, '0');
   $('#title').textContent = m.titles[m.cur];
   $('#steps').innerHTML = Array.from({ length: m.steps + 1 }, (_, i) => `<i class="${i <= m.step ? 'on' : ''}"></i>`).join('') + ` paso ${m.step + 1} de ${m.steps + 1}`;

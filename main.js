@@ -231,7 +231,7 @@ function applyClasses() {
   $('#count').textContent = String(cur + 1).padStart(2, '0') + ' / ' + SLIDES.length;
   $('#bar').style.width = ((cur + (step / (SLIDES[cur].steps + 1))) / (SLIDES.length - 1) * 100) + '%';
   history.replaceState(null, '', `#${cur + 1}.${step}`);
-  chan.postMessage({ type: 'state', cur, step, steps: SLIDES[cur].steps, total: SLIDES.length, titles: SLIDES.map(s => s.title) });
+  chan.postMessage({ type: 'state', cur, step, steps: SLIDES[cur].steps, total: SLIDES.length, titles: SLIDES.map(s => s.title), notes: SLIDES.map((s, i) => s.notes || [i + 1]) });
 }
 function go(i, s = 0, { fresh = false } = {}) {
   i = Math.max(0, Math.min(SLIDES.length - 1, i));
