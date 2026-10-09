@@ -280,8 +280,10 @@ const JAG = [
   { b: .17, h: [[2, .3, .4], [3, .22, 1.9], [5, .12, .7]], f: [[.6, .2, .22], [2.9, .16, .25]], dx: -.15, dy: .05 },
   { b: .3, h: [[2, .28, 1.1], [3, .2, .3], [4, .12, 2.2]], f: [[.4, .35, .2], [1.9, .5, .16], [3.7, .3, .24], [5.2, .22, .2]], dx: -.05, dy: 0 },
   { b: .44, h: [[2, .22, .2], [3, .18, 2.5], [5, .1, 1.3]], f: [[.25, .95, .14], [1.35, .55, .16], [2.6, .8, .12], [3.9, .35, .2], [4.9, .9, .13], [5.75, -.25, .2]], dx: 0, dy: 0 },
-  { b: .76, h: [[2, .16, 1.4], [3, .14, .5], [6, .08, 2]], f: [[.15, 1.45, .13], [.95, -.4, .16], [1.7, 1.15, .14], [2.5, -.38, .18], [3.2, 1.6, .12], [4.1, .7, .18], [4.85, -.45, .15], [5.55, 1.25, .13]], dx: .05, dy: 0 },
-  { b: 1.75, h: [[2, .12, .9], [3, .1, 2.1], [5, .06, .3]], f: [[.4, .55, .3], [1.6, .7, .25], [4.7, .65, .28], [5.6, .5, .3]], dx: .8, dy: 0 },
+  // casi todo cubierto, con brazos enormes y un hueco del lado izquierdo: «falla en X»
+  { b: 1.25, h: [[2, .12, .9], [3, .1, 2.1], [5, .06, .3]], f: [[.35, 1.7, .13], [1.55, 1.25, .15], [3.14, -1.15, .3], [4.55, 1.55, .13], [5.55, 1.1, .15]], dx: .45, dy: 0 },
+  // AGI: tapa todo
+  { b: 9, h: [[3, .05, .4]], f: [], dx: 0, dy: 0, todo: true },
 ];
 const jagR = (st, th) => {
   let r = st.b;
@@ -322,6 +324,14 @@ S({
     // la mancha
     const ox = cx + st.dx * Rc, oy = cy + st.dy * Rc;
     // misma cantidad de partículas en cualquier tamaño: el brillo se compensa con el área
+    if (st.todo) {
+      // la pantalla entera (y más): las mismas partículas más 9.000 extra, repartidas parejo
+      const Rf = rng(68), fill = (x, y) => F.add(x, y, Rf() * 2 - 1, [.05 + Rf() * .012, .019, .02], 13 + Rf() * 5);
+      for (let q = 0; q < this.parts.length + 9000; q++) fill(-52 + Rf() * 104, -30 + Rf() * 60);
+      W.setForm(F.finish(), { dur: 2.4, chaos: .2 });
+      if (this.ai) this.ai.visible = false;
+      return;
+    }
     const m = jagMean(st), g = Math.min(4.5, Math.max(.8, (m / .5) ** 2)), sz = Math.min(2.6, 1.4 * Math.sqrt(Math.max(1, m / .5)));
     for (const [th, u, z] of this.parts) {
       const r = jagR(st, th) * Rc * u, edge = u === 1;
