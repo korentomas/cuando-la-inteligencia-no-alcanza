@@ -13,17 +13,27 @@ const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const PORT = +(process.env.PORT || process.argv[2] || 8770);
 const ADMIN = process.env.ADMIN_TOKEN || '';
 const LOG = path.join(ROOT, 'respuestas.jsonl');
-const MAX_TOTAL = 600, MAX_LEN = 60, PER_IP = 6;
+const MAX_TOTAL = 600, MAX_LEN = 60, PER_DEVICE = 4, PER_IP = 150;
+// detrás de un proxy (Render, túneles) la IP real viene en X-Forwarded-For
+const TRUST_PROXY = !!(process.env.RENDER || process.env.TRUST_PROXY);
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.md': 'text/markdown; charset=utf-8' };
 const PUBLIC = ['index.html', 'presenter.html', 'responder.html', 'recursos.html', 'main.js', 'slides.js', 'form.js', 'notes.js', 'live.js', 'config.js', 'style.css', 'img/', 'vendor/'];
 
 let answers = [];
-try { answers = fs.readFileSync(LOG, 'utf8').split('\n').filter(Boolean).map(l => JSON.parse(l)).filter(a => !a.reset); } catch {}
-const byIp = new Map(), clients = new Set();
+try {
+  const rows = fs.readFileSync(LOG, 'utf8').split('\n').filter(Boolean).map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+  answers = rows.slice(rows.findLastIndex(a => a.reset) + 1).filter(a => typeof a.t === 'string');
+} catch {}
+const byDevice = new Map(), byIp = new Map(), clients = new Set();
 
-const lanIPs = () => Object.values(os.networkInterfaces()).flat().filter(i => i && i.family === 'IPv4' && !i.internal).map(i => i.address);
-const isLocal = req => ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
+const lanIPs = () => Object.values(os.networkInterfaces()).flat().filter(i => i && i.family === 'IPv4' && !i.internal).map(i => i.address)
+  .sort((a, b) => (/^(192\.168|10\.)/.test(b) ? 1 : 0) - (/^(192\.168|10\.)/.test(a) ? 1 : 0));
+const LOOP = ['127.0.0.1', '::1', '::ffff:127.0.0.1'];
+// presentador = la compu que corre el servidor, sin proxy de por medio, y desde una página del propio deck
+const isLocal = req => LOOP.includes(req.socket.remoteAddress) && !req.headers['x-forwarded-for'] &&
+  (!req.headers.origin || /^http:\/\/(localhost|127\.0\.0\.1|\[::1\]):\d+$/.test(req.headers.origin) && req.headers.origin.endsWith(':' + PORT));
+const clientIp = req => (TRUST_PROXY && (req.headers['x-forwarded-for'] || '').split(',')[0].trim()) || req.socket.remoteAddress;
 const isAdmin = (req, url) => isLocal(req) || (ADMIN && url.searchParams.get('admin') === ADMIN);
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' };
 const send = (res, code, body, type = 'application/json') => { res.writeHead(code, { 'Content-Type': type, 'Cache-Control': 'no-store', ...CORS }); res.end(typeof body === 'string' ? body : JSON.stringify(body)); };
@@ -35,26 +45,27 @@ function readBody(req) {
 }
 
 http.createServer(async (req, res) => {
-  const url = new URL(req.url, 'http://x');
+  let url; try { url = new URL(req.url, 'http://x'); } catch { return send(res, 400, { error: 'pedido inválido' }); }
   const p = url.pathname;
   try {
     if (req.method === 'OPTIONS') { res.writeHead(204, CORS); return res.end(); }
     if (p === '/api/info') return send(res, 200, { lan: lanIPs(), port: PORT, count: answers.length });
     if (p === '/api/respuestas' && req.method === 'GET') return send(res, 200, answers.map(a => a.t));
     if (p === '/api/respuestas' && req.method === 'POST') {
-      const ip = req.socket.remoteAddress, n = byIp.get(ip) || 0;
-      if (n >= PER_IP) return send(res, 429, { error: 'Ya mandaste varias respuestas, gracias.' });
+      const ip = clientIp(req), nIp = byIp.get(ip) || 0;
       if (answers.length >= MAX_TOTAL) return send(res, 429, { error: 'Llegamos al máximo de respuestas.' });
       const body = JSON.parse(await readBody(req) || '{}');
-      const items = [].concat(body.respuestas || body.texto || []).map(clean).filter(Boolean).slice(0, 2);
+      const dev = ip + '|' + String(body.id || '').slice(0, 40), nDev = byDevice.get(dev) || 0;
+      if (nDev >= PER_DEVICE || nIp >= PER_IP) return send(res, 429, { error: 'Ya mandaste varias respuestas, gracias.' });
+      const items = [].concat(body.respuestas || body.texto || []).filter(x => typeof x === 'string').map(clean).filter(Boolean).slice(0, 2);
       if (!items.length) return send(res, 400, { error: 'Escribí al menos un problema.' });
-      byIp.set(ip, n + 1);
-      for (const t of items) { const a = { t, at: Date.now() }; answers.push(a); fs.appendFile(LOG, JSON.stringify(a) + '\n', () => {}); broadcast({ type: 'add', t }); }
+      byDevice.set(dev, nDev + 1); byIp.set(ip, nIp + 1);
+      for (const t of items) { const a = { t, at: Date.now() }; answers.push(a); fs.appendFileSync(LOG, JSON.stringify(a) + '\n'); broadcast({ type: 'add', t }); }
       return send(res, 200, { ok: true });
     }
     if (p === '/api/respuestas' && req.method === 'DELETE') {
       if (!isAdmin(req, url)) return send(res, 403, { error: 'solo el presentador' });
-      answers = []; byIp.clear(); fs.appendFile(LOG, JSON.stringify({ reset: true, at: Date.now() }) + '\n', () => {});
+      answers = []; byIp.clear(); byDevice.clear(); fs.appendFileSync(LOG, JSON.stringify({ reset: true, at: Date.now() }) + '\n');
       broadcast({ type: 'reset' }); return send(res, 200, { ok: true });
     }
     if (p === '/api/stream') {

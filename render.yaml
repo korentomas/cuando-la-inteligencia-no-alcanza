@@ -9,3 +9,5 @@ services:
     envVars:
       - key: ADMIN_TOKEN
         generateValue: true
+      - key: TRUST_PROXY
+        value: "1"

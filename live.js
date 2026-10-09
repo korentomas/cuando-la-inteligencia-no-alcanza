@@ -7,7 +7,7 @@ let info = null;
 const API = (CONFIG.publicUrl ? CONFIG.publicUrl.replace(/\/$/, '') + '/' : '') + 'api/';
 export async function serverInfo() {
   if (info !== null) return info;
-  try { const r = await fetch(API + 'info', { cache: 'no-store' }); info = r.ok ? await r.json() : false; } catch { info = false; }
+  try { const r = await fetch(API + 'info', { cache: 'no-store', signal: AbortSignal.timeout(4000) }); info = r.ok ? await r.json() : false; } catch { info = false; }
   return info;
 }
 export async function publicBase() {

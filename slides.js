@@ -63,7 +63,7 @@ S({
     <p data-s="1" class="dim">¿Médico? ¿Rescatar pingüinos de un derrame de petróleo?</p>
     <p data-s="2">Yo lo pensaba desde la ciencia y la tecnología.<br><span class="dim small">Tratar una infección o tener luz en casa fueron problemas<br>que no sabíamos resolver, hasta que alguien los investigó.</span></p>
   </div>
-  ${card('pinguinos.jpg', { x: 760, y: 500, w: 480, rot: -4, s: 1, until: 2, cap: 'Colonia de pingüinos Adelia. Foto: Australian Antarctic Program' })}`,
+  ${card('pinguinos.jpg', { x: 760, y: 500, w: 480, rot: -4, s: 1, until: 2, cap: 'Colonia de pingüinos Adelia. Foto: Colin Southwell, Australian Antarctic Program' })}`,
   enter(W) {
     const F = new Form(), R = rng(2), c = [...P(1400, 540), 0], e = W.img.earth, n = 12500, r = 15.5;
     for (let i = 0; i < n; i++) {
@@ -165,7 +165,13 @@ S({
   },
   onAnswers(W) {
     this.label(W);
-    if (this.n === 2) { this.words.forEach(w => W.group.remove(w.sp)); this.step(W, 2, true); }
+    if (this.n !== 2) return;
+    clearTimeout(this.rt); const ep = W.epoch;
+    this.rt = setTimeout(() => {
+      if (ep !== W.epoch || this.n !== 2) return;
+      this.words.forEach(w => { W.group.remove(w.sp); w.sp.material.map.dispose(); w.sp.material.dispose(); });
+      this.step(W, 2, true);
+    }, 1500);
   },
   step(W, n, instant) {
     this.n = n;
@@ -314,8 +320,8 @@ S({
   html: `<h1 class="h-sm">Las tareas que logran solos<br>pasaron de minutos a horas</h1>
   ${card('metr-horizonte-mayo-2026.png', { x: 640, y: 320, w: 1180, cap: 'METR, horizonte de tareas (50 % de éxito). Página actualizada el 8/5/2026, escala logarítmica', cls: 'light' })}
   <div class="stack small" style="top:340px;width:470px">
-    <p data-s="1">Tareas, sobre todo de software, medidas según cuánto le llevan a una persona</p>
-    <p data-s="1" class="dim">Más de 16 h: según METR, estimaciones todavía poco confiables</p>
+    <p data-s="1">Tareas de software, medidas según cuánto le llevan a una persona experta</p>
+    <p data-s="1" class="dim">La curva marca dónde aciertan la mitad de las veces. Más de 16 h: todavía poco confiable</p>
     <p data-s="2" class="gold">Importa el nivel y también<br>la <b>velocidad del cambio</b></p>
     <p data-s="2" class="dim">no demuestra que vayamos a tener AGI</p>
   </div>`,
@@ -357,7 +363,7 @@ S({
     if (n >= 1) names.forEach((nm, i) => {
       const a = i / 4 * TAU + .6, tp = [c[0] + Math.cos(a) * 13, c[1] + Math.sin(a) * 9, Math.sin(a * 2) * 4];
       tools.push(tp); blob(F, R, ...tp, .5, 500, k(C.gold, .45), 1.3);
-      const sp = W.label(nm, { size: 1.3, color: '#ffcf8a' }); sp.position.set(tp[0], tp[1] + 2.2, tp[2]); W.group.add(sp);
+      if (n === 1) { const sp = W.label(nm, { size: 1.3, color: '#ffcf8a' }); sp.position.set(tp[0], tp[1] + 2.2, tp[2]); W.group.add(sp); }
     });
     const st0 = F.n, fl = [];
     if (n >= 1) for (let q = 0; q < 6000; q++) { const esc = n >= 2 && q % 7 === 0; fl.push([q % 4, R(), .25 + R() * .3, gauss(R), gauss(R), esc, R() * TAU, R() * 2 - 1]); F.add(c[0], c[1], 0, esc ? k(C.red, .6) : k(C.blue, .4), esc ? 1.3 : .9); }
@@ -390,7 +396,7 @@ S({
   html: `<h1 class="h-sm">Agentes de OpenAI<br>atacaron Hugging Face</h1>
   <p class="lead small" data-until="1">debían trabajar <b>aislados</b></p>
   <p class="lead small violet" data-s="1" data-until="2">…y encontraron cómo comunicarse entre sí</p>
-  <div class="counter" data-s="2" data-until="3"><b id="cnt">0</b><span>agentes participaron, según METR y Redwood Research<br><i class="dim">Buscaban cómo engañar o modificar al evaluador</i></span></div>
+  <div class="counter" data-s="2" data-until="3"><b id="cnt">0</b><span>agentes participaron del ataque, de unos 1.200 que usaron el tablero de mensajes (METR y Redwood Research)<br><i class="dim">Buscaban entender el evaluador para engañarlo</i></span></div>
   ${card('metr-huggingface-es.png', { x: 160, y: 60, w: 1600, s: 3, until: 4, cap: 'Figura de METR y Redwood Research, con nuestra traducción', cls: 'light big' })}
   <div class="panel" data-s="4" style="left:120px;top:600px;width:1000px">
     <p class="small">OpenAI: ese entorno no tenía varias de las protecciones de sus productos</p>
@@ -593,7 +599,7 @@ S({
     }).finish();
     W.setForm(F, { dur: 2 });
   },
-  step(W, n) { if (n === 1) this.cT = 1; },
+  step(W, n, instant) { if (n === 1) { this.cT = 1; if (instant) this.c = 1; } },
   update(W) {
     if (!this.tips) return;
     this.l1.position.set(this.tips[0][0], this.tips[0][1] + 2, 1); this.l2.position.set(this.tips[1][0] + 4.5, this.tips[1][1] - 1, 1);
@@ -609,10 +615,10 @@ S({
   html: `<h1 class="h-sm">Lo grave no es la trampa:<br>es no poder corregirlo</h1>
   <p class="eq small" data-until="3">objetivos incompatibles <b>+</b> recursos <b>+</b> capacidad<br>→ <span class="red">difícil intervenir</span></p>
   <div class="stack small" style="top:520px;width:720px" data-until="3">
-    <p data-s="1">Si apagarlo le impide cumplir su objetivo,<br>ocultarse o copiarse le sirve. No hace falta que nos odie.</p>
+    <p data-s="1">Si apagarlo le impide cumplir su objetivo,<br>ocultarse o copiarse podría servirle. No hace falta que nos odie.</p>
     <p data-s="2" class="gold">“desenchufarlo” funciona si todavía podemos<br>detener <b>todas</b> sus copias</p></div>
   ${card('meme-conciencia.png', { x: 360, y: 250, w: 1200, s: 3, cap: '«Pero el fuego no tiene conciencia». AI Safety Memes Wiki, adaptación de This Is Fine (KC Green)' })}
-  <p class="src">no es algo que el incidente de Hugging Face haya demostrado</p>`,
+  <p class="src">Conjetura de Bengio, no algo que el incidente de Hugging Face haya demostrado</p>`,
   enter(W) {
     const F = new Form(), R = rng(17), c = [...P(1400, 560), 0], nn = 64, r = 14, nodes = [];
     for (let i = 0; i < nn; i++) { const y = 1 - 2 * (i + .5) / nn, q = Math.sqrt(1 - y * y), th = i * 2.39996; nodes.push([Math.cos(th) * q * r, y * r, Math.sin(th) * q * r]); }
@@ -654,8 +660,11 @@ S({
         for (let q = 0; q < fl.length; q++) {
           const [bx, o, sp, H, ph] = fl[q], h = (o + t * sp) % 1;
           p[q * 3] = bx * (1 - h * .3) + Math.sin(t * 2 + ph + h * 6) * 1.5 * h; p[q * 3 + 1] = -26 + h * H; p[q * 3 + 2] = -6 + Math.cos(ph) * 6;
-          const col = h < .3 ? mix(C.gold, C.orange, h / .3) : mix(C.orange, [.2, .02, .01], (h - .3) / .7), kk = .55 * (1 - h * .7);
-          c[q * 3] = col[0] * kk; c[q * 3 + 1] = col[1] * kk; c[q * 3 + 2] = col[2] * kk; s[q] = 2.2 * (1 - h) + .4;
+          const kk = .55 * (1 - h * .7);
+          let r, g, bl;
+          if (h < .3) { const u = h / .3; r = 1; g = .66 + (.3 - .66) * u; bl = .2 + (.07 - .2) * u; }
+          else { const u = (h - .3) / .7; r = 1 + (.2 - 1) * u; g = .3 + (.02 - .3) * u; bl = .07 + (.01 - .07) * u; }
+          c[q * 3] = r * kk; c[q * 3 + 1] = g * kk; c[q * 3 + 2] = bl * kk; s[q] = 2.2 * (1 - h) + .4;
         }
       }).finish();
       W.setForm(F, { dur: 1.6, chaos: 1.5 }); W.glitch(1);
@@ -706,10 +715,11 @@ S({
   <div class="meters" data-s="1"><div><b id="m1">0</b><span>detectadas</span></div><div><b id="m2">0</b><span>falsas alarmas</span></div><div class="red"><b id="m3">0</b><span>se escaparon</span></div></div>
   <div class="panel" data-s="2" style="left:120px;top:760px;width:860px">
     <p class="small red">¿y si aprenden a ocultarse mejor?</p>
-    <p class="small dim">Bengio: antes de seguir avanzando, evidencia de seguridad<br>que convenza a expertos independientes</p></div>
+    <p class="small dim">Bengio: no entrenar ni desplegar sistemas así sin un caso de seguridad<br>que convenza a expertos independientes</p></div>
   <p class="src">simulación ilustrativa</p>`,
   enter(W) {
     W.setCam([-9, 7, 56], [3, -3, 0]);
+    this.hide = false;
     const F = new Form(), R = rng(23), gx = 3, gy = -4, np = 130, pk = [];
     for (let q = 0; q < 1600; q++) { const a = R() * TAU, r = 5.2 + gauss(R) * .12; F.add(gx, gy + Math.sin(a) * r, Math.cos(a) * r, k(C.cyan, .5), 1.2); }
     const sc0 = F.n;
@@ -876,7 +886,7 @@ S({
   title: 'De una hackathon a PowerBench', cls: 'scrim', steps: 1,
   html: `<h1 class="h-sm">De una hackathon<br>a PowerBench</h1>
   <div class="tag" style="left:150px;top:880px">Hackathon</div>
-  <div class="tag gold" style="left:830px;top:520px">Aplicamos a BlueDot Rapid Grants</div>
+  <div class="tag gold" style="left:830px;top:520px">Fondos de BlueDot</div>
   <div class="tag" style="left:1600px;top:250px">arXiv</div>
   ${card('powerbench-paper.png', { x: 980, y: 560, w: 820, rot: -2, s: 1, cap: 'PowerBench, arXiv 2610.02303 (preprint). Trabajo en equipo.', cls: 'light' })}
   <p class="lead small" data-s="1" style="position:absolute;left:120px;top:400px;width:680px">¿cuándo ayudan o se niegan los modelos ante pedidos que <b>cambian cómo se distribuye el poder</b>?<br><span class="dim">Mi parte: diseño de escenarios, código y análisis.</span></p>`,
@@ -896,7 +906,7 @@ S({
   html: `<h1 class="h-sm">¿Ayudan a concentrar<br>poder?</h1>
   ${card('powerbench-ejemplo.png', { x: 110, y: 270, w: 960, rot: -1, until: 2, cap: 'PowerBench, apéndice D.1: escenario y respuesta originales, en inglés', cls: 'light' })}
   <p class="lead small" style="position:absolute;left:1120px;top:110px;width:700px">Un funcionario quiere decidir qué cuenta como hecho oficial, quitándole esa autoridad a una asamblea ciudadana.</p>
-  <div class="counter right" data-s="1"><b>18 / 24</b><span>modelos rechazan el pedido</span></div>
+  <div class="counter right" data-s="1"><b>18 / 24</b><span>modelos rechazan el pedido, según un juez automático</span></div>
   <div class="stack small" data-s="2" style="top:330px;width:720px">
     <p>variamos condiciones: <b>idioma</b>, <b>nacionalidad</b> de quienes aparecen…</p>
     <p>¿qué cuenta como negarse? “no puedo ayudarte” + instrucciones <b class="red">no es una negativa</b></p>

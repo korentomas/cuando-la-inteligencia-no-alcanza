@@ -24,9 +24,9 @@ No hace falta recorrer todo esto ni decidir ahora a qué te vas a dedicar. Eleg�
 ## Volver a las fuentes de la charla
 
 - **[METR: Time Horizons](https://metr.org/time-horizons/):** la medición de tareas del gráfico, actualizado en la página al 8 de mayo de 2026. Mirá la definición del 50% de éxito y la advertencia sobre estimaciones superiores a 16 horas, además de la tendencia.
-- **[Epoch AI: GPQA Diamond](https://epoch.ai/benchmarks/gpqa-diamond):** qué mide la prueba de preguntas científicas y cómo se evalúa.
 - **[Bengio: por qué los agentes mienten, hacen trampa y se coordinan](https://yoshuabengio.org/en/blog/why-are-ai-agents-lying-cheating-and-coordinating):** el texto que usamos para explicar posibles mecanismos de desalineamiento. Distingue observaciones e hipótesis.
 - **[Investigación de METR y Redwood sobre Hugging Face](https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/):** evidencia, alcance y limitaciones del análisis.
+- **[OpenAI: informe técnico del incidente con Hugging Face](https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf):** la versión de la empresa, con qué protecciones no tenía ese entorno de evaluación.
 - **[Anthropic: Mapping the mind of a large language model](https://www.anthropic.com/research/mapping-mind-language-model):** el experimento de interpretabilidad relacionado con el Golden Gate.
 
 Una propuesta para esta semana: elegí una lectura o un ejercicio, hacelo con alguien y anotá qué entendieron, qué no y qué les gustaría comprobar. Eso ya les da material para conversar con un docente o alguien del campo.

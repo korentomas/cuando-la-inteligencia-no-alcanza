@@ -117,7 +117,7 @@ let group = new THREE.Group(); scene.add(group);
 const dying = [];
 function retireGroup() {
   const mats = [];
-  group.traverse(o => { if (o.material) [].concat(o.material).forEach(m => { m.transparent = true; mats.push([m, m.opacity]); }); });
+  group.traverse(o => { if (o.material) [].concat(o.material).forEach(m => { if (!m.transparent) { m.transparent = true; m.needsUpdate = true; } mats.push([m, m.opacity]); }); });
   dying.push({ g: group, mats, t0: clock });
   group = new THREE.Group(); scene.add(group); W.group = group;
 }
@@ -242,7 +242,7 @@ function go(i, s = 0, { fresh = false } = {}) {
   } else while (step < s) { step++; SLIDES[i].step?.(W, step, false); }
   applyClasses();
 }
-const next = () => step < SLIDES[cur].steps ? go(cur, step + 1) : go(cur + 1, 0);
+const next = () => step < SLIDES[cur].steps ? go(cur, step + 1) : cur < SLIDES.length - 1 && go(cur + 1, 0);
 const prev = () => step > 0 ? go(cur, step - 1) : cur > 0 && go(cur - 1, SLIDES[cur - 1].steps);
 chan.onmessage = e => {
   const m = e.data;
@@ -257,6 +257,7 @@ const editor = $('#editor');
 addEventListener('keydown', e => {
   if (editor.open || e.target.closest?.('input,textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
   const k = e.key;
+  if (!/^[0-9]$/.test(k) && k !== 'Enter' && typed) { typed = ''; $('#goto').classList.remove('show'); }
   if (/^[0-9]$/.test(k)) { typed += k; $('#goto').textContent = '→ ' + typed; $('#goto').classList.add('show'); return; }
   if (k === 'Enter' && typed) { go(+typed - 1, 0); typed = ''; $('#goto').classList.remove('show'); return; }
   if (k === 'Escape') { typed = ''; $('#goto').classList.remove('show'); }

@@ -1,8 +1,8 @@
-// Regenera recursos.html desde recursos-para-empezar.md. Run: node build-recursos.mjs
+// Regenera recursos.html desde recursos.md. Run: node build-recursos.mjs
 import fs from 'fs';
 const SRC = '/Users/tk/Documents/Codex/2026-09-08/what-happened-relevant-to-ai-safety/charla-unsam/recursos-para-empezar.md';
-const md = fs.existsSync(SRC) ? fs.readFileSync(SRC, 'utf8') : fs.readFileSync(new URL('./recursos.md', import.meta.url), 'utf8');
-fs.writeFileSync(new URL('./recursos.md', import.meta.url), md);
+// recursos.md (en el repo) es la versión que se publica; SRC queda como referencia del original
+const md = fs.readFileSync(new URL('./recursos.md', import.meta.url), 'utf8');
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const inline = s => esc(s).replace(/\*\*\[([^\]]+)\]\(([^)]+)\)(:?)\*\*/g, '<a href="$2"><b>$1</b></a>$3').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/\*([^*]+)\*/g, '<i>$1</i>');
 let html = '', inList = false;
