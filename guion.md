@@ -6,7 +6,7 @@ Guion de la charla · 24 diapositivas · Encuentro Nacional de Estudiantes de Da
 
 Hola a todos, gracias por venir. Soy Tomás Korenblit, o Koren. Estudio Ciencia de Datos en UNSAM y hago investigación en seguridad de IA en BAISH.
 
-## Diapositiva 02 · Quería ayudar al mundo
+## Diapositiva 02 · Ayudar al mundo
 
 Cuando era chico y pensaba en qué quería trabajar, siempre tenía esta idea, que me decían que era “idealista”, de querer ayudar al mundo.
 
@@ -50,7 +50,7 @@ Pasamos de tareas de minutos a tareas de horas. No significa que puedan reemplaz
 
 Lo que me importa es no pensar las capacidades como un valor fijo: también hay que mirar la velocidad del cambio. El gráfico no demuestra que vayamos a tener AGI, pero explica por qué me preparo para sistemas mucho más capaces.
 
-## Diapositiva 08 · Un chat responde. Un agente actúa.
+## Diapositiva 08 · Un chatbot responde. Un agente hace.
 
 Y ya estamos empezando a delegarles trabajo. Si le pregunto a un modelo cómo organizar unos archivos, me responde y yo decido qué hago. Si le doy acceso a una computadora, puede modificarlos, revisar el resultado y seguir. A esa combinación la vamos a llamar un agente.
 
@@ -142,11 +142,11 @@ Tampoco hace falta convertir cada TP en un paper. A veces alcanza con cursar bie
 
 ## Diapositiva 21 · Conocer el campo y probar si te gusta
 
-Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot sirven para conocer el campo, y si prefieren empezar programando, ARENA tiene ejercicios para hacer con compañeros.
+Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot sirven para conocer el campo, y si prefieren empezar programando, ARENA tiene ejercicios para hacer con compañeros. Y todo esto, y mucho más, está en aisafety.com, que tiene hasta un mapa del campo.
 
 ## Diapositiva 22 · Si ya tienen una idea, hay mentoría y fondos
 
-Si ya tienen una idea, existen fondos como BlueDot Rapid Grants y programas con mentoría como MATS. Y las guías de 80,000 Hours ayudan a ver si esto es para ustedes. No hace falta aplicar a todo: elijan algo que puedan terminar junto con la cursada.
+Si ya tienen una idea, hay programas con mentoría como MATS o AI Safety Camp, y fondos como BlueDot Rapid Grants. Y las guías de 80,000 Hours ayudan a ver si esto es para ustedes. No hace falta aplicar a todo: elijan algo que puedan terminar junto con la cursada.
 
 ## Diapositiva 23 · Lo elegí porque junta tres cosas
 

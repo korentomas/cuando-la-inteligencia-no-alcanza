@@ -9,7 +9,7 @@ export const NOTES=[
  },
  {
   "num": 2,
-  "title": "Quería ayudar al mundo",
+  "title": "Ayudar al mundo",
   "text": [
    "Cuando era chico y pensaba en qué quería trabajar, siempre tenía esta idea, que me decían que era “idealista”, de querer ayudar al mundo.",
    "Cuando lo hablaba con mis papás (o tal vez un psicólogo), podían llegar a pensar que quería ser médico o irme al sur a rescatar pingüinos de un derrame de petróleo… Pero yo siempre lo pensé por el lado de la ciencia y la tecnología. Tratar una infección o tener electricidad en casa fueron problemas que no sabíamos resolver, hasta que alguien los investigó."
@@ -61,7 +61,7 @@ export const NOTES=[
  },
  {
   "num": 8,
-  "title": "Un chat responde. Un agente actúa.",
+  "title": "Un chatbot responde. Un agente hace.",
   "text": [
    "Y ya estamos empezando a delegarles trabajo. Si le pregunto a un modelo cómo organizar unos archivos, me responde y yo decido qué hago. Si le doy acceso a una computadora, puede modificarlos, revisar el resultado y seguir. A esa combinación la vamos a llamar un agente.",
    "Es útil, pero también significa que un comportamiento inesperado puede tener consecuencias afuera del chat. Veamos qué pasó cuando unos agentes intentaron aprobar una evaluación."
@@ -173,14 +173,14 @@ export const NOTES=[
   "num": 21,
   "title": "Conocer el campo y probar si te gusta",
   "text": [
-   "Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot sirven para conocer el campo, y si prefieren empezar programando, ARENA tiene ejercicios para hacer con compañeros."
+   "Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot sirven para conocer el campo, y si prefieren empezar programando, ARENA tiene ejercicios para hacer con compañeros. Y todo esto, y mucho más, está en aisafety.com, que tiene hasta un mapa del campo."
   ]
  },
  {
   "num": 22,
   "title": "Si ya tienen una idea, hay mentoría y fondos",
   "text": [
-   "Si ya tienen una idea, existen fondos como BlueDot Rapid Grants y programas con mentoría como MATS. Y las guías de 80,000 Hours ayudan a ver si esto es para ustedes. No hace falta aplicar a todo: elijan algo que puedan terminar junto con la cursada."
+   "Si ya tienen una idea, hay programas con mentoría como MATS o AI Safety Camp, y fondos como BlueDot Rapid Grants. Y las guías de 80,000 Hours ayudan a ver si esto es para ustedes. No hace falta aplicar a todo: elijan algo que puedan terminar junto con la cursada."
   ]
  },
  {

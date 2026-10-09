@@ -50,19 +50,18 @@ const S = d => SLIDES.push({ steps: 0, ...d });
 S({
   title: 'Cuando la inteligencia no alcanza', cls: 'scrim',
   html: `<h1 class="mega">Cuando la<br>inteligencia<br><em>no alcanza</em></h1>
-  <p class="by">Tomás Korenblit</p>
-  <p class="by small dim">Estudiante de Ciencia de Datos en UNSAM. Investigo seguridad de IA en BAISH</p>
+  <p class="by">Tomás Pablo Korenblit</p>
+  <p class="by small dim">Estudiante de Ciencia de Datos en UNSAM</p>
   <img class="logo-unsam" src="img/unsam.svg" alt="Universidad Nacional de San Martín" style="left:120px;bottom:80px;height:110px">`,
   enter(W) { W.setForm(galaxy(W, P(1420, 560)), { dur: 3, chaos: 1.6 }); },
 });
 
 // 02 ------------------------------------------------------------------
 S({
-  title: 'Quería ayudar al mundo', cls: 'scrim', steps: 2,
-  html: `<h1>Quería ayudar<br>al mundo</h1>
+  title: 'Ayudar al mundo', cls: 'scrim', steps: 2,
+  html: `<h1>Ayudar al mundo</h1>
   <div class="stack" style="top:380px">
-    <p data-s="1" class="dim">¿Médico? ¿Rescatar pingüinos de un derrame de petróleo?</p>
-    <p data-s="2">Yo lo pensaba desde la ciencia y la tecnología.<br><span class="dim small">Tratar una infección o tener luz en casa fueron problemas<br>que no sabíamos resolver, hasta que alguien los investigó.</span></p>
+    <ul class="bul" data-s="2"><li>Ciencia y tecnología</li><li class="dim small">Tratar una infección o tener luz en casa fueron problemas<br>que no sabíamos resolver, hasta que alguien los investigó.</li></ul>
   </div>
   ${card('pinguinos.jpg', { x: 760, y: 500, w: 480, rot: -4, s: 1, until: 2, cap: 'Colonia de pingüinos de Adelia. Foto: Colin Southwell, Australian Antarctic Program' })}`,
   enter(W) {
@@ -143,7 +142,7 @@ S({
 S({
   title: '¿Qué problemas queremos resolver?', cls: 'scrim', steps: 3,
   html: `<div class="swap l2"><h1 data-until="2">¿Qué problemas<br>queremos resolver?</h1>
-  <h1 data-s="2" data-until="3">Lo que respondió<br>el grupo</h1>
+  <h1 data-s="2" data-until="3">Respuestas</h1>
   <h1 data-s="3" class="red">Odio los wordclouds,<br>perdón.</h1></div>
   <p class="lead" data-until="2">Escriban uno o dos problemas<br>que les parezca importante resolver<br>como humanidad.</p>
   <div class="qr" id="qr" data-until="2"><div id="qrBox"></div><div><b>Respondan desde el celular</b><span id="qrUrl"></span><span class="live" id="liveCount"></span></div></div>
@@ -246,15 +245,14 @@ S({
 
 // 05 ------------------------------------------------------------------
 S({
-  title: '¿Qué estamos midiendo?', steps: 3,
+  title: '¿Qué estamos midiendo?', steps: 2,
   html: `<h1 class="h-sm">Ahora sí podemos comparar</h1>
   <div id="bars"></div>
-  <p class="neq" data-s="1" data-until="2">Más mencionado ≠ más importante</p>
-  <div class="panel" data-s="2" style="left:880px;top:250px;width:900px">
+  <div class="panel" data-s="1" style="left:880px;top:250px;width:900px">
     <p class="small dim">Para elegir en qué trabajar:</p>
     <ol class="crit"><li>¿Cuánto daño causa?</li><li>¿Qué posibilidades hay de mejorarlo?</li><li>¿Cuánto trabajo ya se está haciendo?</li></ol>
     <p class="gold">¿En cuál me interesa trabajar? ¿Qué puedo aportar yo?</p>
-    <p data-s="3" class="big2">En mi caso → <b>la IA</b></p>
+    <p data-s="2" class="big2">En mi caso → <b>la IA</b></p>
   </div>
   <p class="src" id="dataLabel"></p>`,
   enter(W) {
@@ -269,7 +267,7 @@ S({
     W.$('#dataLabel').textContent = `${W.isExample ? 'Datos de ejemplo' : 'Respuestas del grupo'} (${W.total} menciones)`;
     W.setCam([0, 0, 60], [0, 0, 0], { still: true });
   },
-  step(W, n) { if (n === 2) { this.o.kT = .18; W.$('#bars').classList.add('faded'); } },
+  step(W, n) { if (n === 1) { this.o.kT = .18; W.$('#bars').classList.add('faded'); } },
 });
 
 // 06 · la frontera irregular (adaptado de Tomas Pueyo) ----------------------
@@ -373,8 +371,8 @@ S({
 
 // 08 ------------------------------------------------------------------
 S({
-  title: 'Un chat responde. Un agente actúa.', cls: 'scrim', steps: 2,
-  html: `<h1 class="h-sm">Un chat responde.<br>Un agente actúa.</h1>
+  title: 'Un chatbot responde. Un agente hace.', cls: 'scrim', steps: 2,
+  html: `<h1 class="h-sm">Un chatbot responde.<br>Un agente hace.</h1>
   <div class="chat" data-until="1">
     <div class="msg me">¿Cómo organizo estos archivos?</div>
     <div class="msg ai">Podrías agruparlos por proyecto y por fecha…</div>
@@ -383,7 +381,7 @@ S({
     <p class="big2">modelo + herramientas<br>→ <b class="gold">acciones</b></p>
     <p class="dim">modifica los archivos, revisa el resultado y sigue</p>
     <p>= un <b>agente</b></p>
-    <p data-s="2" class="red">un comportamiento inesperado puede tener<br>consecuencias afuera del chat</p></div>`,
+    <p data-s="2" class="red">Comportamientos inesperados tienen<br>consecuencias afuera de un «chat»</p></div>`,
   enter(W) { this.c = P(1340, 560); this.build(W, 0); },
   step(W, n) { this.build(W, n); },
   build(W, n) {
@@ -648,8 +646,7 @@ S({
   <div class="stack small" style="top:520px;width:720px" data-until="3">
     <p data-s="1">Si apagarlo le impide cumplir su objetivo,<br>ocultarse o copiarse podría servirle. No hace falta que nos odie.</p>
     <p data-s="2" class="gold">«desenchufarlo» funciona si todavía podemos<br>detener <b>todas</b> sus copias</p></div>
-  ${card('meme-conciencia.png', { x: 410, y: 300, w: 1100, s: 3, cap: '«Pero el fuego no tiene conciencia». AI Safety Memes Wiki, adaptación de This Is Fine (KC Green)' })}
-  <p class="src">Conjetura de Bengio, no algo que el incidente de Hugging Face haya demostrado</p>`,
+  ${card('meme-conciencia.png', { x: 410, y: 300, w: 1100, s: 3, cap: '«Pero el fuego no tiene conciencia». AI Safety Memes Wiki, adaptación de This Is Fine (KC Green)' })}`,
   enter(W) {
     const F = new Form(), R = rng(17), c = [...P(1400, 560), 0], nn = 64, r = 14, nodes = [];
     for (let i = 0; i < nn; i++) { const y = 1 - 2 * (i + .5) / nn, q = Math.sqrt(1 - y * y), th = i * 2.39996; nodes.push([Math.cos(th) * q * r, y * r, Math.sin(th) * q * r]); }
@@ -1034,35 +1031,40 @@ S({
   },
 });
 
-// 21–22 constellations ---------------------------------------------------
-function constellation(W, stars, seed) {
-  const F = new Form(), R = rng(seed), seg = [];
-  stars.forEach(([px, py, col]) => {
-    const [x, y] = P(px, py);
-    blob(F, R, x, y, 0, .35, 700, k(col, .7), 1.6); blob(F, R, x, y, 0, 2.2, 1600, k(col, .12), 1.6);
-    for (let q = 0; q < 400; q++) { const a = (q % 4) * Math.PI / 2 + .3, r = R() * 6; F.add(x + Math.cos(a) * r, y + Math.sin(a) * r, 0, k(col, .25 * (1 - r / 6)), .9); }
-  });
-  for (let i = 0; i < stars.length; i++) { const a = P(stars[i][0], stars[i][1]), b = P(stars[(i + 1) % stars.length][0], stars[(i + 1) % stars.length][1]); seg.push(a[0], a[1], 0, b[0], b[1], 0); }
-  W.group.add(W.lines(new Float32Array(seg), 0x8090ff, .25));
-  F.live(spinner(F, 0, F.n, { c: [0, 0, 0], angle: t => Math.sin(t * .3) * .015 })).finish();
-  W.setForm(F, { dur: 2 });
-}
 S({
-  title: 'Conocer el campo y probar si te gusta', cls: 'scrim',
+  title: 'Conocer el campo y probar si te gusta', cls: 'scrim', steps: 1,
   html: `<h1 class="h-sm">Conocer el campo<br>y probar si te gusta</h1>
-  <div class="star" style="left:1120px;top:250px"><img src="img/baish.svg" alt="" class="logo"><b>BAISH</b><span>cursos y una comunidad para compartir actividades y oportunidades</span></div>
-  <div class="star" style="left:1250px;top:560px"><b>BlueDot: Technical AI Safety</b><span>materiales para conocer las principales líneas de investigación</span></div>
-  <div class="star" style="left:400px;top:700px"><b>ARENA</b><span>ejercicios de PyTorch, interpretabilidad, aprendizaje por refuerzo y evaluaciones. Elijan una parte y háganla con compañeros</span></div>`,
-  enter(W) { constellation(W, [[1060, 290, C.gold], [1190, 600, C.cyan], [340, 740, C.violet]], 31); },
+  <div class="res" style="top:300px;width:820px;grid-template-columns:1fr">
+    <div><h3>Para empezar</h3>
+      <p><b>BAISH</b>Comunidad, cursos y encuentros en Buenos Aires</p>
+      <p><b>BlueDot</b>Cursos cortos online, de una introducción general a Technical AI Safety</p>
+      <p><b>AI Safety Atlas</b>Un libro de texto online que ordena todo el campo</p></div>
+    <div><h3>Para programar</h3>
+      <p><b>ARENA</b>Ejercicios de PyTorch, interpretabilidad, aprendizaje por refuerzo y evaluaciones</p>
+      <p><b>Curso corto de DeepMind</b>75 minutos sobre los problemas de alineamiento</p></div>
+  </div>
+  ${card('aisafety-map.jpg', { x: 1010, y: 230, w: 800, rot: 1.5, s: 1, cap: 'aisafety.com/map: más de 370 organizaciones, programas y proyectos' })}
+  <p class="lead small" data-s="1" style="position:absolute;left:1010px;top:760px;width:800px">Todo junto en <b>aisafety.com</b>: casi 100 programas de formación, más de 250 comunidades, eventos, fondos y mentorías gratuitas</p>`,
+  enter(W) { W.setForm(neuralCloud(31, P(1420, 560), 5000), { dur: 2 }); },
 });
 S({
   title: 'Si ya tienen una idea, hay mentoría y fondos', cls: 'scrim',
   html: `<h1 class="h-sm">Si ya tienen una idea,<br>hay mentoría y fondos</h1>
-  <div class="star" style="left:1300px;top:290px"><b>BlueDot Rapid Grants</b><span>fondos para proyectos concretos</span></div>
-  <div class="star" style="left:1250px;top:610px"><b>MATS</b><span>investigación con mentoría, cuando tengan la preparación y disponibilidad que piden</span></div>
-  <div class="star" style="left:400px;top:700px"><b>80,000 Hours</b><span>guías para explorar si este trabajo encaja con sus intereses</span></div>
-  <p class="src">no necesitan aplicar a todo: elijan algo que puedan hacer y terminar junto con la cursada</p>`,
-  enter(W) { constellation(W, [[1240, 330, C.green], [1190, 650, C.blue], [340, 740, C.pink]], 32); },
+  <div class="res" style="top:320px">
+    <div><h3>Proyectos con mentoría</h3>
+      <p><b>MATS</b>Investigación con mentoría, presencial en Berkeley o Londres</p>
+      <p><b>AI Safety Camp</b>Online y part-time: proyectos en equipo durante cuatro meses</p>
+      <p><b>Hackathons</b>Para probar una idea en un fin de semana. PowerBench empezó así</p></div>
+    <div><h3>Fondos</h3>
+      <p><b>BlueDot Rapid Grants</b>Hasta 20 mil dólares para proyectos concretos</p>
+      <p><b>Manifund</b>Publicás tu proyecto y otras personas pueden financiarlo</p>
+      <p><b>Coefficient Giving</b>Apoyo para quienes se pasan a trabajar en esto</p></div>
+    <div><h3>Orientación</h3>
+      <p><b>80,000 Hours</b>Guías para ver si este trabajo es para ustedes</p>
+      <p><b>Mentorías de aisafety.com</b>Llamadas gratuitas uno a uno para orientarse</p></div>
+  </div>
+  <p class="src">Convocatorias, montos y fechas cambian: revisen cada página antes de aplicar</p>`,
+  enter(W) { W.setForm(neuralCloud(32, P(1500, 620), 5000), { dur: 2 }); },
 });
 
 // 23 ------------------------------------------------------------------
