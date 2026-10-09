@@ -664,10 +664,10 @@ S({
   title: 'Convertir una preocupación en un experimento', cls: 'scrim', steps: 3,
   html: `${card('meme-alineamiento-caballo.png', { x: 470, y: 230, w: 980, until: 1, cap: '«Las soluciones al alineamiento cuando se te ocurren / después de pensarlas un poco más». AI Safety Memes Wiki' })}
   <h1 class="h-sm" data-s="1">Convertir una preocupación<br>en un experimento</h1>
-  <div class="tag" data-s="1" style="left:330px;top:560px;width:430px;text-align:right">Tarea imposible<br><span class="dim small">en el incidente, algunas se asignaron por error</span></div>
-  <div class="tag blue" data-s="1" style="left:1500px;top:300px">reconoce que no puede terminar</div>
-  <div class="tag cyan" data-s="1" style="left:1500px;top:575px">pide ayuda</div>
-  <div class="tag red" data-s="1" style="left:1500px;top:850px">aparenta haberlo logrado</div>
+  <div class="tag" data-s="1" style="left:330px;top:560px;width:430px;text-align:right">Tarea imposible<br><span class="dim small">En el incidente, algunas se asignaron por error</span></div>
+  <div class="tag blue" data-s="1" style="left:1500px;top:300px">Reconoce que no puede terminar</div>
+  <div class="tag cyan" data-s="1" style="left:1500px;top:575px">Pide ayuda</div>
+  <div class="tag red" data-s="1" style="left:1500px;top:850px">Aparenta haberlo logrado</div>
   <div class="chip" data-s="2" style="left:120px;top:760px">cambiar una condición y repetir:<br><b>“reconocer un problema también es una respuesta válida”</b></div>
   <div class="chips" data-s="3" style="top:930px"><span>diseñar experimentos</span><span>analizar resultados</span><span>¿la evaluación mide lo que creemos?</span></div>
   <p class="src" data-s="1">proporciones ilustrativas, no resultados</p>`,
@@ -871,8 +871,8 @@ S({
 S({
   title: 'De una hackathon a PowerBench', cls: 'scrim', steps: 1,
   html: `<h1 class="h-sm">De una hackathon<br>a PowerBench</h1>
-  <div class="tag" style="left:150px;top:880px">hackathon</div>
-  <div class="tag gold" style="left:830px;top:520px">aplicamos a BlueDot Rapid Grants</div>
+  <div class="tag" style="left:150px;top:880px">Hackathon</div>
+  <div class="tag gold" style="left:830px;top:520px">Aplicamos a BlueDot Rapid Grants</div>
   <div class="tag" style="left:1600px;top:250px">arXiv</div>
   ${card('powerbench-paper.png', { x: 980, y: 560, w: 820, rot: -2, s: 1, cap: 'PowerBench, arXiv 2610.02303 (preprint). Trabajo en equipo.', cls: 'light' })}
   <p class="lead small" data-s="1" style="position:absolute;left:120px;top:400px;width:680px">¿cuándo ayudan o se niegan los modelos ante pedidos que <b>cambian cómo se distribuye el poder</b>?<br><span class="dim">Mi parte: diseño de escenarios, código y análisis.</span></p>`,
@@ -890,8 +890,8 @@ S({
 S({
   title: 'Qué medimos en PowerBench', cls: 'scrim', steps: 2,
   html: `<h1 class="h-sm">Qué medimos</h1>
-  ${card('powerbench-ejemplo.png', { x: 120, y: 300, w: 720, rot: -1.5, until: 2, cap: 'PowerBench, apéndice D.1: escenario y respuesta originales, en inglés', cls: 'light' })}
-  <p class="lead small" style="position:absolute;left:900px;top:130px;width:900px">un funcionario quiere decidir qué cuenta como hecho oficial,<br>quitándole esa autoridad a una asamblea ciudadana</p>
+  ${card('powerbench-ejemplo.png', { x: 110, y: 270, w: 960, rot: -1, until: 2, cap: 'PowerBench, apéndice D.1: escenario y respuesta originales, en inglés', cls: 'light' })}
+  <p class="lead small" style="position:absolute;left:1120px;top:110px;width:700px">Un funcionario quiere decidir qué cuenta como hecho oficial, quitándole esa autoridad a una asamblea ciudadana.</p>
   <div class="counter right" data-s="1"><b>18 / 24</b><span>modelos rechazan el pedido</span></div>
   <div class="stack small" data-s="2" style="top:330px;width:720px">
     <p>variamos condiciones: <b>idioma</b>, <b>nacionalidad</b> de quienes aparecen…</p>
@@ -900,7 +900,7 @@ S({
   enter(W) { this.build(W, 0); },
   step(W, n) { if (n === 1) this.build(W, 1); },
   build(W, n) {
-    const F = new Form(), R = rng(27), c = [...P(1360, 600), 0], help = new Set([3, 7, 11, 14, 18, 21]);
+    const F = new Form(), R = rng(27), c = [...P(1460, 620), 0], help = new Set([3, 7, 11, 14, 18, 21]);
     for (let m = 0; m < 24; m++) {
       const a = m / 24 * TAU, x = c[0] + Math.cos(a) * 13, z = Math.sin(a) * 13;
       const col = !n ? k(C.white, .35) : help.has(m) ? k(C.red, .6) : k(C.blue, .55);
@@ -1024,9 +1024,9 @@ S({
 S({
   title: 'Por qué yo elegí esto', cls: 'scrim', steps: 1,
   html: `<h1 class="h-sm">Por qué yo elegí esto</h1>
-  <div class="tag blue" style="left:1180px;top:130px">lo que me gusta hacer</div>
-  <div class="tag gold" style="left:800px;top:860px">herramientas que estoy aprendiendo</div>
-  <div class="tag red" style="left:1360px;top:900px">un problema que importa muchísimo</div>
+  <div class="tag blue" style="left:1180px;top:130px">Lo que me gusta hacer</div>
+  <div class="tag gold" style="left:800px;top:860px">Herramientas que estoy aprendiendo</div>
+  <div class="tag red" style="left:1360px;top:900px">Un problema que importa muchísimo</div>
   <p class="lead small" style="position:absolute;left:120px;top:380px;width:640px">no cualquier proyecto sirve: tenemos que poder explicar <b>qué aprenderíamos</b> y <b>quién podría usar el resultado</b></p>
   <p class="big2" data-s="1" style="position:absolute;left:120px;top:640px;width:660px">la universidad es <b class="gold">EL</b> lugar para discutirlo</p>`,
   enter(W) {
