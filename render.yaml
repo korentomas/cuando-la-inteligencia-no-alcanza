@@ -1,0 +1,11 @@
+# Deploy en Render (opcional): conectá el repo y Render levanta server.mjs.
+services:
+  - type: web
+    name: charla-unsam
+    runtime: node
+    plan: free
+    buildCommand: "true"
+    startCommand: node server.mjs
+    envVars:
+      - key: ADMIN_TOKEN
+        generateValue: true

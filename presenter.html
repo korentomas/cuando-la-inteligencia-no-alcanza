@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Presentador · Cuando la inteligencia no alcanza</title>
+<link rel="stylesheet" href="style.css">
+<style>
+html,body{overflow:auto}
+body{padding:28px 36px;background:#05060d}
+header{display:flex;align-items:baseline;gap:24px;margin-bottom:18px}
+#num{font:800 54px "Bricolage Grotesque";color:var(--gold)}
+#title{font:800 34px "Bricolage Grotesque";flex:1}
+#clock,#elapsed{font:400 26px "JetBrains Mono",monospace;color:var(--dim)}
+#elapsed{color:var(--cyan);cursor:pointer}
+#steps{font:400 18px "JetBrains Mono",monospace;color:var(--dim);margin-bottom:18px}
+#steps i{display:inline-block;width:14px;height:14px;border-radius:50%;background:#223;margin-right:6px;vertical-align:-1px}
+#steps i.on{background:var(--gold)}
+#notes p{font-size:27px;line-height:1.45;margin:0 0 18px;max-width:1100px}
+#next{margin-top:26px;font:400 20px "JetBrains Mono",monospace;color:var(--dim)}
+nav{position:fixed;right:30px;bottom:24px;display:flex;gap:10px}
+nav button{font-size:20px;padding:14px 26px}
+</style></head>
+<body>
+<header><span id="num">–</span><span id="title">abrí la presentación (P desde la ventana principal)</span><span id="elapsed" title="clic para reiniciar">00:00</span><span id="clock"></span></header>
+<div id="steps"></div>
+<div id="notes"></div>
+<div id="next"></div>
+<nav><button id="prev">←</button><button id="nextb">→</button></nav>
+<script type="module">
+import { NOTES } from './notes.js';
+const ch = new BroadcastChannel('charla-unsam'), $ = s => document.querySelector(s);
+let t0 = null;
+ch.onmessage = e => {
+  const m = e.data; if (m.type !== 'state') return;
+  t0 ??= Date.now();
+  const n = NOTES[m.cur] || { text: [] };
+  $('#num').textContent = String(m.cur + 1).padStart(2, '0');
+  $('#title').textContent = m.titles[m.cur];
+  $('#steps').innerHTML = Array.from({ length: m.steps + 1 }, (_, i) => `<i class="${i <= m.step ? 'on' : ''}"></i>`).join('') + ` paso ${m.step + 1} de ${m.steps + 1}`;
+  $('#notes').innerHTML = n.text.map(p => `<p>${p}</p>`).join('');
+  $('#next').textContent = m.cur + 1 < m.total ? 'siguiente → ' + m.titles[m.cur + 1] : 'última slide';
+};
+const send = cmd => ch.postMessage({ type: 'cmd', cmd });
+$('#prev').onclick = () => send('prev'); $('#nextb').onclick = () => send('next');
+$('#elapsed').onclick = () => t0 = Date.now();
+addEventListener('keydown', e => {
+  if ([' ', 'ArrowRight', 'PageDown'].includes(e.key)) { e.preventDefault(); send('next'); }
+  if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); send('prev'); }
+});
+setInterval(() => {
+  $('#clock').textContent = new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+  if (t0) { const s = Math.floor((Date.now() - t0) / 1000); $('#elapsed').textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }
+}, 500);
+send('hello');
+</script>
+</body></html>

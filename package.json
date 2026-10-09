@@ -1,0 +1,23 @@
+{
+  "name": "cuando-la-inteligencia-no-alcanza",
+  "version": "1.0.0",
+  "description": "Charla para UNSAM sobre seguridad de IA: presentación web en three.js con respuestas del público por QR",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "notes": "node build-notes.mjs",
+    "recursos": "node build-recursos.mjs"
+  },
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@fontsource/bricolage-grotesque": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.1",
+    "qrcode-generator": "^1.4.4",
+    "three": "^0.169.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

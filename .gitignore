@@ -1,0 +1,5 @@
+node_modules/
+respuestas.jsonl
+.playwright-mcp/
+.claude/
+.DS_Store
