@@ -94,7 +94,7 @@ S({
 S({
   title: '¿Para qué? ¿Dónde? ¿Hace falta?', cls: 'scrim', steps: 1,
   html: `<h1 class="mono typed"><span id="typed"></span><i class="caret"></i></h1>
-  <p class="lead dim" data-until="1">la belleza y los horrores<br>de la estadística y la computación</p>
+  <p class="lead dim" data-until="1">La belleza y los horrores<br>de la estadística y la computación</p>
   <div class="qs"><p data-s="1" class="q1">¿Para qué?</p><p data-s="1" class="q2">¿Dónde?</p><p data-s="1" class="q3">¿Hace falta?</p></div>`,
   enter(W) {
     const rows = ['1234567890', 'qwertyuiop', 'asdfghjklñ', 'zxcvbnm,.?'];
@@ -263,8 +263,8 @@ S({
 S({
   title: 'Inteligencia de propósito general', cls: 'scrim', steps: 2,
   html: `<h1 class="mega">AGI</h1>
-  <p class="lead">sistemas que aprendan y resuelvan problemas<br>en prácticamente cualquier ámbito,<br><b>incluso mejor que nosotros</b></p>
-  <p class="stack small dim" data-s="1" style="top:760px">más inteligencia disponible no resuelve por sí sola<br>nuestros desacuerdos ni qué queremos hacer con ella</p>
+  <p class="lead">Sistemas que aprendan y resuelvan problemas<br>en prácticamente cualquier ámbito,<br><b>incluso mejor que nosotros</b></p>
+  <p class="stack small dim" data-s="1" style="top:760px">Más inteligencia no resuelve sola<br>nuestros desacuerdos</p>
   <p class="big2 gold" data-s="2" style="position:absolute;top:880px;left:120px">¿Por qué me lo tomo en serio?</p>`,
   enter(W) {
     const layers = [5, 8, 10, 8, 5], R = rng(9), F = new Form(), nodes = [];
@@ -306,13 +306,12 @@ S({
 // 07 ------------------------------------------------------------------
 S({
   title: 'Las capacidades cambian', steps: 2,
-  html: `<h1 class="h-sm">Las capacidades cambian</h1>
-  ${card('metr-horizonte-mayo-2026.png', { x: 640, y: 250, w: 1180, cap: 'METR, horizonte de tareas (50 % de éxito). Página actualizada el 8/5/2026, escala logarítmica', cls: 'light' })}
-  <div class="stack small" style="top:300px;width:470px">
+  html: `<h1 class="h-sm">Las tareas que logran solos<br>pasaron de minutos a horas</h1>
+  ${card('metr-horizonte-mayo-2026.png', { x: 640, y: 320, w: 1180, cap: 'METR, horizonte de tareas (50 % de éxito). Página actualizada el 8/5/2026, escala logarítmica', cls: 'light' })}
+  <div class="stack small" style="top:340px;width:470px">
     <p data-s="1">Tareas, sobre todo de software, medidas según cuánto le llevan a una persona</p>
-    <p data-s="1">de <b>minutos</b> a <b>horas</b></p>
     <p data-s="1" class="dim">Más de 16 h: según METR, estimaciones todavía poco confiables</p>
-    <p data-s="2" class="gold">no es un valor fijo:<br>mirar la <b>tasa de cambio</b></p>
+    <p data-s="2" class="gold">Importa el nivel y también<br>la <b>velocidad del cambio</b></p>
     <p data-s="2" class="dim">no demuestra que vayamos a tener AGI</p>
   </div>`,
   enter(W) {
@@ -333,7 +332,7 @@ S({
 // 08 ------------------------------------------------------------------
 S({
   title: 'Una IA que puede actuar', cls: 'scrim', steps: 2,
-  html: `<h1 class="h-sm">Una IA que puede actuar</h1>
+  html: `<h1 class="h-sm">Un chat responde.<br>Un agente actúa.</h1>
   <div class="chat" data-until="1">
     <div class="msg me">¿Cómo organizo estos archivos?</div>
     <div class="msg ai">Podrías agruparlos por proyecto y por fecha…</div>
@@ -456,7 +455,7 @@ S({
 // 10 ------------------------------------------------------------------
 S({
   title: 'Qué aprende durante el entrenamiento', cls: 'scrim', steps: 4,
-  html: `<div class="swap l2"><h1 class="h-sm" data-until="2">Qué aprende durante<br>el entrenamiento</h1>
+  html: `<div class="swap l2"><h1 class="h-sm" data-until="2">El entrenamiento premia<br>lo que la evaluación ve</h1>
   <h1 class="h-sm" data-s="2" data-until="3">Llegá a la salida.</h1>
   <h1 class="h-sm" data-s="3" data-until="4">Evaluación: aprobado.</h1>
   <h1 class="h-sm" data-s="4">¿Resolvió el problema<br>que queríamos?</h1></div>
@@ -560,9 +559,9 @@ S({
   <div class="stack small" style="top:380px;width:760px">
     <p>aprobar una prueba: <b>criterio concreto</b></p>
     <p>reglas generales de comportamiento: <b>admiten interpretaciones</b></p>
-    <p class="dim">hipótesis de Bengio sobre el mecanismo, no una explicación demostrada del incidente</p>
     <p data-s="1" class="red">más capacidad también podría volverlo mejor<br>encontrando esas trampas</p>
-    <p data-s="2" class="gold"><b>alineamiento</b>: que su comportamiento sea compatible<br>con nuestras intenciones, incluso en situaciones<br>que no anticipamos</p></div>
+    <p data-s="2" class="gold"><b>Alineamiento</b>: que haga lo que queremos,<br>también en situaciones que no anticipamos</p></div>
+  <p class="src">Hipótesis de Bengio sobre el mecanismo, no una explicación demostrada del incidente</p>
   <div class="readout" data-s="1"><span>capacidad <b id="cap">×1.0</b></span><span>distancia a lo que queríamos <b id="dist">0</b></span></div>`,
   enter(W) {
     const F = new Form(), R = rng(16), O = P(1060, 900), parts = [];
@@ -602,11 +601,11 @@ S({
 // 12 ------------------------------------------------------------------
 S({
   title: 'De hacer trampa a perder el control', cls: 'scrim', steps: 3,
-  html: `<h1 class="h-sm">De hacer trampa<br>a perder el control</h1>
+  html: `<h1 class="h-sm">Lo grave no es la trampa:<br>es no poder corregirlo</h1>
   <p class="eq small" data-until="3">objetivos incompatibles <b>+</b> recursos <b>+</b> capacidad<br>→ <span class="red">difícil intervenir</span></p>
   <div class="stack small" style="top:520px;width:720px" data-until="3">
-    <p data-s="1">si detenerlo le impide completar su objetivo, podría serle útil<br>ocultar lo que hace o mantener una copia en otro lugar</p>
-    <p data-s="2" class="gold">“desenchufarlo” funciona si todavía podemos<br>detener <b>todas</b> sus instancias</p></div>
+    <p data-s="1">Si apagarlo le impide cumplir su objetivo,<br>ocultarse o copiarse le sirve. No hace falta que nos odie.</p>
+    <p data-s="2" class="gold">“desenchufarlo” funciona si todavía podemos<br>detener <b>todas</b> sus copias</p></div>
   ${card('meme-conciencia.png', { x: 360, y: 250, w: 1200, s: 3, cap: '«Pero el fuego no tiene conciencia». AI Safety Memes Wiki, adaptación de This Is Fine (KC Green)' })}
   <p class="src">no es algo que el incidente de Hugging Face haya demostrado</p>`,
   enter(W) {
@@ -697,12 +696,12 @@ S({
 // 14 ------------------------------------------------------------------
 S({
   title: 'Detectar el problema a tiempo', cls: 'scrim-top', steps: 2,
-  html: `<h1 class="h-sm">Detectar el problema a tiempo</h1>
+  html: `<h1 class="h-sm">Vigilar lo que hacen<br>(y medir qué se escapa)</h1>
   <p class="lead small">Registrar lo que hace, avisar si se pasa de lo permitido, intervenir a tiempo.</p>
   <div class="meters" data-s="1"><div><b id="m1">0</b><span>detectadas</span></div><div><b id="m2">0</b><span>falsas alarmas</span></div><div class="red"><b id="m3">0</b><span>se escaparon</span></div></div>
   <div class="panel" data-s="2" style="left:120px;top:760px;width:860px">
     <p class="small red">¿y si aprenden a ocultarse mejor?</p>
-    <p class="small dim">Bengio: revisar cómo los entrenamos y exigir evidencia de seguridad<br>que convenza a expertos independientes antes de seguir avanzando</p></div>
+    <p class="small dim">Bengio: antes de seguir avanzando, evidencia de seguridad<br>que convenza a expertos independientes</p></div>
   <p class="src">simulación ilustrativa</p>`,
   enter(W) {
     W.setCam([-9, 7, 56], [3, -3, 0]);
@@ -748,7 +747,7 @@ S({
 // 15, Golden Gate lab ---------------------------------------------------
 S({
   title: 'Mirar qué pasa dentro del modelo', cls: 'scrim', steps: 3,
-  html: `<h1 class="h-sm">Mirar qué pasa<br>dentro del modelo</h1>
+  html: `<h1 class="h-sm">Subirle el volumen<br>a una idea del modelo</h1>
   <div class="lab interactive">
     <div class="pipe small dim">texto → <b>capa del medio</b> de Claude 3 Sonnet → <b>diccionario</b>: millones de características</div>
     <div class="msg me">¿Cuál es tu forma física?</div>
@@ -849,8 +848,8 @@ S({
   title: 'Quién decide y a quién beneficia', cls: 'scrim', steps: 1,
   html: `<h1 class="h-sm">Aunque sepamos detectar un fallo…</h1>
   <div class="qs3"><p>¿Quién controla?</p><p>¿Quién responde?</p><p>¿A quién beneficia?</p></div>
-  <p class="small dim" style="position:absolute;left:120px;top:720px">¿quién puede exigir que se corrija? ¿quién accede a los resultados?<br>¿qué pasa si publicarlos retrasa un lanzamiento?<br>Ahí necesitamos gente de otras disciplinas</p>
-  <p class="big2 red" data-s="1" style="position:absolute;left:120px;top:860px">obedecer al usuario ≠ beneficiar al resto</p>`,
+  <p class="small dim" style="position:absolute;left:120px;top:720px">Para eso necesitamos gente de otras disciplinas, no solo de computación.</p>
+  <p class="big2 red" data-s="1" style="position:absolute;left:120px;top:860px">Obedecer al usuario ≠ beneficiar al resto</p>`,
   enter(W) { this.build(W, 0); },
   step(W, n) { this.build(W, n); },
   build(W, n) {
@@ -889,7 +888,7 @@ S({
 // 18 ------------------------------------------------------------------
 S({
   title: 'Qué medimos en PowerBench', cls: 'scrim', steps: 2,
-  html: `<h1 class="h-sm">Qué medimos</h1>
+  html: `<h1 class="h-sm">¿Ayudan a concentrar<br>poder?</h1>
   ${card('powerbench-ejemplo.png', { x: 110, y: 270, w: 960, rot: -1, until: 2, cap: 'PowerBench, apéndice D.1: escenario y respuesta originales, en inglés', cls: 'light' })}
   <p class="lead small" style="position:absolute;left:1120px;top:110px;width:700px">Un funcionario quiere decidir qué cuenta como hecho oficial, quitándole esa autoridad a una asamblea ciudadana.</p>
   <div class="counter right" data-s="1"><b>18 / 24</b><span>modelos rechazan el pedido</span></div>
@@ -915,15 +914,14 @@ S({
 // 19 ------------------------------------------------------------------
 S({
   title: 'En qué voy a trabajar ahora', cls: 'scrim', steps: 3,
-  html: `<h1 class="h-sm">IA en gobiernos</h1>
+  html: `<h1 class="h-sm">Un empleado puede decir que no.<br>¿Y un sistema?</h1>
   <p class="lead small" data-until="1">AISAR con BAISH, y un período de prueba en una nueva organización:<br>un proyecto sobre concentración de poder en gobiernos</p>
   ${card('ron-swanson-permiso.png', { x: 140, y: 330, w: 520, rot: -3, s: 1, until: 2, cap: '«No se preocupe, tengo un permiso.» / «Esto solo dice: “Puedo hacer lo que quiera”». Parks and Recreation' })}
   <div class="stack small" data-s="2" style="top:330px;width:760px">
-    <p>un empleado puede <b>negarse</b>, <b>consultar</b> o <b>denunciar</b> un abuso</p>
-    <p class="red">sistemas que cumplen cualquier pedido → menos límites, abusos a mayor escala</p>
-    <p class="gold">evaluaciones que los laboratorios puedan incorporar,<br>empezando por aplicaciones civiles del gobierno</p>
+    <p>Negarse, consultar, denunciar: un sistema que cumple<br>cualquier pedido <b class="red">pierde esos límites, y escala</b></p>
+    <p class="gold">Queremos evaluaciones que los laboratorios puedan usar, empezando por usos civiles del gobierno</p>
     <p data-s="3">un pedido abusivo puede dividirse en tareas<br>que por separado <b>parecen inocentes</b></p>
-    <p data-s="3" class="dim">y evaluar un modelo público no dice cómo se comporta la versión que usa un gobierno</p></div>`,
+    <p data-s="3" class="dim">Y el modelo público no es necesariamente el que usa un gobierno</p></div>`,
   enter(W) {
     const F = new Form(), R = rng(28), c = P(1420, 640), col = k(mix(C.white, C.gold, .3), .38);
     const box = (x0, x1, y0, y1, z0, z1, n) => { for (let q = 0; q < n; q++) F.add(c[0] + x0 + R() * (x1 - x0), c[1] + y0 + R() * (y1 - y0), z0 + R() * (z1 - z0), col, 1); };
@@ -1028,7 +1026,7 @@ S({
   <div class="tag gold" style="left:800px;top:860px">Herramientas que estoy aprendiendo</div>
   <div class="tag red" style="left:1360px;top:900px">Un problema que importa muchísimo</div>
   <p class="lead small" style="position:absolute;left:120px;top:380px;width:640px">no cualquier proyecto sirve: tenemos que poder explicar <b>qué aprenderíamos</b> y <b>quién podría usar el resultado</b></p>
-  <p class="big2" data-s="1" style="position:absolute;left:120px;top:640px;width:660px">la universidad es <b class="gold">EL</b> lugar para discutirlo</p>`,
+  <p class="big2" data-s="1" style="position:absolute;left:120px;top:640px;width:660px">La universidad es <b class="gold">EL</b> lugar para discutirlo</p>`,
   enter(W) {
     const F = new Form(), R = rng(33), c = P(1420, 560), r = 9.5, cs = [[90, C.blue], [210, C.gold], [330, C.red]].map(([a, col]) => [c[0] + Math.cos(a * Math.PI / 180) * 5.6, c[1] + Math.sin(a * Math.PI / 180) * 5.6, col]);
     let n = 0;
