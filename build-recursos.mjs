@@ -23,8 +23,8 @@ fs.writeFileSync(new URL('./recursos.html', import.meta.url), `<!doctype html>
 :root{color-scheme:dark}
 body{margin:0;background:#03040a;color:#e6e9fb;font:18px/1.55 "Bricolage Grotesque",system-ui,sans-serif;padding:40px 20px 80px}
 main{max-width:720px;margin:0 auto}
-h1{font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 20px;background:linear-gradient(90deg,#ffbb55,#ff6a5a);-webkit-background-clip:text;background-clip:text;color:transparent}
-h2{font-size:26px;margin:44px 0 10px;color:#ffbb55}
+h1{font-size:40px;line-height:1.05;letter-spacing:-.02em;margin:0 0 20px;background:linear-gradient(90deg,#9cc2ff,#4a74ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:26px;margin:44px 0 10px;color:#9cc2ff}
 ul{padding:0;list-style:none}
 li{padding:16px 18px;margin:12px 0;border-radius:14px;background:#0d1024;box-shadow:0 0 0 1px rgba(140,160,255,.18)}
 a{color:#7fe3ff}a b{color:#fff}
