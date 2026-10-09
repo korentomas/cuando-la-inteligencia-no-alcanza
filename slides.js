@@ -73,7 +73,7 @@ S({
       const ix = (Math.floor(v * (e.h - 1)) * e.w + Math.floor(u * (e.w - 1))) * 4;
       const cr = e.data[ix] / 255, cg = e.data[ix + 1] / 255, cb = e.data[ix + 2] / 255;
       const lum = (cr + cg + cb) / 3;
-      F.add(c[0] + x * r, c[1] + y * r, z * r, lum > .085 ? k(C.blue, .1 + lum * 1.4) : [.015, .03, .09], lum > .085 ? 1.25 : 1);
+      F.add(c[0] + x * r, c[1] + y * r, z * r, lum > .085 ? k(C.blue, .2 + lum * 1.8) : [.015, .03, .09], lum > .085 ? 1.3 : 1);
     }
     // city lights: sample the bright pixels themselves
     for (let py = 0; py < e.h && F.n < 21000; py += 2) for (let px = 0; px < e.w; px += 2) {
@@ -83,11 +83,30 @@ S({
       F.add(c[0] + Math.cos(lon) * q * rr, c[1] + y * rr, -Math.sin(lon) * q * rr, k(mix(C.gold, C.white, l * .5), .35 + l * .5), .9 + l * 1.2);
     }
     shell(F, R, c[0], c[1], 0, r + 1.2, 1800, k(C.cyan, .1), 1.6);
-    this.o = { c, speed: .12, tilt: .35, tiltT: .35 };
+    const ll = (lat, lon, rr) => { const la = lat * Math.PI / 180, lo = lon * Math.PI / 180, q = Math.cos(la); return [Math.cos(lo) * q * rr, Math.sin(la) * rr, -Math.sin(lo) * q * rr]; };
+    // Argentina, rellena con puntos propios (contorno aproximado [lon, lat])
+    const AR = [[-66.3, -22.1], [-62.6, -22.2], [-61, -23.8], [-57.6, -25.4], [-54.6, -25.6], [-53.7, -26.6], [-55.7, -28], [-57.6, -30.2], [-58.3, -33], [-58.4, -34.6],
+      [-57, -36.3], [-57.6, -38.2], [-62.3, -38.9], [-62.8, -41], [-64, -42.5], [-65, -45], [-67.5, -46], [-65.8, -47.8], [-68.3, -50.2], [-68.4, -52.3], [-66.5, -55],
+      [-68.6, -55], [-72.5, -51], [-73.4, -49.5], [-72, -47], [-71.7, -44], [-71.6, -40], [-70.9, -36], [-70, -33], [-69.7, -30], [-68.4, -27], [-67, -24]];
+    const inAR = (lo, la) => { let ins = false; for (let i = 0, j = AR.length - 1; i < AR.length; j = i++) { const [xi, yi] = AR[i], [xj, yj] = AR[j]; if ((yi > la) !== (yj > la) && lo < (xj - xi) * (la - yi) / (yj - yi) + xi) ins = !ins; } return ins; };
+    for (let la = -55.2; la < -21.8; la += .32) for (let lo = -73.6; lo < -53.4; lo += .32 / Math.cos(la * Math.PI / 180)) {
+      if (!inAR(lo, la)) continue;
+      const p = ll(la + (R() - .5) * .25, lo + (R() - .5) * .25, r + .08);
+      F.add(c[0] + p[0], c[1] + p[1], p[2], k(mix(C.cyan, C.white, .35), .42), 1.05);
+    }
+    // un punto de luz en Buenos Aires
+    const ba = ll(-34.6, -58.4, r + .15);
+    blob(F, R, c[0] + ba[0], c[1] + ba[1], ba[2], .28, 260, k(C.cyan, .9), 1.6);
+    // orientación fija: Argentina mirando a la cámara (el globo está corrido a la derecha, así que se apunta hacia la cámara, no al frente)
+    const [px, py, pz] = ll(-38, -64, 1), dl = Math.hypot(c[0], c[1], 60), d = [-c[0] / dl, -c[1] / dl, 60 / dl];
+    const rho = Math.hypot(px, pz), an = Math.atan2(pz, px) - Math.acos(Math.max(-1, Math.min(1, d[0] / rho))), z1 = rho * Math.sin(Math.acos(Math.max(-1, Math.min(1, d[0] / rho))));
+    const tilt = Math.atan2(d[2], d[1]) - Math.atan2(z1, py);
+    this.tiltAR = tilt;
+    this.o = { c, angle: t => an + Math.sin(t * .25) * .1, tilt, tiltT: tilt };
     F.live(spinner(F, 0, F.n, this.o)).finish();
     W.setForm(F, { dur: 2.4, chaos: 1.3 });
   },
-  step(W, n) { if (n === 1) this.o.tiltT = 1.05; if (n === 2) this.o.tiltT = .35; },
+  step(W, n) { if (n === 1) this.o.tiltT = this.tiltAR - .55; if (n === 2) this.o.tiltT = this.tiltAR; },
 });
 
 // 03 ------------------------------------------------------------------
