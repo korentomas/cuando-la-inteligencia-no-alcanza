@@ -3,9 +3,11 @@
 import { CONFIG } from './config.js';
 
 let info = null;
+// con publicUrl, el deck usa ese servidor aunque esté abierto desde otro lado
+const API = (CONFIG.publicUrl ? CONFIG.publicUrl.replace(/\/$/, '') + '/' : '') + 'api/';
 export async function serverInfo() {
   if (info !== null) return info;
-  try { const r = await fetch('api/info', { cache: 'no-store' }); info = r.ok ? await r.json() : false; } catch { info = false; }
+  try { const r = await fetch(API + 'info', { cache: 'no-store' }); info = r.ok ? await r.json() : false; } catch { info = false; }
   return info;
 }
 export async function publicBase() {
@@ -23,11 +25,11 @@ export function qrSvg(text, { dark = '#03040a', light = '#ffffff', margin = 2 } 
 }
 export async function connectLive(onMsg) {
   if (!(await serverInfo())) return false;
-  const es = new EventSource('api/stream');
+  const es = new EventSource(API + 'stream');
   es.onmessage = e => { try { onMsg(JSON.parse(e.data)); } catch {} };
   return true;
 }
 export async function clearServer() {
-  const r = await fetch('api/respuestas' + location.search, { method: 'DELETE' }).catch(() => null);
+  const r = await fetch(API + 'respuestas' + location.search, { method: 'DELETE' }).catch(() => null);
   return !!r?.ok;
 }

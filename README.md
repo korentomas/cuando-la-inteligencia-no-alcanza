@@ -35,7 +35,9 @@ las respuestas se pegan con la tecla E.
 
 Cualquier hosting de Node sirve: el comando es `node server.mjs` y respeta la variable `PORT`.
 `render.yaml` deja todo listo para Render. Después de desplegar, poné la URL pública en
-`config.js` para que los QR la usen.
+`config.js`: los QR apuntan ahí y el deck lee las respuestas de ese servidor, aunque lo abras
+desde tu compu. Para borrar respuestas del servidor desplegado, abrí el deck con
+`?admin=<ADMIN_TOKEN>` (el token está en las variables de entorno de Render).
 
 ## Controles
 

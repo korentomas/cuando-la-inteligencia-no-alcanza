@@ -25,7 +25,8 @@ const byIp = new Map(), clients = new Set();
 const lanIPs = () => Object.values(os.networkInterfaces()).flat().filter(i => i && i.family === 'IPv4' && !i.internal).map(i => i.address);
 const isLocal = req => ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(req.socket.remoteAddress);
 const isAdmin = (req, url) => isLocal(req) || (ADMIN && url.searchParams.get('admin') === ADMIN);
-const send = (res, code, body, type = 'application/json') => { res.writeHead(code, { 'Content-Type': type, 'Cache-Control': 'no-store' }); res.end(typeof body === 'string' ? body : JSON.stringify(body)); };
+const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' };
+const send = (res, code, body, type = 'application/json') => { res.writeHead(code, { 'Content-Type': type, 'Cache-Control': 'no-store', ...CORS }); res.end(typeof body === 'string' ? body : JSON.stringify(body)); };
 const broadcast = msg => { const s = `data: ${JSON.stringify(msg)}\n\n`; for (const c of clients) c.write(s); };
 const clean = t => String(t || '').replace(/[\u0000-\u001f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, MAX_LEN);
 
@@ -37,6 +38,7 @@ http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://x');
   const p = url.pathname;
   try {
+    if (req.method === 'OPTIONS') { res.writeHead(204, CORS); return res.end(); }
     if (p === '/api/info') return send(res, 200, { lan: lanIPs(), port: PORT, count: answers.length });
     if (p === '/api/respuestas' && req.method === 'GET') return send(res, 200, answers.map(a => a.t));
     if (p === '/api/respuestas' && req.method === 'POST') {
@@ -56,7 +58,7 @@ http.createServer(async (req, res) => {
       broadcast({ type: 'reset' }); return send(res, 200, { ok: true });
     }
     if (p === '/api/stream') {
-      res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-store', Connection: 'keep-alive' });
+      res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-store', Connection: 'keep-alive', ...CORS });
       res.write(`data: ${JSON.stringify({ type: 'all', items: answers.map(a => a.t) })}\n\n`);
       clients.add(res); const ping = setInterval(() => res.write(': ping\n\n'), 20000);
       req.on('close', () => { clients.delete(res); clearInterval(ping); });
