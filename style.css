@@ -184,4 +184,4 @@ h1,.big2,.qs p,.qs3 p,.counter b,.sticker b,.thanks,.star b,#timer,.stamp,.neq{f
 .res p{margin:0 0 18px;font-size:24px;line-height:1.3;color:var(--dim);text-shadow:0 2px 12px #000}
 .res p b{display:block;font-size:30px;color:var(--ink);margin-bottom:2px}
 #qrEnd span{max-width:430px;overflow-wrap:anywhere;font-size:20px}
-.who{display:flex;align-items:center;gap:30px;margin-top:44px}.who img{width:150px;height:150px;border-radius:50%;object-fit:cover;box-shadow:0 12px 40px rgba(0,0,0,.45)}.who .by{margin:0}.who .by.small{margin-top:8px}
+.who{display:flex;align-items:center;gap:30px;margin-top:44px}.who img{width:170px;height:170px;border-radius:26px;object-fit:cover;box-shadow:0 12px 40px rgba(0,0,0,.45)}.who .by{margin:0}.who .by.small{margin-top:8px}
