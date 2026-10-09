@@ -105,7 +105,7 @@ h1.red,.red{color:var(--red)} .gold{color:var(--gold)} .violet{color:var(--viole
 .lab .msg{font-size:30px;max-width:780px}
 .lab .msg.me{margin-left:200px}
 #ggOut{min-height:150px;transition:box-shadow .4s,background .4s}
-#ggOut .who{display:block;font:400 18px "JetBrains Mono",monospace;color:var(--dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+#ggOut .who{display:block;font-size:20px;color:var(--dim);margin-bottom:8px}
 #ggOut.steered{background:rgba(70,24,8,.9);box-shadow:0 0 0 2px var(--gg),0 0 60px rgba(255,110,40,.45)}
 #ggOut.steered #ggTxt{color:#ffd2b5}
 #ggOut.unknown #ggTxt{filter:blur(4px);color:var(--dim)}
@@ -118,7 +118,7 @@ h1.red,.red{color:var(--red)} .gold{color:var(--gold)} .violet{color:var(--viole
 .ex{position:absolute;left:1040px;top:200px;width:780px}
 .ex .chip{position:relative;margin-top:16px;box-shadow:0 0 0 1px rgba(255,122,61,.5)}
 
-.chain{display:flex;align-items:center;gap:18px;margin-top:60px;font-size:34px;font-weight:700;flex-wrap:wrap;max-width:820px}
+.chain{display:flex;align-items:center;gap:14px;margin-top:60px;font-size:28px;font-weight:700;flex-wrap:nowrap;max-width:1100px}
 .chain span{padding:12px 22px;border-radius:14px;background:rgba(10,14,34,.85);box-shadow:0 0 0 1px rgba(140,160,255,.3)}
 .chain i{font-style:normal;color:var(--cyan)}
 

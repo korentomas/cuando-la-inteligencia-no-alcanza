@@ -62,7 +62,8 @@ const pmat = new THREE.ShaderMaterial({
       vec3 p=mix(aFrom,to,e)+aJit*sin(e*3.14159)*uChaos;
       float s=mix(sFrom,sTo,e);vC=mix(cFrom,cTo,e);
       vec4 mv=modelViewMatrix*vec4(p,1.);
-      gl_PointSize=s<=0.?0.:max(s*uScale/-mv.z,1.);gl_Position=projectionMatrix*mv;}`,
+      if(s<=.01){gl_PointSize=0.;gl_Position=vec4(2.,2.,2.,1.);return;}
+      gl_PointSize=max(s*uScale/-mv.z,1.);gl_Position=projectionMatrix*mv;}`,
   fragmentShader: `varying vec3 vC;void main(){vec2 c=gl_PointCoord-.5;float d=length(c);if(d>.5)discard;float a=pow(1.-d*2.,1.7);gl_FragColor=vec4(vC*a,1.);}`,
   transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
 });
