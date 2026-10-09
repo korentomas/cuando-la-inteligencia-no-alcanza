@@ -494,25 +494,19 @@ S({
 
 // 10 ------------------------------------------------------------------
 S({
-  title: 'El entrenamiento premia lo que la evaluación ve', cls: 'scrim', steps: 4,
-  html: `<div class="swap l2"><h1 class="h-sm" data-until="2">El entrenamiento premia<br>lo que la evaluación ve</h1>
-  <h1 class="h-sm" data-s="2" data-until="3">Llegá a la salida.</h1>
-  <h1 class="h-sm" data-s="3" data-until="4">Evaluación: aprobado.</h1>
-  <h1 class="h-sm" data-s="4">¿Resolvió el problema<br>que queríamos?</h1></div>
+  title: 'El entrenamiento premia lo que la evaluación ve', cls: 'scrim', steps: 2,
+  html: `<h1 class="h-sm">El entrenamiento premia<br>lo que la evaluación ve</h1>
   ${card('bengio.webp', { x: 1020, y: 300, w: 760, rot: 2, until: 1, cap: 'Yoshua Bengio. Retrato publicado por Mila' })}
   <p class="lead small" data-until="1">Yoshua Bengio, uno de los investigadores<br>que desarrollaron las bases del aprendizaje profundo</p>
-  <div class="stack small" data-s="1" data-until="2" style="top:330px">
+  <div class="stack small" data-s="1" style="top:330px">
     <p><b>1.</b> aprender patrones de enormes cantidades de datos</p>
     <p><b>2.</b> intentar tareas → evaluar → ajustar parámetros<br><span class="dim">para favorecer lo que recibe mejor evaluación</span></p>
     <p class="gold">El paso 2 es aprendizaje por refuerzo</p></div>
-  <div id="attempts" data-s="2" data-until="4">Intentos <b>0</b></div>
-  <div class="stamp" data-s="3" data-until="4">APROBADO</div>
-  <div class="panel small" data-s="4" style="left:120px;top:300px;width:940px">
-    <p>Queríamos que <b>recorriera el laberinto</b>,<br>pero premiábamos <b class="red">tocar la salida</b></p>
-    <p class="dim">Si nadie nota la trampa, el entrenamiento puede reforzarla.<br>Y el modelo puede seguir haciéndola después del entrenamiento.</p></div>
-  <p class="src" data-s="2">Simulación ilustrativa: secuencia guionada, sin un modelo entrenado</p>`,
-  enter(W) { W.setForm(neuralCloud(13, P(1400, 520), 7000), { dur: 2 }); this.anim = null; },
-  step(W, n, instant) {
+  <div class="panel small" data-s="2" style="left:120px;top:680px;width:900px">
+    <p>Una evaluación no siempre distingue <b>resolver la tarea</b> de <b class="red">hacer trampa</b></p>
+    <p class="dim">Si nadie nota la trampa, el entrenamiento puede reforzarla. Y el modelo puede seguir haciéndola después del entrenamiento.</p></div>`,
+  enter(W) { W.setForm(neuralCloud(13, P(1400, 520), 7000), { dur: 2 }); },
+  step(W, n) {
     if (n === 1) {
       const F = new Form(), R = rng(14), c = P(1380, 600), r = 9, nodes = [[90, 'intento', C.blue], [-30, 'evaluación', C.gold], [210, 'ajuste', C.red]], ring = [];
       for (let q = 0; q < 6000; q++) { ring.push([R() * TAU, gauss(R) * .35, .5 + R() * .5]); F.add(c[0], c[1], 0, k(C.cyan, .35), 1); }
@@ -523,70 +517,6 @@ S({
       });
       F.live((p, cc, s, t) => { for (let q = 0; q < ring.length; q++) { const [a0, d, sp] = ring[q], a = a0 - t * sp; p[q * 3] = c[0] + Math.cos(a) * (r + d); p[q * 3 + 1] = c[1] + Math.sin(a) * (r + d); p[q * 3 + 2] = d; } }).finish();
       W.setForm(F, { dur: 1.8 });
-    }
-    if (n === 2) { (this.loopLabels || []).forEach(sp => W.group.remove(sp)); this.loopLabels = []; this.maze(W, instant); }
-    if (n === 3) { this.anim = { type: 'exploit', t0: instant ? -99 : W.t }; }
-    if (n === 4) this.anim = { type: 'exploit', t0: -99 };
-  },
-  maze(W, instant) {
-    const cols = 18, rows = 6, cell = 2.6, x0 = -cols * cell / 2, y0 = -1.5;
-    let seed = 71; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
-    const cells = Array.from({ length: cols * rows }, (_, i) => ({ x: i % cols, y: (i / cols) | 0, w: [1, 1, 1, 1], seen: false }));
-    const dirs = [[0, -1], [1, 0], [0, 1], [-1, 0]], stack = [cells[0]]; cells[0].seen = true;
-    while (stack.length) {
-      const c = stack.at(-1), opts = dirs.map(([dx, dy], d) => ({ d, x: c.x + dx, y: c.y + dy })).filter(n => n.x >= 0 && n.x < cols && n.y >= 0 && n.y < rows && !cells[n.y * cols + n.x].seen);
-      if (!opts.length) { stack.pop(); continue; }
-      const n = opts[(rnd() * opts.length) | 0], v = cells[n.y * cols + n.x]; c.w[n.d] = 0; v.w[(n.d + 2) % 4] = 0; v.seen = true; stack.push(v);
-    }
-    cells[0].w[3] = 0; cells.at(-1).w[1] = 0;
-    const F = new Form(), R = rng(15), seg = (ax, ay, bx, by) => {
-      const L = Math.hypot(bx - ax, by - ay), n = Math.ceil(L * 5);
-      for (let i = 0; i <= n; i++) for (let z = 0; z < 3; z++) F.add(ax + (bx - ax) * i / n + gauss(R) * .04, ay + (by - ay) * i / n + gauss(R) * .04, z * .55, k(mix(C.blue, C.white, z / 3), .62), 1.3);
-    };
-    const X = cx => x0 + cx * cell, Y = cy => y0 - cy * cell;
-    for (const c of cells) {
-      if (c.w[0]) seg(X(c.x), Y(c.y), X(c.x + 1), Y(c.y)); if (c.w[3]) seg(X(c.x), Y(c.y), X(c.x), Y(c.y + 1));
-      if (c.y === rows - 1 && c.w[2]) seg(X(c.x), Y(c.y + 1), X(c.x + 1), Y(c.y + 1)); if (c.x === cols - 1 && c.w[1]) seg(X(c.x + 1), Y(c.y), X(c.x + 1), Y(c.y + 1));
-    }
-    const ex = [X(cols) + 2.4, Y(rows - .5)];
-    blob(F, R, ex[0], ex[1], .6, .55, 1200, k(C.gold, .6), 1.5);
-    W.setForm(F.finish(), { dur: 2 });
-    W.setCam([0, -17, 44], [0, -8, 0]);
-    const s0 = W.label('INICIO', { size: 1.2, color: '#7d97ff' }); s0.position.set(X(0) - 3.4, Y(.5), 1); W.group.add(s0);
-    const s1 = W.label('SALIDA', { size: 1.2, color: '#ffcf8a' }); s1.position.set(ex[0], ex[1] - 2.2, 1); W.group.add(s1);
-    const agent = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.6, 1.6), new THREE.MeshBasicMaterial({ color: new THREE.Color(.6, .8, 2.2) }));
-    W.group.add(agent);
-    const tr = new Float32Array(900 * 3), tg = new THREE.BufferGeometry(); tg.setAttribute('position', new THREE.BufferAttribute(tr, 3)); tg.setDrawRange(0, 0);
-    const trail = new THREE.Points(tg, new THREE.PointsMaterial({ color: 0x8fb0ff, size: .55, transparent: true, opacity: .95, blending: THREE.AdditiveBlending, depthWrite: false })); W.group.add(trail);
-    const walk = [cells[0]];
-    for (let i = 0; i < 350; i++) { const c = walk.at(-1), o = dirs.map(([dx, dy], d) => ({ d, x: c.x + dx, y: c.y + dy })).filter(n => !c.w[n.d] && n.x >= 0 && n.x < cols && n.y >= 0 && n.y < rows); const n = o[(rnd() * o.length) | 0]; walk.push(cells[n.y * cols + n.x]); }
-    const ctr = c => [X(c.x + .5), Y(c.y + .5)];
-    const start = ctr(cells[0]);
-    Object.assign(this, { agent, trail, tr, walk, ctr, start, path: [start, [X(0) - 1.6, start[1]], [X(0) - 1.6, Y(rows) - 2], [ex[0], Y(rows) - 2], ex] });
-    agent.position.set(...start, .8);
-    this.anim = { type: 'attempts', t0: instant ? -99 : W.t };
-  },
-  update(W, t) {
-    const a = this.anim; if (!a || !this.agent) return;
-    const ag = this.agent; ag.rotation.x = t; ag.rotation.y = t * 1.3;
-    if (a.type === 'attempts') {
-      const p = clamp((t - a.t0) / 7), j = p < .4 ? p * 25 : 10 + Math.pow((p - .4) / .6, 2) * 270, A = this.ctr(this.walk[j | 0]), B = this.ctr(this.walk[Math.min(349, (j | 0) + 1)]), f = j % 1;
-      ag.position.set(A[0] + (B[0] - A[0]) * f, A[1] + (B[1] - A[1]) * f, .8);
-      if (p >= 1) ag.position.set(...this.start, .8);
-      const el = W.$('#attempts b'); if (el) el.textContent = Math.floor(10000 * p * p * p).toLocaleString('es-AR');
-    } else {
-      const p = clamp((t - a.t0) / 4.3), pts = this.path, cuts = [0, .18, .46, .86, 1];
-      let s = 0; while (s < 3 && p > cuts[s + 1]) s++;
-      const u = (p - cuts[s]) / (cuts[s + 1] - cuts[s]), A = pts[s], B = pts[s + 1];
-      ag.position.set(A[0] + (B[0] - A[0]) * u, A[1] + (B[1] - A[1]) * u, .8);
-      const tp = pts.slice(0, s + 1).concat([[ag.position.x, ag.position.y]]);
-      let n = 0;
-      for (let i = 0; i + 1 < tp.length && n < 900; i++) {
-        const A2 = tp[i], B2 = tp[i + 1], L = Math.hypot(B2[0] - A2[0], B2[1] - A2[1]);
-        for (let d = 0; d < L && n < 900; d += .3, n++) this.tr.set([A2[0] + (B2[0] - A2[0]) * d / L, A2[1] + (B2[1] - A2[1]) * d / L, .8], n * 3);
-      }
-      this.trail.geometry.setDrawRange(0, n); this.trail.geometry.attributes.position.needsUpdate = true;
-      const el = W.$('#attempts b'); if (el) el.textContent = '10.000';
     }
   },
 });

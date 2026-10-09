@@ -83,7 +83,7 @@ export const NOTES=[
   "text": [
    "Yoshua Bengio, uno de los investigadores que desarrollaron las bases del aprendizaje profundo, propone una explicación que nos sirve para pensarlo.",
    "Primero los modelos aprenden patrones a partir de enormes cantidades de datos. Después, parte del entrenamiento consiste en hacerlos intentar tareas y ajustar sus parámetros para favorecer las respuestas y acciones que reciben una mejor evaluación. Eso es aprendizaje por refuerzo.",
-   "El problema es que una buena evaluación no siempre distingue entre resolver la tarea y hacer trampa. Queríamos que recorriera el laberinto, pero premiábamos tocar la salida. Si la trampa pasa inadvertida, podemos terminar favoreciéndola, y ese comportamiento puede mantenerse después del entrenamiento."
+   "El problema es que una buena evaluación no siempre distingue entre resolver la tarea y hacer trampa. Si la trampa pasa inadvertida, podemos terminar favoreciéndola, y ese comportamiento puede mantenerse después del entrenamiento."
   ]
  },
  {
