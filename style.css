@@ -11,8 +11,8 @@ html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--
 body:not(.ready) #stage{opacity:0}
 body.black #frame,body.black #gl{opacity:0;transition:opacity .4s}
 
-.slide{position:absolute;inset:0;padding:90px 120px;animation:in .9s cubic-bezier(.2,.8,.2,1) both}
-.slide.out{animation:out .5s ease both;pointer-events:none}
+.slide{position:absolute;inset:0;padding:90px 120px;animation:in .6s ease .2s both}
+.slide.out{animation:out .2s ease both;pointer-events:none}
 @keyframes in{from{opacity:0}}
 @keyframes out{to{opacity:0}}
 .slide.scrim::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(3,4,10,.82) 0,rgba(3,4,10,.55) 38%,rgba(3,4,10,0) 58%)}

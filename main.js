@@ -211,7 +211,7 @@ function render(i) {
   if (cur >= 0) SLIDES[cur].leave?.(W);
   retireGroup();
   const old = slideEl;
-  if (old) { old.classList.add('out'); setTimeout(() => old.remove(), 600); }
+  if (old) { old.classList.add('out'); setTimeout(() => old.remove(), 250); }
   const s = SLIDES[i];
   slideEl = document.createElement('section');
   slideEl.className = 'slide ' + (s.cls || '');
