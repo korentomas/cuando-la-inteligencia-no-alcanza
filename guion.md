@@ -142,7 +142,7 @@ Tampoco hace falta convertir cada TP en un paper. A veces alcanza con cursar bie
 
 ## Diapositiva 21 · Conocer el campo y probar si te gusta
 
-Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot sirven para conocer el campo, y si prefieren empezar programando, ARENA tiene ejercicios para hacer con compañeros. Y todo esto, y mucho más, está en aisafety.com, que tiene hasta un mapa del campo.
+Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los cursos cortos de BlueDot sirven para conocer el campo, y si prefieren videos, los de Rob Miles explican los problemas con ejemplos muy claros. Y todo esto, y mucho más, está en aisafety.com, que tiene hasta un mapa del campo.
 
 ## Diapositiva 22 · Si ya tienen una idea, hay mentoría y fondos
 

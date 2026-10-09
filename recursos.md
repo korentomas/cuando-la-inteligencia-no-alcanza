@@ -8,10 +8,15 @@ No hace falta recorrer todo esto ni decidir ahora a qué te vas a dedicar. Eleg�
 - **[Technical AI Safety de BlueDot](https://bluedot.org/courses/technical-ai-safety):** para personas con base técnica que quieren conocer las principales líneas de investigación. Podés mirar el programa y elegir un tema para leer y discutir con compañeros.
 - **[80,000 Hours: investigación técnica en AI Safety](https://80000hours.org/career-reviews/ai-safety-technical-research/):** una descripción del trabajo, las habilidades y posibles recorridos. Útil para comparar la idea del campo con las actividades que te gustaría hacer.
 - **[80,000 Hours: cómo explorar tu encaje con un trabajo](https://80000hours.org/career-guide/personal-fit/):** para pensar qué probar antes de tomar una decisión de carrera. Podés elegir una actividad pequeña y después revisar si te gustó hacerla.
+- **[aisafety.com](https://www.aisafety.com/):** el directorio más completo del campo: programas de formación, comunidades, eventos, fondos, empleos y un [mapa](https://www.aisafety.com/map) con más de 370 organizaciones. También ofrece [mentorías gratuitas uno a uno](https://www.aisafety.com/advisors).
+- **[AI Safety Atlas](https://ai-safety-atlas.com/):** un libro de texto online que ordena el campo, con cada concepto apoyado en el anterior.
+- **[Rob Miles en YouTube](https://www.youtube.com/@RobertMilesAI):** videos que explican los problemas de seguridad de IA con ejemplos muy claros.
+- **[aisafety.info](https://aisafety.info/):** respuestas a las preguntas más comunes sobre riesgos de la IA, una por una.
 
 ## Aprender haciendo
 
 - **[ARENA: materiales y ejercicios](https://www.arena.education/curriculum):** fundamentos, interpretabilidad, aprendizaje por refuerzo y evaluaciones. Revisá los [prerrequisitos](https://learn.arena.education/chapter0_fundamentals/00_prereqs/intro/) y elegí una sección acorde a tu base. Los materiales se pueden usar por cuenta propia; eso es distinto de ingresar al programa presencial.
+- **[Curso corto de DeepMind sobre seguridad de AGI](https://deepmindsafetyresearch.medium.com/introducing-our-short-course-on-agi-safety-1072adb7912c):** unos 75 minutos de charlas y ejercicios sobre los problemas de alineamiento.
 - **[Inspect](https://inspect.aisi.org.uk/):** herramientas abiertas para evaluar modelos. Si ya programás en Python, podés seguir el ejemplo inicial con un conjunto pequeño de preguntas y revisar las respuestas una por una. El acceso a modelos puede tener costo: definí un presupuesto antes de correr experimentos.
 - **[PowerBench](https://arxiv.org/abs/2610.02303):** nuestro trabajo sobre respuestas a pedidos que modifican la distribución del poder. El apéndice D permite ver ejemplos concretos. Como ejercicio de lectura, compará tu interpretación de una respuesta con el criterio usado en el artículo.
 
@@ -19,6 +24,8 @@ No hace falta recorrer todo esto ni decidir ahora a qué te vas a dedicar. Eleg�
 
 - **[BAISH: proyectos y actividades](https://www.baish.com.ar/):** una vía local para conocer colaboradores y enterarte de proyectos, cursos y hackathons. Prepará una explicación corta de qué querés investigar y qué ayuda necesitás.
 - **[MATS](https://www.matsprogram.org/):** investigación con mentoría en distintas líneas de AI Safety. Revisá los proyectos, requisitos, ubicación y dedicación de cada convocatoria; no asumir que se puede hacer en paralelo con cualquier cursada.
+- **[AI Safety Camp](https://www.aisafety.camp/):** online y part-time: equipos chicos trabajan durante unos meses en un proyecto concreto con quien lo propone.
+- **[Manifund](https://manifund.org/):** una plataforma donde se publican proyectos y otras personas pueden financiarlos.
 - **[BlueDot Rapid Grants](https://bluedot.org/grants/rapid):** financiamiento para proyectos concretos de AI Safety y bioseguridad. Para preparar un pedido, explicá qué querés hacer, qué gasto permitiría avanzar y qué vas a producir. La postulación no garantiza financiamiento.
 
 ## Volver a las fuentes de la charla

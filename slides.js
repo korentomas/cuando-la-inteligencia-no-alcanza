@@ -988,8 +988,9 @@ S({
       <p><b>BAISH</b>Comunidad, cursos y encuentros en Buenos Aires</p>
       <p><b>BlueDot</b>Cursos cortos online, de una introducción general a Technical AI Safety</p>
       <p><b>AI Safety Atlas</b>Un libro de texto online que ordena todo el campo</p></div>
-    <div><h3>Para programar</h3>
-      <p><b>ARENA</b>Ejercicios de PyTorch, interpretabilidad, aprendizaje por refuerzo y evaluaciones</p>
+    <div><h3>Para ver y leer</h3>
+      <p><b>Rob Miles</b>Videos en YouTube que explican los problemas con ejemplos muy claros</p>
+      <p><b>aisafety.info</b>Respuestas a las preguntas más comunes, una por una</p>
       <p><b>Curso corto de DeepMind</b>75 minutos sobre los problemas de alineamiento</p></div>
   </div>
   ${card('aisafety-map.jpg', { x: 1010, y: 230, w: 800, rot: 1.5, s: 1, cap: 'aisafety.com/map: más de 370 organizaciones, programas y proyectos' })}
@@ -1044,7 +1045,7 @@ S({
 const STICKERS = [
   ['BAISH', 'Comunidad y cursos, acá en Buenos Aires', 'baish.com.ar', 'https://www.baish.com.ar/', '#ffbb55', -5],
   ['BlueDot', 'Un mapa de las líneas de investigación', 'bluedot.org', 'https://bluedot.org/courses/technical-ai-safety', '#7fe3ff', 3],
-  ['ARENA', 'Ejercicios para aprender haciendo', 'arena.education', 'https://www.arena.education/curriculum', '#b48cff', -2],
+  ['aisafety.com', 'Cursos, comunidades y fondos en un lugar', 'aisafety.com', 'https://www.aisafety.com/', '#b48cff', -2],
   ['METR', 'El gráfico de capacidades', 'metr.org/time-horizons', 'https://metr.org/time-horizons/', '#ff8a7a', 4],
   ['80,000 Hours', '¿Este trabajo es para mí?', '80000hours.org', 'https://80000hours.org/career-guide/personal-fit/', '#7dffa8', -4],
   ['PowerBench', 'Nuestro paper', 'arxiv.org/abs/2610.02303', 'https://arxiv.org/abs/2610.02303', '#ffd36e', 2],
