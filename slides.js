@@ -50,8 +50,8 @@ const S = d => SLIDES.push({ steps: 0, ...d });
 S({
   title: 'Cuando la inteligencia no alcanza', cls: 'scrim',
   html: `<h1 class="mega">Cuando la<br>inteligencia<br><em>no alcanza</em></h1>
-  <p class="by">Tomás Pablo Korenblit</p>
-  <p class="by small dim">Estudiante de Ciencia de Datos en UNSAM</p>
+  <div class="who"><img src="img/tomas.jpg" alt="Tomás Pablo Korenblit"><div><p class="by">Tomás Pablo Korenblit</p>
+  <p class="by small dim">Estudiante de Ciencia de Datos en UNSAM</p></div></div>
   <img class="logo-unsam" src="img/unsam.svg" alt="Universidad Nacional de San Martín" style="left:120px;bottom:80px;height:110px">`,
   enter(W) { W.setForm(galaxy(W, P(1420, 560)), { dur: 3, chaos: 1.6 }); },
 });
