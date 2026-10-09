@@ -52,6 +52,7 @@ desde tu compu. Para borrar respuestas del servidor desplegado, abrí el deck co
 | P | ventana del presentador: guion, pasos y cronómetro |
 | E | respuestas del público: pegar, volver al ejemplo, borrar |
 | B | pantalla negra |
+| L | luces: tema claro u oscuro (también con `?tema=claro` o el botón del presentador) |
 | R | repetir la slide |
 
 En la slide 15 la barra de la característica Golden Gate se puede arrastrar en vivo.

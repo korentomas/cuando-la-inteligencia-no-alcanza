@@ -49,11 +49,11 @@ const aTo = A(toP, 3), aFrom = A(fromP, 3), cTo = A(toC, 3), cFrom = A(fromC, 3)
 geo.setAttribute('position', aTo); geo.setAttribute('aFrom', aFrom); geo.setAttribute('cTo', cTo); geo.setAttribute('cFrom', cFrom);
 geo.setAttribute('sTo', sTo); geo.setAttribute('sFrom', sFrom); geo.setAttribute('aSpin', aSpin);
 geo.setAttribute('aDel', A(DEL, 1)); geo.setAttribute('aJit', A(JIT, 3));
-const U = { uScale: { value: 200 }, uK: { value: 9 }, uChaos: { value: 0 }, uSpinA: { value: 0 }, uTilt: { value: 0 }, uSpinC: { value: new THREE.Vector3() } };
+const U = { uLight: { value: 0 }, uScale: { value: 200 }, uK: { value: 9 }, uChaos: { value: 0 }, uSpinA: { value: 0 }, uTilt: { value: 0 }, uSpinC: { value: new THREE.Vector3() } };
 const pmat = new THREE.ShaderMaterial({
   uniforms: U,
   vertexShader: `attribute vec3 aFrom,cTo,cFrom,aJit;attribute float sTo,sFrom,aSpin,aDel;
-    uniform float uScale,uK,uChaos,uSpinA,uTilt;uniform vec3 uSpinC;varying vec3 vC;
+    uniform float uScale,uK,uChaos,uSpinA,uTilt;uniform vec3 uSpinC;varying vec3 vC;varying float vDepth;
     void main(){
       vec3 to=position;
       if(aSpin>.5){vec3 b=to-uSpinC;float ca=cos(uSpinA),sa=sin(uSpinA),ct=cos(uTilt),st=sin(uTilt);
@@ -61,10 +61,11 @@ const pmat = new THREE.ShaderMaterial({
       float e=clamp(uK*1.6-aDel*.6,0.,1.);e=e<.5?4.*e*e*e:1.-pow(-2.*e+2.,3.)/2.;
       vec3 p=mix(aFrom,to,e)+aJit*sin(e*3.14159)*uChaos;
       float s=mix(sFrom,sTo,e);vC=mix(cFrom,cTo,e);
-      vec4 mv=modelViewMatrix*vec4(p,1.);
+      vec4 mv=modelViewMatrix*vec4(p,1.);vDepth=-mv.z;
       if(s<=.01){gl_PointSize=0.;gl_Position=vec4(2.,2.,2.,1.);return;}
       gl_PointSize=max(s*uScale/-mv.z,1.);gl_Position=projectionMatrix*mv;}`,
-  fragmentShader: `varying vec3 vC;void main(){vec2 c=gl_PointCoord-.5;float d=length(c);if(d>.5)discard;float a=pow(1.-d*2.,1.7);gl_FragColor=vec4(vC*a,1.);}`,
+  fragmentShader: `uniform float uLight;varying vec3 vC;varying float vDepth;void main(){vec2 c=gl_PointCoord-.5;float d=length(c);if(d>.5)discard;float a=pow(1.-d*2.,1.7);
+    if(uLight>.5){float m=max(max(vC.r,vC.g),vC.b);float far=mix(1.,.22,smoothstep(75.,150.,vDepth));gl_FragColor=vec4(vC/max(m,.001)*.42,clamp(m*3.2,0.,.92)*a*far);}else gl_FragColor=vec4(vC*a,1.);}`,
   transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
 });
 const points = new THREE.Points(geo, pmat);
@@ -135,6 +136,7 @@ function tickDying() {
 
 function label(text, { size = 1.6, color = '#eef1ff', weight = 700, font = null, glow = null } = {}) {
   font ??= globalThis.DECK_FONT || 'Bricolage Grotesque';
+  if (W.light) color = '#' + new THREE.Color(color).multiplyScalar(.42).getHexString();
   const px = 96, cv = document.createElement('canvas'), g = cv.getContext('2d');
   const f = `${weight} ${px}px "${font}"`; g.font = f;
   cv.width = Math.ceil(g.measureText(text).width) + 40; cv.height = Math.ceil(px * 1.35);
@@ -149,6 +151,7 @@ function label(text, { size = 1.6, color = '#eef1ff', weight = 700, font = null,
 }
 function lines(arr, color = 0x4060ff, opacity = .35) {
   const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+  if (W.light) return new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: new THREE.Color(color).multiplyScalar(.6), transparent: true, opacity: Math.min(1, opacity * 1.3), depthWrite: false }));
   return new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false }));
 }
 
@@ -232,7 +235,7 @@ function applyClasses() {
   $('#count').textContent = String(cur + 1).padStart(2, '0') + ' / ' + SLIDES.length;
   $('#bar').style.width = ((cur + (step / (SLIDES[cur].steps + 1))) / (SLIDES.length - 1) * 100) + '%';
   history.replaceState(null, '', `#${cur + 1}.${step}`);
-  chan.postMessage({ type: 'state', cur, step, steps: SLIDES[cur].steps, total: SLIDES.length, titles: SLIDES.map(s => s.title), notes: SLIDES.map((s, i) => s.notes || [i + 1]) });
+  chan.postMessage({ type: 'state', cur, step, steps: SLIDES[cur].steps, total: SLIDES.length, theme, titles: SLIDES.map(s => s.title), notes: SLIDES.map((s, i) => s.notes || [i + 1]) });
 }
 function go(i, s = 0, { fresh = false } = {}) {
   i = Math.max(0, Math.min(SLIDES.length - 1, i));
@@ -248,10 +251,29 @@ const next = () => step < SLIDES[cur].steps ? go(cur, step + 1) : cur < SLIDES.l
 const prev = () => step > 0 ? go(cur, step - 1) : cur > 0 && go(cur - 1, SLIDES[cur - 1].steps);
 chan.onmessage = e => {
   const m = e.data;
-  if (m.type === 'cmd') { if (m.cmd === 'next') next(); else if (m.cmd === 'prev') prev(); else if (m.cmd === 'goto') go(m.i, 0); else if (m.cmd === 'hello') applyClasses(); }
+  if (m.type === 'cmd') { if (m.cmd === 'next') next(); else if (m.cmd === 'prev') prev(); else if (m.cmd === 'goto') go(m.i, 0); else if (m.cmd === 'theme') toggleTheme(); else if (m.cmd === 'hello') applyClasses(); }
 };
 
 window.deck = { go, next, prev, get cur() { return cur; }, get step() { return step; } };
+
+// ---------- tema claro / oscuro (tecla L, o ?tema=claro) ----------
+let theme = 'dark';
+try { const q = new URLSearchParams(location.search).get('tema'); theme = q ? (q === 'claro' ? 'light' : 'dark') : (localStorage.getItem('unsam-tema') || 'dark'); } catch {}
+function applyTheme() {
+  const light = theme === 'light';
+  W.light = light;
+  document.body.classList.toggle('light', light);
+  scene.background.set(light ? '#f4f5f9' : '#03040a');
+  bloom.enabled = !light;
+  U.uLight.value = light ? 1 : 0;
+  pmat.blending = light ? THREE.NormalBlending : THREE.AdditiveBlending; pmat.needsUpdate = true;
+}
+function toggleTheme() {
+  theme = theme === 'light' ? 'dark' : 'light';
+  try { localStorage.setItem('unsam-tema', theme); } catch {}
+  applyTheme(); go(cur, step, { fresh: true });
+}
+applyTheme();
 
 // ---------- keyboard ----------
 let typed = '';
@@ -271,6 +293,7 @@ addEventListener('keydown', e => {
   else if (k === 'b' || k === 'B' || k === '.') document.body.classList.toggle('black');
   else if (k === 'e' || k === 'E') openEditor();
   else if (k === 'r' || k === 'R') go(cur, step, { fresh: true });
+  else if (k === 'l' || k === 'L') toggleTheme();
   else if (k === 'h' || k === '?') $('#help').classList.toggle('show');
 });
 stageEl.addEventListener('click', e => { if (!e.target.closest('button,a,input,label,.interactive')) next(); });

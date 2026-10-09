@@ -22,7 +22,7 @@ nav button{font-size:20px;padding:14px 26px}
 <div id="steps"></div>
 <div id="notes"></div>
 <div id="next"></div>
-<nav><button id="prev">←</button><button id="nextb">→</button></nav>
+<nav><button id="theme">Luces</button><button id="prev">←</button><button id="nextb">→</button></nav>
 <script type="module">
 import { NOTES } from './notes.js';
 const ch = new BroadcastChannel('charla-unsam'), $ = s => document.querySelector(s);
@@ -33,12 +33,14 @@ ch.onmessage = e => {
   const nums = m.notes?.[m.cur] || [m.cur + 1];
   const n = { text: nums.flatMap(k => NOTES[k - 1]?.text || []) };
   $('#num').textContent = String(m.cur + 1).padStart(2, '0');
+  $('#theme').textContent = m.theme === 'light' ? 'Tema oscuro (L)' : 'Tema claro (L)';
   $('#title').textContent = m.titles[m.cur];
   $('#steps').innerHTML = Array.from({ length: m.steps + 1 }, (_, i) => `<i class="${i <= m.step ? 'on' : ''}"></i>`).join('') + ` paso ${m.step + 1} de ${m.steps + 1}`;
   $('#notes').innerHTML = n.text.map(p => `<p>${p}</p>`).join('');
   $('#next').textContent = m.cur + 1 < m.total ? 'siguiente → ' + m.titles[m.cur + 1] : 'última slide';
 };
 const send = cmd => ch.postMessage({ type: 'cmd', cmd });
+$('#theme').onclick = () => send('theme');
 $('#prev').onclick = () => send('prev'); $('#nextb').onclick = () => send('next');
 $('#elapsed').onclick = () => t0 = Date.now();
 addEventListener('keydown', e => {
