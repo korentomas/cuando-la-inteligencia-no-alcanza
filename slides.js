@@ -88,11 +88,18 @@ S({
     const AR = [[-66.3, -22.1], [-62.6, -22.2], [-61, -23.8], [-57.6, -25.4], [-54.6, -25.6], [-53.7, -26.6], [-55.7, -28], [-57.6, -30.2], [-58.3, -33], [-58.4, -34.6],
       [-57, -36.3], [-57.6, -38.2], [-62.3, -38.9], [-62.8, -41], [-64, -42.5], [-65, -45], [-67.5, -46], [-65.8, -47.8], [-68.3, -50.2], [-68.4, -52.3], [-66.5, -55],
       [-68.6, -55], [-72.5, -51], [-73.4, -49.5], [-72, -47], [-71.7, -44], [-71.6, -40], [-70.9, -36], [-70, -33], [-69.7, -30], [-68.4, -27], [-67, -24]];
-    const inAR = (lo, la) => { let ins = false; for (let i = 0, j = AR.length - 1; i < AR.length; j = i++) { const [xi, yi] = AR[i], [xj, yj] = AR[j]; if ((yi > la) !== (yj > la) && lo < (xj - xi) * (la - yi) / (yj - yi) + xi) ins = !ins; } return ins; };
-    for (let la = -55.2; la < -21.8; la += .32) for (let lo = -73.6; lo < -53.4; lo += .32 / Math.cos(la * Math.PI / 180)) {
-      if (!inAR(lo, la)) continue;
-      const p = ll(la + (R() - .5) * .25, lo + (R() - .5) * .25, r + .08);
-      F.add(c[0] + p[0], c[1] + p[1], p[2], k(mix(C.cyan, C.white, .35), .42), 1.05);
+    // Malvinas: Soledad y Gran Malvina
+    const MALV = [[[-58.6, -51.3], [-57.7, -51.5], [-57.8, -51.9], [-58.3, -52.3], [-59.2, -52.4], [-59.7, -52.1], [-59.4, -51.6], [-59, -51.3]],
+      [[-60.3, -51.3], [-59.9, -51.5], [-60, -52], [-60.6, -52.3], [-61.3, -52], [-61.4, -51.6], [-60.9, -51.3]]];
+    const inside = (A, lo, la) => { let ins = false; for (let i = 0, j = A.length - 1; i < A.length; j = i++) { const [xi, yi] = A[i], [xj, yj] = A[j]; if ((yi > la) !== (yj > la) && lo < (xj - xi) * (la - yi) / (yj - yi) + xi) ins = !ins; } return ins; };
+    // las islas son chicas: grilla más fina para que se vean
+    for (const [A, st] of [[AR, .32], ...MALV.map(m => [m, .11])]) {
+      const los = A.map(q => q[0]), las = A.map(q => q[1]);
+      for (let la = Math.min(...las); la < Math.max(...las); la += st) for (let lo = Math.min(...los); lo < Math.max(...los); lo += st / Math.cos(la * Math.PI / 180)) {
+        if (!inside(A, lo, la)) continue;
+        const p = ll(la + (R() - .5) * st * .8, lo + (R() - .5) * st * .8, r + .08);
+        F.add(c[0] + p[0], c[1] + p[1], p[2], k(mix(C.cyan, C.white, .35), .42), st < .3 ? 1.2 : 1.05);
+      }
     }
     // un punto de luz en Buenos Aires
     const ba = ll(-34.6, -58.4, r + .15);
