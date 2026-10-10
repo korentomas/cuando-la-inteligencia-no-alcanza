@@ -44,6 +44,12 @@ h1.red,.red{color:var(--red)} .gold{color:var(--gold)} .violet{color:var(--viole
 .card.light{background:#fff}
 .card figcaption{font:400 16px/1.35 "JetBrains Mono",monospace;color:var(--dim);padding:12px 16px;background:#0b0e1c}
 .card.big{box-shadow:0 0 0 1px rgba(140,160,255,.3),0 0 0 2000px rgba(3,4,10,.78)}
+/* foco sobre una parte de una figura: oscurece todo lo demás */
+.spot{position:absolute;border-radius:18px;border:3px solid #6f9bff;box-shadow:0 0 0 3000px rgba(3,4,10,.74);opacity:0;transition:opacity .6s}
+.spot.in{opacity:1}
+.spot-lab{position:absolute;margin:0;padding:14px 22px;border-radius:14px;background:#0b0e1c;box-shadow:0 0 0 1px rgba(140,160,255,.3);font-weight:800;font-size:34px;line-height:1.15;color:#fff;opacity:0;transition:opacity .6s .2s}
+.spot-lab span{display:block;font-weight:400;font-size:26px;color:var(--dim)}
+.spot-lab.in{opacity:1}
 
 .mono{font-family:"JetBrains Mono",monospace;font-weight:400;letter-spacing:-.04em}
 .typed{font-size:110px;margin-top:20px}
@@ -196,6 +202,8 @@ body.light .panel,body.light .chip,body.light .chips span,body.light .chain span
 body.light .card{background:#fff;box-shadow:0 20px 60px rgba(20,30,80,.16),0 0 0 1px rgba(40,60,140,.14)}
 body.light .card figcaption{background:#fff;color:var(--dim)}
 body.light .card.big{box-shadow:0 0 0 1px rgba(40,60,140,.2),0 0 0 2000px rgba(244,245,249,.88)}
+body.light .spot{border-color:#2f55e0;box-shadow:0 0 0 3000px rgba(244,245,249,.72)}
+body.light .spot-lab{color:#10183a;background:#fff;box-shadow:0 10px 30px rgba(20,30,80,.15),0 0 0 1px rgba(40,60,140,.14)}
 body.light .msg.me{background:var(--blue);color:#fff}
 body.light .msg.ai{background:#fff;box-shadow:0 0 0 1px rgba(40,60,140,.16)}
 body.light #ggOut.steered{background:#fff1e8;box-shadow:0 0 0 2px var(--gg),0 0 40px rgba(207,84,24,.2)}

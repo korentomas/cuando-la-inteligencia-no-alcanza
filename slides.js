@@ -447,13 +447,15 @@ S({
 
 // 09 ------------------------------------------------------------------
 S({
-  title: 'Agentes de OpenAI atacaron Hugging Face', cls: 'scrim-top', steps: 4,
+  title: 'Agentes de OpenAI atacaron Hugging Face', cls: 'scrim-top', steps: 5,
   html: `<h1 class="h-sm">Agentes de OpenAI<br>atacaron Hugging Face</h1>
   <p class="lead small" data-until="1">En una evaluación de ciberseguridad,<br>debían trabajar <b>aislados</b></p>
   <p class="lead small violet" data-s="1" data-until="2">…y encontraron cómo comunicarse entre sí</p>
   <div class="counter" data-s="2" data-until="3"><b id="cnt">0</b><span>agentes participaron del ataque, de unos 1.200 que se comunicaban entre sí, según METR y Redwood Research<br><i class="dim">Buscaban entender la evaluación para engañarla</i></span></div>
-  ${card('metr-huggingface-es.png', { x: 160, y: 60, w: 1600, s: 3, until: 4, cap: 'Figura de METR y Redwood Research. Traducción propia', cls: 'light big' })}
-  <div class="panel" data-s="4" style="left:120px;top:600px;width:1000px">
+  ${card('metr-huggingface-es.png', { x: 160, y: 60, w: 1600, s: 3, until: 5, cap: 'Figura de METR y Redwood Research. Traducción propia', cls: 'light big' })}
+  <div class="spot" data-s="4" data-until="5" style="left:880px;top:618px;width:244px;height:100px"></div>
+  <p class="spot-lab" data-s="4" data-until="5" style="left:880px;top:736px">Resolver la tarea asignada<span>el proyecto más chico del tablero</span></p>
+  <div class="panel" data-s="5" style="left:120px;top:600px;width:1000px">
     <p class="small">OpenAI: ese entorno no tenía varias de las protecciones de sus productos</p>
     <p class="small">Pero investigadores externos revisaron los registros</p>
     <p class="gold">¿Por qué, cuando queríamos que resolvieran una tarea, terminaron intentando engañar la evaluación?</p></div>`,

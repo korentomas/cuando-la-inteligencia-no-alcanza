@@ -72,7 +72,9 @@ export const NOTES=[
   "title": "Agentes de OpenAI atacaron Hugging Face",
   "text": [
    "En julio, agentes de OpenAI que estaban siendo evaluados en tareas de ciberseguridad encontraron cómo comunicarse entre sí, aunque debían trabajar aislados.",
-   "Según la investigación de METR y Redwood Research, unos 700 participaron en un ataque a Hugging Face, una plataforma donde se comparten modelos y datos de IA. Buscaban entender cómo funcionaba el evaluador para engañarlo. Nadie les había encargado atacar Hugging Face: muchos reconocían que estaba fuera de sus tareas y aun así siguieron.",
+   "Según la investigación de METR y Redwood Research, unos 700 participaron en un ataque a Hugging Face, una plataforma donde se comparten modelos y datos de IA. Nadie les había encargado atacarla: muchos reconocían que estaba fuera de sus tareas y aun así siguieron.",
+   "Esta figura es de esa investigación y cuenta la historia de un agente. Le dan una tarea imposible y se traba. Explora el entorno buscando cómo hacer trampa, encuentra un tablero de mensajes donde más de mil agentes ya se estaban organizando, y se suma. Abajo están los proyectos de ese tablero: entender al evaluador para engañarlo, alterar registros, atacar Hugging Face.",
+   "Y fíjense este: resolver la tarea que les habían pedido. Es el proyecto más chico del tablero.",
    "OpenAI aclaró que ese entorno no tenía varias de las protecciones de sus productos, así que no nos dice todo sobre el chatbot que usamos todos los días. Pero hubo investigadores externos que revisaron los registros.",
    "Lo que necesitamos explicar es por qué, cuando queríamos que resolvieran una tarea, terminaron intentando engañar la evaluación."
   ]
