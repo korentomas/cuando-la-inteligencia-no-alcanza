@@ -8,17 +8,18 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
+import { opcion } from './opciones.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const PORT = +(process.env.PORT || process.argv[2] || 8770);
 const ADMIN = process.env.ADMIN_TOKEN || '';
 const LOG = path.join(ROOT, 'respuestas.jsonl');
-const MAX_TOTAL = 600, MAX_LEN = 60, PER_DEVICE = 4, PER_IP = 150;
+const MAX_TOTAL = 600, PER_DEVICE = 4, PER_IP = 150;
 // detrás de un proxy (Render, túneles) la IP real viene en X-Forwarded-For
 const TRUST_PROXY = !!(process.env.RENDER || process.env.TRUST_PROXY);
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.md': 'text/markdown; charset=utf-8' };
-const PUBLIC = ['index.html', 'presenter.html', 'responder.html', 'recursos.html', 'main.js', 'slides.js', 'form.js', 'notes.js', 'live.js', 'config.js', 'style.css', 'img/', 'vendor/'];
+const PUBLIC = ['index.html', 'presenter.html', 'responder.html', 'recursos.html', 'main.js', 'slides.js', 'form.js', 'notes.js', 'live.js', 'config.js', 'opciones.js', 'style.css', 'img/', 'vendor/'];
 
 let answers = [];
 try {
@@ -38,7 +39,6 @@ const isAdmin = (req, url) => isLocal(req) || (ADMIN && url.searchParams.get('ad
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' };
 const send = (res, code, body, type = 'application/json') => { res.writeHead(code, { 'Content-Type': type, 'Cache-Control': 'no-store', ...CORS }); res.end(typeof body === 'string' ? body : JSON.stringify(body)); };
 const broadcast = msg => { const s = `data: ${JSON.stringify(msg)}\n\n`; for (const c of clients) c.write(s); };
-const clean = t => String(t || '').replace(/[\u0000-\u001f<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, MAX_LEN);
 
 function readBody(req) {
   return new Promise((ok, bad) => { let b = ''; req.on('data', d => { b += d; if (b.length > 2000) { bad(new Error('too big')); req.destroy(); } }); req.on('end', () => ok(b)); });
@@ -57,8 +57,8 @@ http.createServer(async (req, res) => {
       const body = JSON.parse(await readBody(req) || '{}');
       const dev = ip + '|' + String(body.id || '').slice(0, 40), nDev = byDevice.get(dev) || 0;
       if (nDev >= PER_DEVICE || nIp >= PER_IP) return send(res, 429, { error: 'Ya mandaste varias respuestas, gracias.' });
-      const items = [].concat(body.respuestas || body.texto || []).filter(x => typeof x === 'string').map(clean).filter(Boolean).slice(0, 2);
-      if (!items.length) return send(res, 400, { error: 'Escribí al menos un problema.' });
+      const items = [].concat(body.respuestas || body.texto || []).filter(x => typeof x === 'string').map(opcion).filter(Boolean).slice(0, 2);
+      if (!items.length) return send(res, 400, { error: 'Elegí al menos un problema.' });
       byDevice.set(dev, nDev + 1); byIp.set(ip, nIp + 1);
       for (const t of items) { const a = { t, at: Date.now() }; answers.push(a); fs.appendFileSync(LOG, JSON.stringify(a) + '\n'); broadcast({ type: 'add', t }); }
       return send(res, 200, { ok: true });

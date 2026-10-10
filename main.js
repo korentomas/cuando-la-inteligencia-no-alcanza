@@ -6,6 +6,7 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { N, Form, rng, imageData } from './form.js';
 import { SLIDES } from './slides.js';
 import { connectLive, answerUrl, resourcesUrl, qrSvg, clearServer } from './live.js';
+import { opcion } from './opciones.js';
 
 const $ = s => document.querySelector(s);
 const canvas = $('#gl'), stageEl = $('#stage'), frameEl = $('#frame');
@@ -165,7 +166,7 @@ const mouse = { x: 0, y: 0 };
 addEventListener('pointermove', e => { mouse.x = e.clientX / innerWidth * 2 - 1; mouse.y = e.clientY / innerHeight * 2 - 1; });
 
 // ---------- responses for the audience question ----------
-const EXAMPLE = ['Salud', 'Educación', 'Pobreza', 'Salud', 'Cambio climático', 'Educación', 'Salud', 'IA', 'Energía', 'Salud', 'Pobreza', 'Educación', 'Vivienda', 'Salud', 'Cambio climático', 'IA', 'Educación', 'Pobreza', 'Energía', 'Salud', 'Educación', 'Vivienda', 'Salud', 'Pobreza', 'Cambio climático', 'Educación', 'IA', 'Educación', 'Salud', 'Pobreza', 'Cambio climático', 'Vivienda'];
+const EXAMPLE = ['Salud', 'Educación', 'Pobreza', 'Salud', 'Cambio climático', 'Educación', 'Salud', 'Inteligencia artificial', 'Energía', 'Salud', 'Pobreza', 'Educación', 'Vivienda', 'Salud', 'Cambio climático', 'Inteligencia artificial', 'Educación', 'Pobreza', 'Energía', 'Salud', 'Educación', 'Vivienda', 'Salud', 'Pobreza', 'Cambio climático', 'Educación', 'Inteligencia artificial', 'Educación', 'Salud', 'Pobreza', 'Cambio climático', 'Vivienda'];
 let raw = EXAMPLE, isExample = true;
 try { const s = JSON.parse(localStorage.getItem('unsam-respuestas')); if (s?.raw?.length) { raw = s.raw; isExample = false; } } catch {}
 function aggregate(lines) {
@@ -299,9 +300,10 @@ addEventListener('keydown', e => {
 stageEl.addEventListener('click', e => { if (!e.target.closest('button,a,input,label,.interactive')) next(); });
 
 // ---------- live answers from phones ----------
+// solo cuentan las opciones del desplegable: nada de texto libre en la pantalla
 function onLive(msg) {
-  if (msg.type === 'all') { if (msg.items.length) { raw = msg.items; isExample = false; } }
-  else if (msg.type === 'add') { if (isExample) { raw = []; isExample = false; } raw = raw.concat(msg.t); }
+  if (msg.type === 'all') { const items = msg.items.map(opcion).filter(Boolean); if (items.length) { raw = items; isExample = false; } }
+  else if (msg.type === 'add') { const t = opcion(msg.t); if (!t) return; if (isExample) { raw = []; isExample = false; } raw = raw.concat(t); }
   else if (msg.type === 'reset') { raw = EXAMPLE; isExample = true; }
   SLIDES[cur]?.onAnswers?.(W);
 }

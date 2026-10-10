@@ -163,7 +163,7 @@ S({
   html: `<div class="swap l2"><h1 data-until="2">¿Qué problemas<br>queremos resolver?</h1>
   <h1 data-s="2" data-until="3">Respuestas</h1>
   <h1 data-s="3" class="red">Odio los wordclouds,<br>perdón.</h1></div>
-  <p class="lead" data-until="2">Escriban uno o dos problemas<br>que les parezca importante resolver<br>como humanidad.</p>
+  <p class="lead" data-until="2">Elijan uno o dos problemas<br>que les parezca importante resolver<br>como humanidad.</p>
   <div class="qr" id="qr" data-until="2"><div id="qrBox"></div><div><b>Respondan desde el celular</b><span id="qrUrl"></span><span class="live" id="liveCount"></span></div></div>
   <div id="timer" data-s="1" data-until="2">1:00</div>
   <p class="src" id="dataLabel"></p>`,

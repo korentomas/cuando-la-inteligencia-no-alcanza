@@ -27,7 +27,7 @@ export const NOTES=[
   "num": 4,
   "title": "¿Qué problemas queremos resolver?",
   "text": [
-   "Antes de seguir, les propongo algo: escaneen el QR y escriban uno o dos problemas que les parezca importante resolver como humanidad. Les doy un minuto.",
+   "Antes de seguir, les propongo algo: escaneen el QR y elijan uno o dos problemas que les parezca importante resolver como humanidad. Les doy un minuto.",
    "Bueno, acá tenemos lo que respondió el grupo. Odio los wordclouds, perdón."
   ]
  },
