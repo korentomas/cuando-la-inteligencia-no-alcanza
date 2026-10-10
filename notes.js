@@ -197,10 +197,9 @@ export const NOTES=[
  },
  {
   "num": 24,
-  "title": "No, flaco, estás equivocadísimo",
+  "title": "¡Gracias!",
   "text": [
-   "Me encantaría que alguno termine esta charla y me diga “no, flaco, estás equivocadísimo”, y podamos discutir por qué. Les mostré evidencia, pero también les conté qué interpreto yo a partir de ella. Y si no los convencí, también quiero escuchar eso.",
-   "Todo lo que mencioné está en el QR. Gracias por venir."
+   "Gracias por venir. Si quieren seguir charlando, o decirme que estoy equivocadísimo, me encuentran por mail o por LinkedIn. Y todo lo que mencioné está en el QR."
   ]
  }
 ];

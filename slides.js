@@ -1060,12 +1060,13 @@ const STICKERS = [
   ['PowerBench', 'Nuestro paper', 'arxiv.org/abs/2610.02303', 'https://arxiv.org/abs/2610.02303', '#ffd36e', 2],
 ];
 S({
-  title: 'No, flaco, estás equivocadísimo', cls: 'scrim', steps: 1,
-  html: `<h1>«No, flaco, estás<br><em>equivocadísimo</em>»</h1>
-  <p class="lead small">Les mostré evidencia y lo que yo interpreto de ella.<br>Si no los convencí, también quiero escuchar eso.</p>
+  title: '¡Gracias!', cls: 'scrim',
+  html: `<h1 class="mega"><em>¡Gracias!</em></h1>
+  <div class="who contact"><img src="img/tomas.jpg" alt="Tomás Pablo Korenblit"><div><p class="by">Tomás Pablo Korenblit</p>
+  <a class="by small" href="mailto:tomaskorenblit@gmail.com">tomaskorenblit@gmail.com</a>
+  <a class="by small" href="https://www.linkedin.com/in/tomaskorenblit" target="_blank" rel="noopener">linkedin.com/in/tomaskorenblit</a></div></div>
   <div class="qr" id="qrEnd"><div id="qrBox"></div><div><b>Todo lo que mencioné,<br>en una página</b><span id="qrUrl"></span></div></div>
-  <div class="stickers">${STICKERS.map(([n, d, u, href, c, r], i) => `<a class="sticker" href="${href}" target="_blank" rel="noopener" style="--c:${c};--r:${r}deg;--i:${i}"><b>${n}</b><span>${d}</span><i>${u}</i></a>`).join('')}</div>
-  <div class="thanks" data-s="1">¡Gracias!</div>`,
+  <div class="stickers">${STICKERS.map(([n, d, u, href, c, r], i) => `<a class="sticker" href="${href}" target="_blank" rel="noopener" style="--c:${c};--r:${r}deg;--i:${i}"><b>${n}</b><span>${d}</span><i>${u}</i></a>`).join('')}</div>`,
   enter(W) {
     W.setForm(galaxy(W, P(1420, 520), 34), { dur: 2.6 });
     W.resourcesUrl().then(url => {

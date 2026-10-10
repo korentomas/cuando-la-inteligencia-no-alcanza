@@ -162,8 +162,6 @@ Si ya tienen una idea, hay programas con mentoría como MATS o AI Safety Camp, y
 
 En mi caso, encontré una combinación de cosas que me gusta hacer, herramientas que estoy aprendiendo y un problema que creo que importa muchísimo. Igual, no cualquier proyecto sirve: tenemos que poder explicar qué aprenderíamos y quién podría usar el resultado. Y la universidad es EL lugar para discutirlo: no hace falta esperar a recibirnos.
 
-## Diapositiva 24 · No, flaco, estás equivocadísimo
+## Diapositiva 24 · ¡Gracias!
 
-Me encantaría que alguno termine esta charla y me diga “no, flaco, estás equivocadísimo”, y podamos discutir por qué. Les mostré evidencia, pero también les conté qué interpreto yo a partir de ella. Y si no los convencí, también quiero escuchar eso.
-
-Todo lo que mencioné está en el QR. Gracias por venir.
+Gracias por venir. Si quieren seguir charlando, o decirme que estoy equivocadísimo, me encuentran por mail o por LinkedIn. Y todo lo que mencioné está en el QR.

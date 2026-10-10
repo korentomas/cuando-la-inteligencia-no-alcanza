@@ -174,9 +174,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;background:rad
 .sticker span{display:block;font-size:24px;line-height:1.2;margin:8px 0 12px}
 .sticker i{display:inline-block;font:400 19px "JetBrains Mono",monospace;font-style:normal;background:rgba(0,0,0,.82);color:var(--c);padding:5px 10px;border-radius:8px}
 @keyframes pop{from{opacity:0;transform:rotate(calc(var(--r)*3)) scale(.6)}}
-.thanks{position:absolute;left:560px;top:840px;padding:14px 40px;font-size:88px;font-weight:800;letter-spacing:-.04em;color:#fff;background:linear-gradient(90deg,#6f9bff,#3d63f0);border-radius:30px;box-shadow:0 14px 0 rgba(0,0,0,.35),0 30px 80px rgba(0,0,0,.5);transform:rotate(-8deg) scale(1.6)}
-.thanks.in{transform:rotate(-8deg);transition:opacity .25s,transform .45s cubic-bezier(.3,1.7,.5,1)}
-h1,.big2,.qs p,.qs3 p,.counter b,.sticker b,.thanks,.star b,#timer,.stamp,.neq{font-family:var(--font-head)}
+h1,.big2,.qs p,.qs3 p,.counter b,.sticker b,.star b,#timer,.stamp,.neq{font-family:var(--font-head)}
 .logo-unsam{position:absolute;display:block;width:auto;opacity:.92}
 .quotes{position:absolute;left:120px;top:640px;width:820px}
 .quotes p{position:absolute;left:0;top:0;margin:0;font-size:42px;line-height:1.25;font-style:italic;text-shadow:0 2px 16px #000}
@@ -190,6 +188,7 @@ h1,.big2,.qs p,.qs3 p,.counter b,.sticker b,.thanks,.star b,#timer,.stamp,.neq{f
 .res p{margin:0 0 18px;font-size:24px;line-height:1.3;color:var(--dim);text-shadow:0 2px 12px #000}
 .res p b{display:block;font-size:30px;color:var(--ink);margin-bottom:2px}
 #qrEnd span{max-width:430px;overflow-wrap:anywhere;font-size:20px}
+.contact a{display:block;color:var(--dim);text-decoration:none}.contact a:hover{color:var(--ink)}
 .who{display:flex;align-items:center;gap:30px;margin-top:44px}.who img{width:170px;height:170px;border-radius:26px;object-fit:cover;box-shadow:0 12px 40px rgba(0,0,0,.45)}.who .by{margin:0}.who .by.small{margin-top:8px}
 /* ---------- tema claro (tecla L): para proyectar con las luces prendidas ---------- */
 body.light{--bg:#f4f5f9;--ink:#141830;--dim:#565d80;--blue:#2f54d6;--red:#cf3628;--gold:#a86200;--cyan:#0a7aa3;--violet:#6a3fd1;--gg:#cf5418}
