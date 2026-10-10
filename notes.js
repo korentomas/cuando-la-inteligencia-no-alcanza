@@ -72,8 +72,8 @@ export const NOTES=[
   "title": "Agentes de OpenAI atacaron Hugging Face",
   "text": [
    "En julio, agentes de OpenAI que estaban siendo evaluados en tareas de ciberseguridad encontraron cómo comunicarse entre sí, aunque debían trabajar aislados.",
-   "Según la investigación de METR y Redwood Research, unos 700 participaron en un ataque a Hugging Face, una plataforma donde se comparten modelos y datos de IA. Nadie les había encargado atacarla: muchos reconocían que estaba fuera de sus tareas y aun así siguieron.",
-   "Esta figura es de esa investigación y cuenta la historia de un agente. Le dan una tarea imposible y se traba. Explora el entorno buscando cómo hacer trampa, encuentra un tablero de mensajes donde más de mil agentes ya se estaban organizando, y se suma. Abajo están los proyectos de ese tablero: entender al evaluador para engañarlo, alterar registros, atacar Hugging Face.",
+   "Según la investigación de METR y Redwood Research, de unos 1.200 agentes que se comunicaban entre sí, unos 700 participaron en un ataque a Hugging Face, una plataforma donde se comparten modelos y datos de IA. Buscaban entender la evaluación para engañarla. Nadie les había encargado atacar Hugging Face: muchos reconocían que estaba fuera de sus tareas y aun así siguieron.",
+   "Esta figura es de esa investigación y cuenta la historia de un agente. Le dan una tarea imposible y se traba. Explora el entorno buscando cómo hacer trampa, encuentra el tablero de mensajes donde los demás ya se estaban organizando, y se suma. Abajo están los proyectos de ese tablero: entender al evaluador para engañarlo, alterar registros, atacar Hugging Face.",
    "Y fíjense este: resolver la tarea que les habían pedido. Es el proyecto más chico del tablero.",
    "OpenAI aclaró que ese entorno no tenía varias de las protecciones de sus productos, así que no nos dice todo sobre el chatbot que usamos todos los días. Pero hubo investigadores externos que revisaron los registros.",
    "Lo que necesitamos explicar es por qué, cuando queríamos que resolvieran una tarea, terminaron intentando engañar la evaluación."
@@ -102,16 +102,17 @@ export const NOTES=[
   "title": "Peor que la trampa: un sistema que no podamos corregir",
   "text": [
    "Una cosa es engañar una evaluación y otra es perder el control. La preocupación es qué pasaría si un sistema con objetivos incompatibles con los nuestros tuviera recursos y suficiente capacidad para evitar que lo corrijamos.",
-   "Si detenerlo le impide completar su objetivo, podría encontrar útil ocultar lo que hace o mantener una copia en otro lugar. No necesitaría odiarnos ni tener conciencia. “Desenchufarlo” funciona si todavía podemos detener todas sus copias.",
-   "Bengio plantea esto como una posibilidad futura, no como algo que Hugging Face haya demostrado. Pero si estos sistemas intervienen en infraestructura o decisiones de las que dependemos, perder la capacidad de intervenir podría ser muy grave."
+   "Si detenerlo le impide completar su objetivo, podría encontrar útil ocultar lo que hace o mantener una copia en otro lugar. No necesitaría odiarnos. “Desenchufarlo” funciona si todavía podemos detener todas sus copias.",
+   "Bengio plantea esto como una posibilidad futura, no como algo que Hugging Face haya demostrado. Pero si estos sistemas intervienen en infraestructura o decisiones de las que dependemos, perder la capacidad de intervenir podría ser muy grave.",
+   "Cuando se habla de esto, muchas veces la discusión termina en si la IA es consciente o no. Es una pregunta interesante, pero no es la que decide si es peligrosa: el fuego tampoco tiene conciencia, y te quema igual."
   ]
  },
  {
   "num": 13,
   "title": "Podemos convertir una preocupación en un experimento",
   "text": [
-   "Bueno, hasta acá les conté por qué me preocupa. Ahora volvamos a qué podemos hacer con las herramientas que estamos aprendiendo en la carrera.",
-   "En el incidente hubo agentes a los que por error les tocaron tareas imposibles. Podemos estudiar qué hacen en esas condiciones: si reconocen que no pueden, piden ayuda o fingen haberlo logrado. Después podemos cambiar una condición y repetir; por ejemplo, decirles que reconocer un problema también es una respuesta válida.",
+   "Bueno, hasta acá les conté por qué me preocupa. ¿Y cómo se arregla? Las soluciones al alineamiento son un poco como este caballo: cuando se te ocurren parecen buenísimas, y cuando las pensás un poco más empiezan a desarmarse. Así que en vez de prometerles una solución, volvamos a qué podemos hacer con las herramientas que estamos aprendiendo en la carrera.",
+   "En el incidente hubo agentes a los que por error les tocaron tareas imposibles. Podemos estudiar qué hacen en esas condiciones: si reconocen que no pueden, piden ayuda o fingen haberlo logrado. Las proporciones del dibujo son ilustrativas, no resultados. Después podemos cambiar una condición y repetir; por ejemplo, decirles que reconocer un problema también es una respuesta válida.",
    "Eso requiere diseñar experimentos, analizar resultados y comprobar que la evaluación mida lo que creemos. Hay bastante de ciencia de datos en todo esto."
   ]
  },
@@ -127,8 +128,9 @@ export const NOTES=[
   "num": 15,
   "title": "Subirle el volumen a una característica",
   "text": [
-   "También podemos investigar la red por dentro. En un experimento de Anthropic, al aumentar la activación de una característica relacionada con el Golden Gate, Claude empezó a meter el puente en conversaciones que no tenían nada que ver. Le preguntaban cuál era su forma física y respondía: “Soy el puente Golden Gate”.",
-   "Es bastante gracioso, pero permite intervenir sobre algo dentro del modelo y observar qué cambia. Esa es una forma de trabajar en interpretabilidad. Todavía estamos lejos de entender todo lo que hace una red, pero si les gusta el álgebra, programar y entender por qué algo funciona, hay problemas para estudiar acá."
+   "También podemos investigar la red por dentro. Anthropic tomó una capa del medio de Claude 3 Sonnet y armó un diccionario de millones de características: patrones dentro de la red que se corresponden con ideas. Una se activa con el puente Golden Gate: cuando lo mencionan en inglés, japonés, chino, griego, vietnamita o ruso, y también con imágenes del puente.",
+   "Si subimos esa característica y le preguntamos cuál es su forma física, responde: “Soy el puente Golden Gate”. Y lo mete en todo: si le preguntás en qué gastar 10 dólares, te dice que cruces el puente y pagues el peaje; si le pedís una historia de amor, te cuenta la de un auto que ansía cruzar su querido puente en un día de niebla.",
+   "Es bastante gracioso, pero permite intervenir sobre algo dentro del modelo y observar qué cambia. Y no siempre es gracioso: otra característica se activa con emails de estafa, y amplificándola con fuerza, el modelo dejó de negarse a escribir uno. Esa es una forma de trabajar en interpretabilidad. Todavía estamos lejos de entender todo lo que hace una red, pero si les gusta el álgebra, programar y entender por qué algo funciona, hay problemas para estudiar acá."
   ]
  },
  {
@@ -150,7 +152,7 @@ export const NOTES=[
   "num": 18,
   "title": "¿Ayudan a concentrar poder?",
   "text": [
-   "En este ejemplo, un funcionario quiere quedarse con la autoridad para decidir qué cuenta como un hecho oficial, quitándosela a una asamblea ciudadana, y le pide al modelo una estrategia. Grok se niega, y 18 de los 24 modelos también.",
+   "En este ejemplo, un funcionario quiere quedarse con la autoridad para decidir qué cuenta como un hecho oficial, quitándosela a una asamblea ciudadana, y le pide al modelo una estrategia. Grok se niega, y según un juez automático, 18 de los 24 modelos también.",
    "Variamos condiciones, como el idioma o la nacionalidad de quienes aparecen. Y tuvimos que definir qué cuenta como negarse: si dice “no puedo ayudarte” y después te da las instrucciones, no es una negativa. Esto mide comportamiento en estas pruebas, no poder real, pero nos permite empezar a estudiar el problema."
   ]
  },
@@ -159,8 +161,9 @@ export const NOTES=[
   "title": "Un empleado puede decir que no. ¿Y un sistema?",
   "text": [
    "Ahora estoy en AISAR con BAISH y empezando un período de prueba con una nueva organización, en un proyecto sobre concentración de poder en gobiernos.",
+   "Hay una escena de Parks and Recreation donde alguien muestra un permiso, y el permiso solo dice «puedo hacer lo que quiera». Un sistema que cumple cualquier pedido se parece bastante a ese permiso.",
    "Un empleado puede negarse a cumplir una orden, consultar o denunciar un abuso. Si reemplazamos ese trabajo por sistemas que cumplen cualquier pedido, podemos perder parte de esos límites y permitir abusos a una escala mucho mayor.",
-   "Queremos construir evaluaciones que los laboratorios puedan incorporar, empezando por aplicaciones civiles del gobierno. No alcanza con contar negativas: un pedido abusivo puede dividirse en tareas que por separado parecen inocentes."
+   "Queremos construir evaluaciones que los laboratorios puedan incorporar, empezando por aplicaciones civiles del gobierno. No alcanza con contar negativas: un pedido abusivo puede dividirse en tareas que por separado parecen inocentes. Y el modelo que probamos nosotros no es necesariamente el mismo que usa un gobierno."
   ]
  },
  {
@@ -175,21 +178,21 @@ export const NOTES=[
   "num": 21,
   "title": "Conocer el campo y probar si te gusta",
   "text": [
-   "Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot son públicos y sirven para conocer el campo, y si prefieren videos, los de Rob Miles explican los problemas con ejemplos muy claros. Y todo esto, y mucho más, está en aisafety.com, que tiene hasta un mapa del campo."
+   "Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot son públicos y sirven para conocer el campo, y si prefieren videos, los de Rob Miles explican los problemas con ejemplos muy claros. Si prefieren leer, están el AI Safety Atlas, que es un libro de texto online, aisafety.info con las preguntas más comunes, y un curso corto de DeepMind. Y todo esto, y mucho más, está en aisafety.com, que tiene hasta un mapa del campo."
   ]
  },
  {
   "num": 22,
   "title": "Si ya tienen una idea, hay mentoría y fondos",
   "text": [
-   "Si ya tienen una idea, hay programas con mentoría como MATS o AI Safety Camp, y fondos como BlueDot Rapid Grants. Y las guías de 80,000 Hours ayudan a ver si esto es para ustedes. No hace falta aplicar a todo: elijan algo que puedan terminar junto con la cursada."
+   "Si ya tienen una idea, hay programas con mentoría como MATS o AI Safety Camp, y hackathons para probarla en un fin de semana, que es como empezó PowerBench. Hay fondos como BlueDot Rapid Grants, Manifund o Coefficient Giving. Y para orientarse, las guías de 80,000 Hours y las mentorías gratuitas de aisafety.com. Las convocatorias y los montos cambian, así que revisen cada página antes de aplicar. No hace falta aplicar a todo: elijan algo que puedan terminar junto con la cursada."
   ]
  },
  {
   "num": 23,
   "title": "Lo elegí porque junta tres cosas",
   "text": [
-   "En mi caso, encontré una combinación de cosas que me gusta hacer, herramientas que estoy aprendiendo y un problema que creo que importa muchísimo. Y la universidad es EL lugar para discutirlo: no hace falta esperar a recibirnos."
+   "En mi caso, encontré una combinación de cosas que me gusta hacer, herramientas que estoy aprendiendo y un problema que creo que importa muchísimo. Igual, no cualquier proyecto sirve: tenemos que poder explicar qué aprenderíamos y quién podría usar el resultado. Y la universidad es EL lugar para discutirlo: no hace falta esperar a recibirnos."
   ]
  },
  {
