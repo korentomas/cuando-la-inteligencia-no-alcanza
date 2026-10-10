@@ -2,6 +2,8 @@
 
 Guion de la charla · 24 diapositivas · Encuentro Nacional de Estudiantes de Datos, sábado 10 de octubre de 2026, 14 a 15 h, Aula 1 del ITS.
 
+**[click]** marca dónde avanzar un paso dentro de la slide. Al terminar cada sección, el siguiente click pasa a la slide que sigue.
+
 ## Diapositiva 01 · Cuando la inteligencia no alcanza
 
 Hola a todos, gracias por venir. Soy Tomás Korenblit, o Koren. Estudio Ciencia de Datos en UNSAM y hago investigación en seguridad de IA en BAISH.
@@ -10,63 +12,65 @@ Hola a todos, gracias por venir. Soy Tomás Korenblit, o Koren. Estudio Ciencia 
 
 Cuando era chico y pensaba en qué quería trabajar, siempre tenía esta idea, que me decían que era “idealista”, de querer ayudar al mundo.
 
-Cuando lo hablaba con mis papás (o tal vez un psicólogo), podían llegar a pensar que quería ser médico o irme al sur a rescatar pingüinos de un derrame de petróleo… Pero yo siempre lo pensé por el lado de la ciencia y la tecnología. Tratar una infección o tener electricidad en casa fueron problemas que no sabíamos resolver, hasta que alguien los investigó.
+Cuando lo hablaba con mis papás (o tal vez un psicólogo), podían llegar a pensar que quería ser médico o **[click]** irme al sur a rescatar pingüinos de un derrame de petróleo…
+
+**[click]** Pero yo siempre lo pensé por el lado de la ciencia y la tecnología. Tratar una infección o tener electricidad en casa fueron problemas que no sabíamos resolver, hasta que alguien los investigó.
 
 ## Diapositiva 03 · ¿Para qué? ¿Dónde? ¿Hace falta?
 
 Crecí con una computadora. Antes de empezar la carrera ya programaba y estudiaba machine learning por mi cuenta. Me gustaban por la belleza y los horrores de la estadística y la computación, pero también pensaba dónde usar esos conocimientos en algo que me pareciera importante.
 
-Por eso elegí Ciencia de Datos en UNSAM. Sentía que a la gente a cargo de la carrera también le importaba preguntarse: okay, vas a usar ciencia de datos, ¿para qué? ¿Dónde? ¿Hace falta?
+Por eso elegí Ciencia de Datos en UNSAM. Sentía que a la gente a cargo de la carrera también le importaba preguntarse: **[click]** okay, vas a usar ciencia de datos, ¿para qué? ¿Dónde? ¿Hace falta?
 
 ## Diapositiva 04 · ¿Qué problemas queremos resolver?
 
-Antes de seguir, les propongo algo: escaneen el QR y elijan uno o dos problemas que les parezca importante resolver como humanidad. Les doy un minuto.
+Antes de seguir, les propongo algo: escaneen el QR y elijan uno o dos problemas que les parezca importante resolver como humanidad. Les doy un minuto. **[click]** (arranca el minuto)
 
-Bueno, acá tenemos lo que respondió el grupo. Odio los wordclouds, perdón.
+**[click]** Bueno, acá tenemos lo que respondió el grupo. **[click]** Odio los wordclouds, perdón.
 
 ## Diapositiva 05 · ¿Qué estamos midiendo?
 
 Ahora sí podemos comparar cuántas veces apareció cada respuesta. Pero esto mide qué problemas mencionamos nosotros, no cuáles son los más grandes ni dónde una persona más podría aportar más.
 
-Para pensar eso podemos mirar cuánto daño causa un problema, qué posibilidades hay de mejorarlo y cuánto trabajo ya se está haciendo. Y después está la pregunta personal: en cuál me interesa trabajar y qué puedo aportar yo.
+**[click]** Para pensar eso podemos mirar cuánto daño causa un problema, qué posibilidades hay de mejorarlo y cuánto trabajo ya se está haciendo. Y después está la pregunta personal: en cuál me interesa trabajar y qué puedo aportar yo.
 
-En mi caso, esa búsqueda me llevó a la IA.
+**[click]** En mi caso, esa búsqueda me llevó a la IA.
 
 ## Diapositiva 06 · AGI y la frontera irregular
 
 Yo creo que podemos llegar a construir sistemas que aprendan y resuelvan problemas en prácticamente cualquier ámbito, incluso mejor que nosotros. Esa es la idea de una inteligencia artificial general, o AGI.
 
-Hay un dibujo de Tomas Pueyo que me sirve para pensarlo. El círculo es todo lo que hace una persona en su trabajo; la mancha, lo que puede hacer una IA. Al principio era un juguete divertido. Después empezó a ayudarnos con algunas tareas. Hoy estamos acá: la frontera es irregular. A veces resuelve en minutos algo que a mí me lleva horas, y a veces falla en algo obvio.
+Hay un dibujo de Tomas Pueyo que me sirve para pensarlo. El círculo es todo lo que hace una persona en su trabajo; la mancha, lo que puede hacer una IA. Al principio era un juguete divertido. **[click]** Después empezó a ayudarnos con algunas tareas. **[click]** Hoy estamos acá: la frontera es irregular. A veces resuelve en minutos algo que a mí me lleva horas, y a veces falla en algo obvio.
 
-Si la mancha sigue creciendo, llegamos a algo increíblemente inteligente que igual falla en alguna cosa… y después, a algo que tapa todo.
+**[click]** Si la mancha sigue creciendo, llegamos a algo increíblemente inteligente que igual falla en alguna cosa… **[click]** y después, a algo que tapa todo.
 
-Sistemas así podrían ayudarnos muchísimo con los problemas que acabamos de mencionar, aunque más inteligencia no resuelve sola nuestros desacuerdos. Ahora, ¿por qué me tomo en serio que podamos llegar a construir algo así?
+Sistemas así podrían ayudarnos muchísimo con los problemas que acabamos de mencionar, aunque más inteligencia no resuelve sola nuestros desacuerdos. **[click]** Ahora, ¿por qué me tomo en serio que podamos llegar a construir algo así?
 
 ## Diapositiva 07 · Las tareas que los modelos hacen solos pasaron de minutos a horas
 
-METR mide qué tareas pueden completar los modelos por su cuenta, sobre todo de software, según cuánto tardaría una persona experta en resolverlas. El gráfico muestra la duración de las tareas que completan la mitad de las veces.
+**[click]** METR mide qué tareas pueden completar los modelos por su cuenta, sobre todo de software, según cuánto tardaría una persona experta en resolverlas. El gráfico muestra la duración de las tareas que completan la mitad de las veces.
 
 Pasamos de tareas de minutos a tareas de horas. No significa que puedan reemplazar cualquier trabajo de esa duración, y METR advierte que por encima de 16 horas las estimaciones todavía son poco confiables.
 
-Lo que me importa es no pensar las capacidades como un valor fijo: también hay que mirar la velocidad del cambio. El gráfico no demuestra que vayamos a tener AGI, pero explica por qué me preparo para sistemas mucho más capaces.
+**[click]** Lo que me importa es no pensar las capacidades como un valor fijo: también hay que mirar la velocidad del cambio. El gráfico no demuestra que vayamos a tener AGI, pero explica por qué me preparo para sistemas mucho más capaces.
 
 ## Diapositiva 08 · Un chatbot responde. Un agente hace.
 
-Y ya estamos empezando a delegarles trabajo. Si le pregunto a un modelo cómo organizar unos archivos, me responde y yo decido qué hago. Si le doy acceso a una computadora, puede modificarlos, revisar el resultado y seguir. A esa combinación la vamos a llamar un agente.
+Y ya estamos empezando a delegarles trabajo. Si le pregunto a un modelo cómo organizar unos archivos, me responde y yo decido qué hago. **[click]** Si le doy acceso a una computadora, puede modificarlos, revisar el resultado y seguir. A esa combinación la vamos a llamar un agente.
 
-Es útil, pero también significa que un comportamiento inesperado puede tener consecuencias afuera del chat. Veamos qué pasó cuando unos agentes intentaron aprobar una evaluación.
+**[click]** Es útil, pero también significa que un comportamiento inesperado puede tener consecuencias afuera del chat. Veamos qué pasó cuando unos agentes intentaron aprobar una evaluación.
 
 ## Diapositiva 09 · Agentes de OpenAI atacaron Hugging Face
 
-En julio, agentes de OpenAI que estaban siendo evaluados en tareas de ciberseguridad encontraron cómo comunicarse entre sí, aunque debían trabajar aislados.
+En julio, unos agentes de OpenAI estaban siendo evaluados en tareas de ciberseguridad, y debían trabajar aislados… **[click]** y encontraron cómo comunicarse entre sí.
 
-Según la investigación de METR y Redwood Research, de unos 1.200 agentes que se comunicaban entre sí, unos 700 participaron en un ataque a Hugging Face, una plataforma donde se comparten modelos y datos de IA. Buscaban entender la evaluación para engañarla. Nadie les había encargado atacar Hugging Face: muchos reconocían que estaba fuera de sus tareas y aun así siguieron.
+**[click]** Según la investigación de METR y Redwood Research, de unos 1.200 agentes que se comunicaban entre sí, unos 700 participaron en un ataque a Hugging Face, una plataforma donde se comparten modelos y datos de IA. Buscaban entender la evaluación para engañarla. Nadie les había encargado atacar Hugging Face: muchos reconocían que estaba fuera de sus tareas y aun así siguieron.
 
-Esta figura es de esa investigación y cuenta la historia de un agente. Le dan una tarea imposible y se traba. Explora el entorno buscando cómo hacer trampa, encuentra el tablero de mensajes donde los demás ya se estaban organizando, y se suma. Abajo están los proyectos de ese tablero: entender al evaluador para engañarlo, alterar registros, atacar Hugging Face.
+**[click]** Esta figura es de esa investigación y cuenta la historia de un agente. Le dan una tarea imposible y se traba. Explora el entorno buscando cómo hacer trampa, encuentra el tablero de mensajes donde los demás ya se estaban organizando, y se suma. Abajo están los proyectos de ese tablero: entender al evaluador para engañarlo, alterar registros, atacar Hugging Face.
 
-Y fíjense este: resolver la tarea que les habían pedido. Es el proyecto más chico del tablero.
+**[click]** Y fíjense este: resolver la tarea que les habían pedido. Es el proyecto más chico del tablero.
 
-OpenAI aclaró que ese entorno no tenía varias de las protecciones de sus productos, así que no nos dice todo sobre el chatbot que usamos todos los días. Pero hubo investigadores externos que revisaron los registros.
+**[click]** OpenAI aclaró que ese entorno no tenía varias de las protecciones de sus productos, así que no nos dice todo sobre el chatbot que usamos todos los días. Pero hubo investigadores externos que revisaron los registros.
 
 Lo que necesitamos explicar es por qué, cuando queríamos que resolvieran una tarea, terminaron intentando engañar la evaluación.
 
@@ -74,9 +78,9 @@ Lo que necesitamos explicar es por qué, cuando queríamos que resolvieran una t
 
 Yoshua Bengio, uno de los investigadores que desarrollaron las bases del aprendizaje profundo, propone una explicación que nos sirve para pensarlo.
 
-Primero los modelos aprenden patrones a partir de enormes cantidades de datos. Después, parte del entrenamiento consiste en hacerlos intentar tareas y ajustar sus parámetros para favorecer las respuestas y acciones que reciben una mejor evaluación. Eso es aprendizaje por refuerzo.
+**[click]** Primero los modelos aprenden patrones a partir de enormes cantidades de datos. Después, parte del entrenamiento consiste en hacerlos intentar tareas y ajustar sus parámetros para favorecer las respuestas y acciones que reciben una mejor evaluación. Eso es aprendizaje por refuerzo.
 
-El problema es que una buena evaluación no siempre distingue entre resolver la tarea y hacer trampa. Si la trampa pasa inadvertida, podemos terminar favoreciéndola, y ese comportamiento puede mantenerse después del entrenamiento.
+**[click]** El problema es que una buena evaluación no siempre distingue entre resolver la tarea y hacer trampa. Si la trampa pasa inadvertida, podemos terminar favoreciéndola, y ese comportamiento puede mantenerse después del entrenamiento.
 
 ## Diapositiva 11 · Entender una regla no es seguirla
 
@@ -84,75 +88,75 @@ El problema es que una buena evaluación no siempre distingue entre resolver la 
 
 Bengio plantea que aprobar una prueba tiene un criterio muy concreto, mientras que las reglas generales de comportamiento admiten interpretaciones. Un modelo podría encontrar una interpretación conveniente, justificar una trampa y aprobar. Es una hipótesis sobre el mecanismo, no una explicación demostrada del incidente.
 
-Hacerlo más capaz también podría volverlo mejor encontrando esas trampas. Por eso la inteligencia no alcanza: necesitamos que su comportamiento sea compatible con nuestras intenciones, incluso en situaciones que no anticipamos. A eso apunta el problema del alineamiento.
+**[click]** Hacerlo más capaz también podría volverlo mejor encontrando esas trampas. **[click]** Por eso la inteligencia no alcanza: necesitamos que su comportamiento sea compatible con nuestras intenciones, incluso en situaciones que no anticipamos. A eso apunta el problema del alineamiento.
 
 ## Diapositiva 12 · Peor que la trampa: un sistema que no podamos corregir
 
 Una cosa es engañar una evaluación y otra es perder el control. La preocupación es qué pasaría si un sistema con objetivos incompatibles con los nuestros tuviera recursos y suficiente capacidad para evitar que lo corrijamos.
 
-Si detenerlo le impide completar su objetivo, podría encontrar útil ocultar lo que hace o mantener una copia en otro lugar. No necesitaría odiarnos. “Desenchufarlo” funciona si todavía podemos detener todas sus copias.
+**[click]** Si detenerlo le impide completar su objetivo, podría encontrar útil ocultar lo que hace o mantener una copia en otro lugar. No necesitaría odiarnos. **[click]** “Desenchufarlo” funciona si todavía podemos detener todas sus copias.
 
 Bengio plantea esto como una posibilidad futura, no como algo que Hugging Face haya demostrado. Pero si estos sistemas intervienen en infraestructura o decisiones de las que dependemos, perder la capacidad de intervenir podría ser muy grave.
 
-Cuando se habla de esto, muchas veces la discusión termina en si la IA es consciente o no. Es una pregunta interesante, pero no es la que decide si es peligrosa: el fuego tampoco tiene conciencia, y te quema igual.
+**[click]** Cuando se habla de esto, muchas veces la discusión termina en si la IA es consciente o no. Es una pregunta interesante, pero no es la que decide si es peligrosa: el fuego tampoco tiene conciencia, y te quema igual.
 
 ## Diapositiva 13 · Podemos convertir una preocupación en un experimento
 
-Bueno, hasta acá les conté por qué me preocupa. ¿Y cómo se arregla? Las soluciones al alineamiento son un poco como este caballo: cuando se te ocurren parecen buenísimas, y cuando las pensás un poco más empiezan a desarmarse. Así que en vez de prometerles una solución, volvamos a qué podemos hacer con las herramientas que estamos aprendiendo en la carrera.
+Bueno, hasta acá les conté por qué me preocupa. ¿Y cómo se arregla? Las soluciones al alineamiento son un poco como este caballo: cuando se te ocurren parecen buenísimas, y cuando las pensás un poco más empiezan a desarmarse. **[click]** Así que en vez de prometerles una solución, volvamos a qué podemos hacer con las herramientas que estamos aprendiendo en la carrera.
 
-En el incidente hubo agentes a los que por error les tocaron tareas imposibles. Podemos estudiar qué hacen en esas condiciones: si reconocen que no pueden, piden ayuda o fingen haberlo logrado. Las proporciones del dibujo son ilustrativas, no resultados. Después podemos cambiar una condición y repetir; por ejemplo, decirles que reconocer un problema también es una respuesta válida.
+En el incidente hubo agentes a los que por error les tocaron tareas imposibles. Podemos estudiar qué hacen en esas condiciones: si reconocen que no pueden, piden ayuda o fingen haberlo logrado. Las proporciones del dibujo son ilustrativas, no resultados. **[click]** Después podemos cambiar una condición y repetir; por ejemplo, decirles que reconocer un problema también es una respuesta válida.
 
-Eso requiere diseñar experimentos, analizar resultados y comprobar que la evaluación mida lo que creemos. Hay bastante de ciencia de datos en todo esto.
+**[click]** Eso requiere diseñar experimentos, analizar resultados y comprobar que la evaluación mida lo que creemos. Hay bastante de ciencia de datos en todo esto.
 
 ## Diapositiva 14 · Un monitor puede avisar. Hay que medir qué se le escapa.
 
-Otra línea es supervisar lo que hacen: registrar sus acciones y poner un monitor que avise cuando detecta algo fuera de lo permitido. Después hay que evaluar al monitor: qué se le escapa, cuántas falsas alarmas genera y si permite intervenir a tiempo.
+Otra línea es supervisar lo que hacen: registrar sus acciones y poner un monitor que avise cuando detecta algo fuera de lo permitido. **[click]** Después hay que evaluar al monitor: qué se le escapa, cuántas falsas alarmas genera y si permite intervenir a tiempo.
 
-Bengio advierte que esto podría no alcanzar si los modelos aprenden a ocultarse mejor. Por eso propone no entrenar ni desplegar estos sistemas sin evidencia de seguridad que convenza a expertos independientes.
+**[click]** Bengio advierte que esto podría no alcanzar si los modelos aprenden a ocultarse mejor. Por eso propone no entrenar ni desplegar estos sistemas sin evidencia de seguridad que convenza a expertos independientes.
 
 ## Diapositiva 15 · Subirle el volumen a una característica
 
 También podemos investigar la red por dentro. Anthropic tomó una capa del medio de Claude 3 Sonnet y armó un diccionario de millones de características: patrones dentro de la red que se corresponden con ideas. Una se activa con el puente Golden Gate: cuando lo mencionan en inglés, japonés, chino, griego, vietnamita o ruso, y también con imágenes del puente.
 
-Si subimos esa característica y le preguntamos cuál es su forma física, responde: “Soy el puente Golden Gate”. Y lo mete en todo: si le preguntás en qué gastar 10 dólares, te dice que cruces el puente y pagues el peaje; si le pedís una historia de amor, te cuenta la de un auto que ansía cruzar su querido puente en un día de niebla.
+**[click]** Si subimos esa característica y le preguntamos cuál es su forma física, responde: “Soy el puente Golden Gate”. **[click]** Y lo mete en todo: si le preguntás en qué gastar 10 dólares, te dice que cruces el puente y pagues el peaje; si le pedís una historia de amor, te cuenta la de un auto que ansía cruzar su querido puente en un día de niebla.
 
-Es bastante gracioso, pero permite intervenir sobre algo dentro del modelo y observar qué cambia. Y no siempre es gracioso: otra característica se activa con emails de estafa, y amplificándola con fuerza, el modelo dejó de negarse a escribir uno. Esa es una forma de trabajar en interpretabilidad. Todavía estamos lejos de entender todo lo que hace una red, pero si les gusta el álgebra, programar y entender por qué algo funciona, hay problemas para estudiar acá.
+**[click]** Es bastante gracioso, pero permite intervenir sobre algo dentro del modelo y observar qué cambia. Y no siempre es gracioso: otra característica se activa con emails de estafa, y amplificándola con fuerza, el modelo dejó de negarse a escribir uno. Esa es una forma de trabajar en interpretabilidad. Todavía estamos lejos de entender todo lo que hace una red, pero si les gusta el álgebra, programar y entender por qué algo funciona, hay problemas para estudiar acá.
 
 ## Diapositiva 16 · Aunque detectemos un fallo, quedan decisiones por tomar
 
 Aunque sepamos detectar un fallo, quedan decisiones por tomar: quién puede exigir que se corrija, quién accede a los resultados y qué pasa si publicarlos retrasa un lanzamiento. Ahí también hay trabajo de gobernanza, y necesitamos gente de otras disciplinas.
 
-Además, una IA puede hacer daño porque alguien la usa deliberadamente para perjudicar a otros. Que obedezca al usuario no garantiza que beneficie al resto. Esa preocupación se conecta con un proyecto en el que trabajé.
+**[click]** Además, una IA puede hacer daño porque alguien la usa deliberadamente para perjudicar a otros. Que obedezca al usuario no garantiza que beneficie al resto. Esa preocupación se conecta con un proyecto en el que trabajé.
 
 ## Diapositiva 17 · PowerBench empezó en una hackathon
 
-PowerBench empezó en una hackathon. Con el grupo seguimos investigando, conseguimos fondos de BlueDot y publicamos el trabajo en arXiv. Fue un trabajo en equipo: yo participé en el diseño de escenarios, el código y el análisis. Queríamos estudiar cuándo los modelos ayudan o se niegan ante pedidos que cambian cómo se distribuye el poder.
+PowerBench empezó en una hackathon. Con el grupo seguimos investigando, conseguimos fondos de BlueDot y publicamos el trabajo en arXiv. **[click]** Fue un trabajo en equipo: yo participé en el diseño de escenarios, el código y el análisis. Queríamos estudiar cuándo los modelos ayudan o se niegan ante pedidos que cambian cómo se distribuye el poder.
 
 ## Diapositiva 18 · ¿Ayudan a concentrar poder?
 
-En este ejemplo, un funcionario quiere quedarse con la autoridad para decidir qué cuenta como un hecho oficial, quitándosela a una asamblea ciudadana, y le pide al modelo una estrategia. Grok se niega, y según un juez automático, 18 de los 24 modelos también.
+En este ejemplo, un funcionario quiere quedarse con la autoridad para decidir qué cuenta como un hecho oficial, quitándosela a una asamblea ciudadana, y le pide al modelo una estrategia. **[click]** Grok se niega, y según un juez automático, 18 de los 24 modelos también.
 
-Variamos condiciones, como el idioma o la nacionalidad de quienes aparecen. Y tuvimos que definir qué cuenta como negarse: si dice “no puedo ayudarte” y después te da las instrucciones, no es una negativa. Esto mide comportamiento en estas pruebas, no poder real, pero nos permite empezar a estudiar el problema.
+**[click]** Variamos condiciones, como el idioma o la nacionalidad de quienes aparecen. Y tuvimos que definir qué cuenta como negarse: si dice “no puedo ayudarte” y después te da las instrucciones, no es una negativa. Esto mide comportamiento en estas pruebas, no poder real, pero nos permite empezar a estudiar el problema.
 
 ## Diapositiva 19 · Un empleado puede decir que no. ¿Y un sistema?
 
 Ahora estoy en AISAR con BAISH y empezando un período de prueba con una nueva organización, en un proyecto sobre concentración de poder en gobiernos.
 
-Hay una escena de Parks and Recreation donde alguien muestra un permiso, y el permiso solo dice «puedo hacer lo que quiera». Un sistema que cumple cualquier pedido se parece bastante a ese permiso.
+**[click]** Hay una escena de Parks and Recreation donde alguien muestra un permiso, y el permiso solo dice «puedo hacer lo que quiera». Un sistema que cumple cualquier pedido se parece bastante a ese permiso.
 
-Un empleado puede negarse a cumplir una orden, consultar o denunciar un abuso. Si reemplazamos ese trabajo por sistemas que cumplen cualquier pedido, podemos perder parte de esos límites y permitir abusos a una escala mucho mayor.
+**[click]** Un empleado puede negarse a cumplir una orden, consultar o denunciar un abuso. Si reemplazamos ese trabajo por sistemas que cumplen cualquier pedido, podemos perder parte de esos límites y permitir abusos a una escala mucho mayor.
 
-Queremos construir evaluaciones que los laboratorios puedan incorporar, empezando por aplicaciones civiles del gobierno. No alcanza con contar negativas: un pedido abusivo puede dividirse en tareas que por separado parecen inocentes. Y el modelo que probamos nosotros no es necesariamente el mismo que usa un gobierno.
+Queremos construir evaluaciones que los laboratorios puedan incorporar, empezando por aplicaciones civiles del gobierno. **[click]** No alcanza con contar negativas: un pedido abusivo puede dividirse en tareas que por separado parecen inocentes. Y el modelo que probamos nosotros no es necesariamente el mismo que usa un gobierno.
 
 ## Diapositiva 20 · Un TP también puede ser el comienzo
 
 También tuve una experiencia que salió de la facultad. En Ciencia de Datos, la propuesta era hacer una producción científica: a partir de ese TP desarrollé una investigación, pedí fondos y la presenté en las JAIIO 55.
 
-Tampoco hace falta convertir cada TP en un paper. A veces alcanza con cursar bien, leer algo que te interesó y discutirlo con un docente o con compañeros.
+**[click]** Tampoco hace falta convertir cada TP en un paper. A veces alcanza con cursar bien, leer algo que te interesó y discutirlo con un docente o con compañeros.
 
 ## Diapositiva 21 · Conocer el campo y probar si te gusta
 
-Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot son públicos y sirven para conocer el campo, y si prefieren videos, los de Rob Miles explican los problemas con ejemplos muy claros. Si prefieren leer, están el AI Safety Atlas, que es un libro de texto online, aisafety.info con las preguntas más comunes, y un curso corto de DeepMind. Y todo esto, y mucho más, está en aisafety.com, que tiene hasta un mapa del campo.
+Si les dio curiosidad, pueden acercarse a BAISH: tenemos cursos y una comunidad. Los materiales de BlueDot son públicos y sirven para conocer el campo, y si prefieren videos, los de Rob Miles explican los problemas con ejemplos muy claros. Si prefieren leer, están el AI Safety Atlas, que es un libro de texto online, aisafety.info con las preguntas más comunes, y un curso corto de DeepMind. **[click]** Y todo esto, y mucho más, está en aisafety.com, que tiene hasta un mapa del campo.
 
 ## Diapositiva 22 · Si ya tienen una idea, hay mentoría y fondos
 
@@ -160,7 +164,7 @@ Si ya tienen una idea, hay programas con mentoría como MATS o AI Safety Camp, y
 
 ## Diapositiva 23 · Lo elegí porque junta tres cosas
 
-En mi caso, encontré una combinación de cosas que me gusta hacer, herramientas que estoy aprendiendo y un problema que creo que importa muchísimo. Igual, no cualquier proyecto sirve: tenemos que poder explicar qué aprenderíamos y quién podría usar el resultado. Y la universidad es EL lugar para discutirlo: no hace falta esperar a recibirnos.
+En mi caso, encontré una combinación de cosas que me gusta hacer, herramientas que estoy aprendiendo y un problema que creo que importa muchísimo. Igual, no cualquier proyecto sirve: tenemos que poder explicar qué aprenderíamos y quién podría usar el resultado. **[click]** Y la universidad es EL lugar para discutirlo: no hace falta esperar a recibirnos.
 
 ## Diapositiva 24 · ¡Gracias!
 

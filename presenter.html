@@ -12,6 +12,9 @@ header{display:flex;align-items:baseline;gap:24px;margin-bottom:18px}
 #steps{font:400 18px "JetBrains Mono",monospace;color:var(--dim);margin-bottom:18px}
 #steps i{display:inline-block;width:14px;height:14px;border-radius:50%;background:#223;margin-right:6px;vertical-align:-1px}
 #steps i.on{background:var(--gold)}
+#notes .click{display:inline-block;font:700 16px/1 "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.06em;color:#03040a;background:#6f9bff;border-radius:6px;padding:5px 8px;margin:0 4px;vertical-align:3px}
+#notes .click.done{background:#2a3050;color:#6c739c}
+#notes .click.next{background:#ffbb55;box-shadow:0 0 0 3px rgba(255,187,85,.3)}
 #notes p{font-size:27px;line-height:1.45;margin:0 0 18px;max-width:1100px}
 #next{margin-top:26px;font:400 20px "JetBrains Mono",monospace;color:var(--dim)}
 nav{position:fixed;right:30px;bottom:24px;display:flex;gap:10px}
@@ -36,7 +39,9 @@ ch.onmessage = e => {
   $('#theme').textContent = m.theme === 'light' ? 'Tema oscuro (L)' : 'Tema claro (L)';
   $('#title').textContent = m.titles[m.cur];
   $('#steps').innerHTML = Array.from({ length: m.steps + 1 }, (_, i) => `<i class="${i <= m.step ? 'on' : ''}"></i>`).join('') + ` paso ${m.step + 1} de ${m.steps + 1}`;
-  $('#notes').innerHTML = n.text.map(p => `<p>${p}</p>`).join('');
+  $('#notes').innerHTML = n.text.map(p => `<p>${p.replace(/\*\*\[click\]\*\*/g, '<b class="click">click</b>')}</p>`).join('');
+  // los clicks ya hechos se apagan; el próximo queda resaltado
+  $('#notes').querySelectorAll('.click').forEach((c, i) => c.classList.add(i < m.step ? 'done' : i === m.step ? 'next' : 'later'));
   $('#next').textContent = m.cur + 1 < m.total ? 'siguiente → ' + m.titles[m.cur + 1] : 'última slide';
 };
 const send = cmd => ch.postMessage({ type: 'cmd', cmd });
